@@ -5,6 +5,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 RUN apt-get update && apt-get install -y gettext
 WORKDIR /src
 COPY requirements.txt /src/
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /src/
 EXPOSE 9000
