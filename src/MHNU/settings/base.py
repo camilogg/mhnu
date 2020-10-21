@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'museum.apps.MuseumConfig',
+    'import_export',
 ]
 
 MIDDLEWARE = [
