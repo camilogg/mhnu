@@ -22,6 +22,8 @@ services:
 
   nginx:
     image: nginx:alpine
+    logging:
+      driver: none
     volumes:
       - ./src/static:/static
       - ./src/media:/media

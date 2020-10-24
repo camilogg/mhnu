@@ -25,6 +25,7 @@ test:
 
 makemessages:
 	docker-compose exec mhnu ./manage.py makemessages -l es
+	docker-compose exec mhnu ./manage.py makemessages -l en
 
 compilemessages:
 	docker-compose exec mhnu ./manage.py compilemessages -f
