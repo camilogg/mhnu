@@ -29,3 +29,10 @@ makemessages:
 
 compilemessages:
 	docker-compose exec mhnu ./manage.py compilemessages -f
+
+flake:
+	docker-compose exec mhnu flake8
+
+reset:
+	docker-compose down -v
+	rm -rf ./postgres-data

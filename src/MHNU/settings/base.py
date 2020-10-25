@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'museum.apps.MuseumConfig',
     'import_export',
     'drf_yasg2',
-    'rest_framework'
+    'rest_framework',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
