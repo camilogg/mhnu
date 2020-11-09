@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'museum.apps.MuseumConfig',
     'import_export',
-    'drf_yasg2',
+    'drf_yasg',
     'rest_framework',
     'rosetta',
 ]
@@ -119,7 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'es'
 
 LANGUAGES = (
-    ('en', _('English')),
     ('es', _('Spanish')),
 )
 
