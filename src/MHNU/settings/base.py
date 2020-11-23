@@ -123,7 +123,7 @@ LANGUAGES = (
 )
 
 LOCALE_PATHS = [
-    BASE_DIR / '/locale/',
+    BASE_DIR / 'locale/',
 ]
 
 TIME_ZONE = 'America/Bogota'
@@ -175,3 +175,5 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'

@@ -8,16 +8,322 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-24 17:00-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2020-11-23 08:04-0500\n"
+"PO-Revision-Date: 2020-11-23 08:04-0456\n"
+"Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.5\n"
+
+#: museum/admin.py:74
+msgid "Record Items"
+msgstr "Elementos de registro"
+
+#: museum/admin.py:85
+msgid "Biological Record"
+msgstr "Registro biológico"
+
+#: museum/admin.py:98
+msgid "Event"
+msgstr "evento"
 
 #: museum/apps.py:7
 msgid "museum"
 msgstr "museo"
+
+#: museum/models.py:10 museum/models.py:21 museum/models.py:32
+#: museum/models.py:45 museum/models.py:56 museum/models.py:67
+#: museum/models.py:78 museum/models.py:89 museum/models.py:100
+#: museum/models.py:113 museum/models.py:124
+msgid "name"
+msgstr "nombre"
+
+#: museum/models.py:13 museum/models.py:137
+msgid "type"
+msgstr "tipo"
+
+#: museum/models.py:14
+msgid "types"
+msgstr "tipos"
+
+#: museum/models.py:24 museum/models.py:165
+msgid "collection code"
+msgstr "código de la colección"
+
+#: museum/models.py:25
+msgid "collection codes"
+msgstr "códigos de colecciones"
+
+#: museum/models.py:35 museum/models.py:36 museum/models.py:175
+msgid "basis of record"
+msgstr "base del registro"
+
+#: museum/models.py:48 museum/models.py:49 museum/models.py:206
+msgid "recorded by"
+msgstr "registrado por"
+
+#: museum/models.py:59 museum/models.py:213
+msgid "sex"
+msgstr "sexo"
+
+#: museum/models.py:60
+msgid "sexes"
+msgstr "sexos"
+
+#: museum/models.py:70 museum/models.py:216
+msgid "life stage"
+msgstr "etapa de vida"
+
+#: museum/models.py:71
+msgid "life stages"
+msgstr "etapas de vida"
+
+#: museum/models.py:81 museum/models.py:227
+msgid "occurrence status"
+msgstr "estado del registro biológico"
+
+#: museum/models.py:82
+msgid "occurrence statuses"
+msgstr "estados del registro biológico"
+
+#: museum/models.py:92
+msgid "preparation"
+msgstr "preparación"
+
+#: museum/models.py:93 museum/models.py:231
+msgid "preparations"
+msgstr "preparaciones"
+
+#: museum/models.py:103 museum/models.py:235
+msgid "disposition"
+msgstr "disposición"
+
+#: museum/models.py:104
+msgid "dispositions"
+msgstr "disposiciones"
+
+#: museum/models.py:116 museum/models.py:266
+msgid "sampling protocol"
+msgstr "protocolo de muestreo"
+
+#: museum/models.py:117
+msgid "sampling protocols"
+msgstr "protocolos de muestreo"
+
+#: museum/models.py:127 museum/models.py:300
+msgid "habitat"
+msgstr "habitat"
+
+#: museum/models.py:128
+msgid "habitats"
+msgstr "habitats"
+
+#: museum/models.py:139
+msgid "modified"
+msgstr "modificado"
+
+#: museum/models.py:140
+msgid "language"
+msgstr "idioma"
+
+#: museum/models.py:141
+msgid "license"
+msgstr "licencia"
+
+#: museum/models.py:143
+msgid "rights holder"
+msgstr "titular de los derechos"
+
+#: museum/models.py:147
+msgid "access rights"
+msgstr "derechos de acceso"
+
+#: museum/models.py:150
+msgid "bibliographic citation"
+msgstr "citación bibliográfica"
+
+#: museum/models.py:152
+msgid "references"
+msgstr "referencias"
+
+#: museum/models.py:154
+msgid "institution ID"
+msgstr "ID de la institución"
+
+#: museum/models.py:157
+msgid "collection ID"
+msgstr "ID de la colección"
+
+#: museum/models.py:159
+msgid "dataset ID"
+msgstr "ID del conjunto de datos"
+
+#: museum/models.py:161
+msgid "institution code"
+msgstr "código de la institución"
+
+#: museum/models.py:168
+msgid "dataset name"
+msgstr "nombre del conjunto de datos"
+
+#: museum/models.py:171
+msgid "owner institution code"
+msgstr "código de la institución propietaria"
+
+#: museum/models.py:178
+msgid "information withheld"
+msgstr "información retenida"
+
+#: museum/models.py:181
+msgid "data generalizations"
+msgstr "generalización de los datos"
+
+#: museum/models.py:184
+msgid "dynamic properties"
+msgstr "propiedades dinámicas"
+
+#: museum/models.py:190
+msgid "Invalid format"
+msgstr "Formato inválido"
+
+#: museum/models.py:193
+msgid "occurrence ID"
+msgstr "ID del Registro biológico"
+
+#: museum/models.py:197
+msgid "catalog number"
+msgstr "número de catálogo"
+
+#: museum/models.py:200
+msgid "occurrence remarks"
+msgstr "comentarios del registro biológico"
+
+#: museum/models.py:203
+msgid "record number"
+msgstr "número del registro"
+
+#: museum/models.py:209
+msgid "organism ID"
+msgstr "ID del organismo"
+
+#: museum/models.py:211
+msgid "individual count"
+msgstr "número de individuos"
+
+#: museum/models.py:219
+msgid "reproductive condition"
+msgstr "condición reproductiva"
+
+#: museum/models.py:221
+msgid "behavior"
+msgstr "comportamiento"
+
+#: museum/models.py:223
+msgid "establishment means"
+msgstr "medios de establecimiento"
+
+#: museum/models.py:238
+msgid "other catalog numbers"
+msgstr "otros números de catálogo"
+
+#: museum/models.py:241
+msgid "previous identifications"
+msgstr "identificaciones previas"
+
+#: museum/models.py:244
+msgid "associated media"
+msgstr "medios asociados"
+
+#: museum/models.py:247
+msgid "associated references"
+msgstr "referencias asociadas"
+
+#: museum/models.py:250
+msgid "associated occurrences"
+msgstr "registros biológicos asociados"
+
+#: museum/models.py:253
+msgid "associated sequences"
+msgstr "secuencias asociadas"
+
+#: museum/models.py:256
+msgid "associated taxa"
+msgstr "taxones asociados"
+
+#: museum/models.py:260
+msgid "event ID"
+msgstr "ID del evento"
+
+#: museum/models.py:262
+msgid "parent event ID"
+msgstr "ID parental del evento"
+
+#: museum/models.py:269
+msgid "sampling effort"
+msgstr "esfuerzo de muestreo"
+
+#: museum/models.py:272
+msgid "sampling size value"
+msgstr "tamaño de la muestra"
+
+#: museum/models.py:275
+msgid "sampling size unit"
+msgstr "unidad del tamaño de la muestra"
+
+#: museum/models.py:277
+msgid "event date"
+msgstr "fecha del evento"
+
+#: museum/models.py:278
+msgid "event time"
+msgstr "hora del evento"
+
+#: museum/models.py:280
+msgid "start day of year"
+msgstr "día inicial del año"
+
+#: museum/models.py:284
+msgid "end day of year"
+msgstr "día final del año"
+
+#: museum/models.py:287
+msgid "year"
+msgstr "año"
+
+#: museum/models.py:289
+msgid "month"
+msgstr "mes"
+
+#: museum/models.py:293
+msgid "day"
+msgstr "día"
+
+#: museum/models.py:297
+msgid "verbatim event date"
+msgstr "fecha original del Evento"
+
+#: museum/models.py:304
+msgid "field number"
+msgstr "número de campo"
+
+#: museum/models.py:306
+msgid "field notes"
+msgstr "notas de campo"
+
+#: museum/models.py:307
+msgid "event remarks"
+msgstr "comentarios del evento"
+
+#: museum/models.py:310
+#| msgid "Record"
+msgid "record"
+msgstr "registro"
+
+#: museum/models.py:311
+#| msgid "Records"
+msgid "records"
+msgstr "registros"
