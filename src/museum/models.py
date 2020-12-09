@@ -131,7 +131,127 @@ class Habitat(models.Model):
         return self.name
 
 
+# Location tables
+
+class WaterBody(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('water body')
+        verbose_name_plural = _('water bodies')
+
+    def __str__(self):
+        return self.name
+
+
+class Country(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+    country_code = models.CharField(
+        _('country code'), max_length=2, unique=True
+    )
+
+    class Meta:
+        verbose_name = _('country')
+        verbose_name_plural = _('countries')
+
+    def __str__(self):
+        return self.name
+
+
+class StateProvince(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+    country = models.ForeignKey(
+        Country, on_delete=models.CASCADE, blank=True, null=True,
+        verbose_name=_('country')
+    )
+
+    class Meta:
+        verbose_name = _('state province')
+        verbose_name_plural = _('state provinces')
+
+    def __str__(self):
+        return self.name
+
+
+class County(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+    state_province = models.ForeignKey(
+        StateProvince, on_delete=models.CASCADE, blank=True, null=True,
+        verbose_name=_('state province')
+    )
+
+    class Meta:
+        verbose_name = _('county')
+        verbose_name_plural = _('counties')
+
+    def __str__(self):
+        return self.name
+
+
+class Municipality(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+    county = models.ForeignKey(
+        County, on_delete=models.CASCADE, blank=True, null=True,
+        verbose_name=_('county')
+    )
+
+    class Meta:
+        verbose_name = _('municipality')
+        verbose_name_plural = _('municipalities')
+
+    def __str__(self):
+        return self.name
+
+
+class Locality(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+    verbatim_locality = models.CharField(
+        _('verbatim locality'), max_length=255, blank=True
+    )
+    municipality = models.ForeignKey(
+        Municipality, on_delete=models.CASCADE, blank=True, null=True,
+        verbose_name=_('county')
+    )
+
+    class Meta:
+        verbose_name = _('locality')
+        verbose_name_plural = _('localities')
+
+    def __str__(self):
+        return self.name
+
+
 class Record(models.Model):
+    class Continents(models.TextChoices):
+        AFRICA = 'AF', _('Africa')
+        ASIA = 'AS', _('Asia')
+        EUROPE = 'EU', _('Europe')
+        NORTH_AMERICA = 'NA', _('North America')
+        SOUTH_AMERICA = 'SA', _('South America')
+        OCEANIA = 'OC', _('Oceania')
+        ANTARCTICA = 'AN', _('Antarctica')
+
+    class VerbatimCoordinatesSystem(models.TextChoices):
+        DECIMAL_DEGREES = 'Grados decimales', _('Decimal degrees')
+        DEGREES_DECIMAL_MINUTES = 'Grados, minutos decimales', _(
+            'Degrees, decimal minutes'
+        )
+        DEGREES_MINUTES_SECONDS = 'Grados, minutos, segundos', _(
+            'Degrees, minutes, seconds'
+        )
+        UTM = 'UTM', _('UTM')
+        CRTM = 'CRTM', _('CRTM')
+
+    class GeoreferenceVerificationStatus(models.TextChoices):
+        NO_VERIFICATION = 'Sin verificación', _('No verification')
+        VERIFIED = 'Verificado por el custodio de los datos', _(
+            'Verified by the custodian of the data'
+        )
+        VERIFIED_BY_DATA_PROVIDER = \
+            'Verificado por el proveedor de los datos', _(
+                'Verified by the data provider'
+            )
+
     # Record Items Fields
     type = models.ForeignKey(
         Type, on_delete=models.CASCADE, verbose_name=_('type')
@@ -305,6 +425,124 @@ class Record(models.Model):
     )
     field_notes = models.TextField(_('field notes'), blank=True)
     event_remarks = models.TextField(_('event remarks'), blank=True)
+
+    # Location fields
+    location_ID = models.CharField(
+        _('location ID'), max_length=255, blank=True
+    )
+    higher_geography_ID = models.CharField(
+        _(' higher geography ID'), max_length=255, blank=True
+    )
+    higher_geography = models.CharField(
+        _(' higher geography'), max_length=255, blank=True
+    )
+    continent = models.CharField(
+        _('continent'), max_length=2, choices=Continents.choices,
+        default=Continents.SOUTH_AMERICA
+    )
+    water_body = models.ForeignKey(
+        WaterBody, on_delete=models.CASCADE, verbose_name=_('water body'),
+        blank=True, null=True
+    )
+    island_group = models.CharField(
+        _('island group'), max_length=255, blank=True
+    )
+    island = models.CharField(_('island'), max_length=255, blank=True)
+    locality = models.ForeignKey(
+        Locality, on_delete=models.CASCADE, verbose_name=_('locality'),
+        blank=True, null=True
+    )
+    verbatim_elevation = models.CharField(
+        _('verbatim elevation'), blank=True, max_length=255
+    )
+    minimum_elevation_in_meters = models.PositiveSmallIntegerField(
+        _('minimum elevation in meters'), blank=True, null=True
+    )
+    maximum_elevation_in_meters = models.PositiveSmallIntegerField(
+        _('maximum elevation in meters'), blank=True, null=True
+    )
+    verbatim_depth = models.CharField(
+        _('verbatim depth'), max_length=255, blank=True
+    )
+    minimum_depth_in_meters = models.PositiveSmallIntegerField(
+        _('minimum depth in meters'), blank=True, null=True
+    )
+    maximum_depth_in_meters = models.PositiveSmallIntegerField(
+        _('maximum depth in meters'), blank=True, null=True
+    )
+    minimum_distance_above_surface_in_meters = models.CharField(
+        _('minimum distance above surface in meters'), max_length=255,
+        blank=True
+    )
+    maximum_distance_above_surface_in_meters = models.CharField(
+        _('maximum distance above surface in meters'), max_length=255,
+        blank=True
+    )
+    location_according_to = models.CharField(
+        _('location according to'), max_length=255, blank=True
+    )
+    location_remarks = models.TextField(_('location remarks'), blank=True)
+    verbatim_coordinates = models.CharField(
+        _('verbatim coordinates'), max_length=255, blank=True
+    )
+    verbatim_latitude = models.CharField(
+        _('verbatim latitude'), max_length=255, blank=True
+    )
+    verbatim_longitude = models.CharField(
+        _('verbatim longitude'), max_length=255, blank=True
+    )
+    verbatim_coordinate_system = models.CharField(
+        _('verbatim coordinate system'), max_length=50, blank=True,
+        choices=VerbatimCoordinatesSystem.choices,
+        default=VerbatimCoordinatesSystem.DEGREES_MINUTES_SECONDS
+    )
+    verbatim_SRS = models.CharField(
+        _('verbatim SRS'), max_length=255, blank=True
+    )
+    decimal_latitude = models.FloatField(
+        _('decimal latitude'), blank=True, null=True
+    )
+    decimal_longitude = models.FloatField(
+        _('decimal longitude'), blank=True, null=True
+    )
+    geodetic_datum = models.CharField(
+        _('geodetic datum'), max_length=255, default='WGS84'
+    )
+    coordinate_uncertainty_in_meters = models.PositiveSmallIntegerField(
+        _('coordinate uncertainty in meters'), blank=True, null=True
+    )
+    coordinate_precision = models.FloatField(
+        _('coordinate precision'), blank=True, null=True
+    )
+    point_radius_spatial_fit = models.CharField(
+        _('point radius spatial fit'), max_length=255, blank=True
+    )
+    footprint_WKT = models.CharField(
+        _('footprint WKT'), max_length=255, blank=True
+    )
+    footprint_SRS = models.CharField(
+        _('footprint SRS'), max_length=255, blank=True
+    )
+    footprint_spatial_fit = models.CharField(
+        _('footprint spatial fit'), max_length=255, blank=True
+    )
+    georeferenced_by = models.TextField(_('georeferenced by'), blank=True)
+    georeferenced_date = models.CharField(
+        _('georeferenced date'), max_length=255, blank=True
+    )
+    georeference_protocol = models.CharField(
+        _('georeference protocol'), max_length=255, blank=True
+    )
+    georeference_sources = models.CharField(
+        _('georeference sources'), max_length=255, blank=True
+    )
+    georeference_verification_status = models.CharField(
+        _('georeference verification status'), max_length=255, blank=True,
+        choices=GeoreferenceVerificationStatus.choices
+    )
+    georeference_remarks = models.TextField(
+        _('georeference remarks'), blank=True
+    )
 
     class Meta:
         verbose_name = _('record')

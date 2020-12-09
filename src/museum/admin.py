@@ -3,64 +3,118 @@ from django.utils.translation import gettext_lazy as _
 
 from import_export.admin import ImportExportModelAdmin
 
-from .models import Record, Type, CollectionCode, BasisOfRecord, Sex, \
-    LifeStage, OccurrenceStatus, Preparation, Disposition, RecordedBy, \
-    SamplingProtocol, Habitat
+from .models import (
+    Record, Type, CollectionCode, BasisOfRecord, Sex, LifeStage,
+    OccurrenceStatus, Preparation, Disposition, RecordedBy, SamplingProtocol,
+    Habitat, WaterBody, Country, StateProvince, County, Municipality, Locality
+)
+
+
+class ListAndSearchImportExportModelAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(Type)
 class TypeAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(CollectionCode)
 class CollectionCodeAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(BasisOfRecord)
 class BasisOfRecordAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(RecordedBy)
 class RecordedByAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(Sex)
 class SexAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(LifeStage)
 class LifeStageAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(OccurrenceStatus)
 class OccurrenceStatusAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(Preparation)
 class PreparationAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(Disposition)
 class DispositionAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(SamplingProtocol)
 class SamplingProtocolAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(Habitat)
 class HabitatAdmin(ImportExportModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(WaterBody)
+class WaterBodyAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(Country)
+class CountryAdmin(ImportExportModelAdmin):
+    list_display = ('name', 'country_code')
+    search_fields = ('name',)
+
+
+@admin.register(StateProvince)
+class StateProvinceAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(County)
+class CountyAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(Municipality)
+class MunicipalityAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(Locality)
+class LocalityAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(Record)
@@ -68,7 +122,7 @@ class RecordAdmin(ImportExportModelAdmin):
     raw_id_fields = (
         'type', 'collection_code', 'basis_of_record', 'recorded_by', 'sex',
         'life_stage', 'occurrence_status', 'preparations', 'disposition',
-        'sampling_protocol', 'habitat'
+        'sampling_protocol', 'habitat', 'water_body', 'locality',
     )
     fieldsets = (
         (_('Record Items'), {
@@ -103,6 +157,28 @@ class RecordAdmin(ImportExportModelAdmin):
                 'end_day_of_year', 'year', 'month', 'day',
                 'verbatim_event_date', 'habitat', 'field_number',
                 'field_notes', 'event_remarks',
+            )
+        }),
+        (_('Location'), {
+            'fields': (
+                'location_ID', 'higher_geography_ID', 'higher_geography',
+                'continent', 'water_body', 'island_group',
+                'island', 'locality', 'verbatim_elevation',
+                'minimum_elevation_in_meters', 'maximum_elevation_in_meters',
+                'verbatim_depth', 'minimum_depth_in_meters',
+                'maximum_depth_in_meters',
+                'minimum_distance_above_surface_in_meters',
+                'maximum_distance_above_surface_in_meters',
+                'location_according_to', 'location_remarks',
+                'verbatim_coordinates', 'verbatim_latitude',
+                'verbatim_longitude', 'verbatim_coordinate_system',
+                'verbatim_SRS', 'decimal_latitude', 'decimal_longitude',
+                'geodetic_datum', 'coordinate_uncertainty_in_meters',
+                'coordinate_precision', 'point_radius_spatial_fit',
+                'footprint_WKT', 'footprint_SRS', 'footprint_spatial_fit',
+                'georeferenced_by', 'georeferenced_date',
+                'georeference_protocol', 'georeference_sources',
+                'georeference_verification_status', 'georeference_remarks'
             )
         }),
     )
