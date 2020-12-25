@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-08 19:44-0500\n"
-"PO-Revision-Date: 2020-12-08 20:23-0456\n"
+"POT-Creation-Date: 2020-12-25 01:51-0500\n"
+"PO-Revision-Date: 2020-12-25 01:57-0456\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -34,6 +34,10 @@ msgstr "evento"
 #: museum/admin.py:162
 msgid "Location"
 msgstr "Ubicación"
+
+#: museum/admin.py:184
+msgid "Geological Context"
+msgstr "Contexto geológico"
 
 #: museum/apps.py:7
 msgid "museum"
@@ -173,7 +177,6 @@ msgid "municipalities"
 msgstr "cabeceras municipales / centros poblados"
 
 #: museum/models.py:209
-#| msgid "verbatim event date"
 msgid "verbatim locality"
 msgstr "localidad original"
 
@@ -234,7 +237,6 @@ msgid "CRTM"
 msgstr "CRTM"
 
 #: museum/models.py:246
-#| msgid "previous identifications"
 msgid "No verification"
 msgstr "Sin verificación"
 
@@ -443,7 +445,6 @@ msgid "event remarks"
 msgstr "comentarios del evento"
 
 #: museum/models.py:431
-#| msgid "collection ID"
 msgid "location ID"
 msgstr "ID de la ubicación"
 
@@ -468,7 +469,6 @@ msgid "island"
 msgstr "isla"
 
 #: museum/models.py:456
-#| msgid "verbatim event date"
 msgid "verbatim elevation"
 msgstr "elevación original"
 
@@ -481,7 +481,6 @@ msgid "maximum elevation in meters"
 msgstr "elevación máxima en metros"
 
 #: museum/models.py:465
-#| msgid "verbatim event date"
 msgid "verbatim depth"
 msgstr "fecha original del Evento"
 
@@ -506,27 +505,22 @@ msgid "location according to"
 msgstr "ubicación de acuerdo con"
 
 #: museum/models.py:484
-#| msgid "occurrence remarks"
 msgid "location remarks"
 msgstr "comentarios de la ubicación"
 
 #: museum/models.py:486
-#| msgid "verbatim event date"
 msgid "verbatim coordinates"
 msgstr "coordenadas originales"
 
 #: museum/models.py:489
-#| msgid "verbatim event date"
 msgid "verbatim latitude"
 msgstr "latitud original"
 
 #: museum/models.py:492
-#| msgid "verbatim event date"
 msgid "verbatim longitude"
 msgstr "longitud original"
 
 #: museum/models.py:495
-#| msgid "verbatim event date"
 msgid "verbatim coordinate system"
 msgstr "sistema original de coordenadas"
 
@@ -573,12 +567,10 @@ msgid "footprint spatial fit"
 msgstr "ajuste espacial de footprint"
 
 #: museum/models.py:529
-#| msgid "references"
 msgid "georeferenced by"
 msgstr "georreferenciado por"
 
 #: museum/models.py:531
-#| msgid "references"
 msgid "georeferenced date"
 msgstr "fecha de georreferenciación"
 
@@ -587,7 +579,6 @@ msgid "georeference protocol"
 msgstr "protocolo de georreferenciación"
 
 #: museum/models.py:537
-#| msgid "references"
 msgid "georeference sources"
 msgstr "fuentes de georreferenciación"
 
@@ -598,14 +589,90 @@ msgstr ""
 "georreferenciación"
 
 #: museum/models.py:544
-#| msgid "occurrence remarks"
 msgid "georeference remarks"
 msgstr "comentarios de la georreferenciación"
 
-#: museum/models.py:548
+#: museum/models.py:549
+msgid "geological context ID"
+msgstr "ID del contexto geológico"
+
+#: museum/models.py:552
+msgid "earliest eon or lowest eonothem"
+msgstr "Eón temprano o eonotema inferior"
+
+#: museum/models.py:555
+#| msgid "earliest eon or highest eonothem"
+msgid "latest eon or highest eonothem"
+msgstr "Eón tardío o eonotema superior"
+
+#: museum/models.py:558
+msgid "earliest era or lowest erathem"
+msgstr "Era temprana o eratema inferior"
+
+#: museum/models.py:561
+#| msgid "earliest era or highest erathem"
+msgid "latest era or highest erathem"
+msgstr "Era tardía o eratema superior"
+
+#: museum/models.py:564
+msgid "earliest period or lowest system"
+msgstr "Periodo temprano o sistema inferior"
+
+#: museum/models.py:567
+#| msgid "earliest period or highest system"
+msgid "latest period or highest system"
+msgstr "Periodo tardío o sistema superior"
+
+#: museum/models.py:570
+msgid "earliest epoch or lowest series"
+msgstr "Época temprana o serie inferior"
+
+#: museum/models.py:573
+#| msgid "earliest epoch or highest series"
+msgid "latest epoch or highest series"
+msgstr "Época tardía o serie superior"
+
+#: museum/models.py:576
+msgid "earliest age or lowest stage"
+msgstr "Edad temprana o piso inferior"
+
+#: museum/models.py:579
+msgid "latest age or highest stage"
+msgstr "Edad tardía o piso superior"
+
+#: museum/models.py:582
+msgid "lowest biostratigraphic zone"
+msgstr "Zona bioestratigráfica inferior"
+
+#: museum/models.py:585
+msgid "highest biostratigraphic zone"
+msgstr "Zona bioestratigráfica superior"
+
+#: museum/models.py:588
+msgid "lithostratigraphic terms"
+msgstr "Términos litoestratigráficos"
+
+#: museum/models.py:590
+msgid "group"
+msgstr "Grupo"
+
+#: museum/models.py:591
+#| msgid "Location"
+msgid "formation"
+msgstr "Formación"
+
+#: museum/models.py:592
+msgid "member"
+msgstr "Miembro"
+
+#: museum/models.py:593
+msgid "bed"
+msgstr "Capa"
+
+#: museum/models.py:596
 msgid "record"
 msgstr "registro"
 
-#: museum/models.py:549
+#: museum/models.py:597
 msgid "records"
 msgstr "registros"

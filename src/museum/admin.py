@@ -181,4 +181,21 @@ class RecordAdmin(ImportExportModelAdmin):
                 'georeference_verification_status', 'georeference_remarks'
             )
         }),
+        (_('Geological Context'), {
+            'fields': (
+                'geological_context_ID', 'earliest_eon_or_lowest_eonothem',
+                'latest_eon_or_highest_eonothem',
+                'earliest_era_or_lowest_erathem',
+                'latest_era_or_highest_erathem',
+                'earliest_period_or_lowest_system',
+                'latest_period_or_highest_system',
+                'earliest_epoch_or_lowest_series',
+                'latest_epoch_or_highest_series',
+                'earliest_age_or_lowest_stage',
+                'latest_age_or_highest_stage',
+                'lowest_biostratigraphic_zone',
+                'highest_biostratigraphic_zone', 'lithostratigraphic_terms',
+                'group', 'formation', 'member', 'bed'
+            )
+        }),
     )

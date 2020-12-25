@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'src'.
@@ -177,3 +179,9 @@ SWAGGER_SETTINGS = {
 }
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+
+# LOGIN SETTINGS
+LOGIN_URL = reverse_lazy('admin:index')
+LOGIN_REDIRECT_URL = reverse_lazy('admin:index')
+LOGOUT_REDIRECT_URL = reverse_lazy('admin:index')

@@ -544,6 +544,54 @@ class Record(models.Model):
         _('georeference remarks'), blank=True
     )
 
+    # Biological context fields
+    geological_context_ID = models.CharField(
+        _('geological context ID'), max_length=255, blank=True
+    )
+    earliest_eon_or_lowest_eonothem = models.CharField(
+        _('earliest eon or lowest eonothem'), max_length=255, blank=True
+    )
+    latest_eon_or_highest_eonothem = models.CharField(
+        _('latest eon or highest eonothem'), max_length=255, blank=True
+    )
+    earliest_era_or_lowest_erathem = models.CharField(
+        _('earliest era or lowest erathem'), max_length=255, blank=True
+    )
+    latest_era_or_highest_erathem = models.CharField(
+        _('latest era or highest erathem'), max_length=255, blank=True
+    )
+    earliest_period_or_lowest_system = models.CharField(
+        _('earliest period or lowest system'), max_length=255, blank=True
+    )
+    latest_period_or_highest_system = models.CharField(
+        _('latest period or highest system'), max_length=255, blank=True
+    )
+    earliest_epoch_or_lowest_series = models.CharField(
+        _('earliest epoch or lowest series'), max_length=255, blank=True
+    )
+    latest_epoch_or_highest_series = models.CharField(
+        _('latest epoch or highest series'), max_length=255, blank=True
+    )
+    earliest_age_or_lowest_stage = models.CharField(
+        _('earliest age or lowest stage'), max_length=255, blank=True
+    )
+    latest_age_or_highest_stage = models.CharField(
+        _('latest age or highest stage'), max_length=255, blank=True
+    )
+    lowest_biostratigraphic_zone = models.CharField(
+        _('lowest biostratigraphic zone'), max_length=255, blank=True
+    )
+    highest_biostratigraphic_zone = models.CharField(
+        _('highest biostratigraphic zone'), max_length=255, blank=True
+    )
+    lithostratigraphic_terms = models.CharField(
+        _('lithostratigraphic terms'), max_length=255, blank=True
+    )
+    group = models.CharField(_('group'), max_length=255, blank=True)
+    formation = models.CharField(_('formation'), max_length=255, blank=True)
+    member = models.CharField(_('member'), max_length=255, blank=True)
+    bed = models.CharField(_('bed'), max_length=255, blank=True)
+
     class Meta:
         verbose_name = _('record')
         verbose_name_plural = _('records')
