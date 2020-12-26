@@ -6,7 +6,8 @@ from import_export.admin import ImportExportModelAdmin
 from .models import (
     Record, Type, CollectionCode, BasisOfRecord, Sex, LifeStage,
     OccurrenceStatus, Preparation, Disposition, RecordedBy, SamplingProtocol,
-    Habitat, WaterBody, Country, StateProvince, County, Municipality, Locality
+    Habitat, WaterBody, Country, StateProvince, County, Municipality, Locality,
+    IdentifiedBy
 )
 
 
@@ -117,12 +118,19 @@ class LocalityAdmin(ImportExportModelAdmin):
     search_fields = ('name',)
 
 
+@admin.register(IdentifiedBy)
+class LocalityAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
 @admin.register(Record)
 class RecordAdmin(ImportExportModelAdmin):
     raw_id_fields = (
         'type', 'collection_code', 'basis_of_record', 'recorded_by', 'sex',
         'life_stage', 'occurrence_status', 'preparations', 'disposition',
         'sampling_protocol', 'habitat', 'water_body', 'locality',
+        'identified_by'
     )
     fieldsets = (
         (_('Record Items'), {
@@ -198,4 +206,12 @@ class RecordAdmin(ImportExportModelAdmin):
                 'group', 'formation', 'member', 'bed'
             )
         }),
+        (_('Identification'), {
+            'fields': (
+                'identification_ID', 'identified_by', 'date_identified',
+                'identification_references',
+                'identification_verification_status', 'identification_remarks',
+                'identification_qualifier', 'type_status'
+            )
+        })
     )

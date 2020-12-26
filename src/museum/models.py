@@ -221,6 +221,19 @@ class Locality(models.Model):
         return self.name
 
 
+# Identification tables
+
+class IdentifiedBy(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('Identified by')
+        verbose_name_plural = _('Identified by')
+
+    def __str__(self):
+        return self.name
+
+
 class Record(models.Model):
     class Continents(models.TextChoices):
         AFRICA = 'AF', _('Africa')
@@ -591,6 +604,31 @@ class Record(models.Model):
     formation = models.CharField(_('formation'), max_length=255, blank=True)
     member = models.CharField(_('member'), max_length=255, blank=True)
     bed = models.CharField(_('bed'), max_length=255, blank=True)
+
+    # Identification fields
+    identification_ID = models.CharField(
+        _('identification ID'), max_length=255, blank=True
+    )
+    identified_by = models.ForeignKey(
+        IdentifiedBy, on_delete=models.CASCADE, blank=True, null=True,
+        verbose_name=_('identified by')
+    )
+    date_identified = models.DateField(
+        _('date identified'), blank=True, null=True
+    )
+    identification_references = models.TextField(
+        _('identification references'), blank=True
+    )
+    identification_verification_status = models.CharField(
+        _('identification verification status'), blank=True, max_length=255
+    )
+    identification_remarks = models.TextField(
+        _('identification remarks'), blank=True
+    )
+    identification_qualifier = models.TextField(
+        _('identification qualifier'), blank=True
+    )
+    type_status = models.TextField(_('type status'), blank=True)
 
     class Meta:
         verbose_name = _('record')
