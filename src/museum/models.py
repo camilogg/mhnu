@@ -234,6 +234,151 @@ class IdentifiedBy(models.Model):
         return self.name
 
 
+# Taxon tables
+
+class ScientificName(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('scientific name')
+        verbose_name_plural = _('scientific names')
+
+    def __str__(self):
+        return self.name
+
+
+class Kingdom(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('kingdom')
+        verbose_name_plural = _('kingdoms')
+
+    def __str__(self):
+        return self.name
+
+
+class Phylum(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('phylum')
+        verbose_name_plural = _('phylum')
+
+    def __str__(self):
+        return self.name
+
+
+class Class(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('class')
+        verbose_name_plural = _('classes')
+
+    def __str__(self):
+        return self.name
+
+
+class Order(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('order')
+        verbose_name_plural = _('orders')
+
+    def __str__(self):
+        return self.name
+
+
+class Family(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('family')
+        verbose_name_plural = _('families')
+
+    def __str__(self):
+        return self.name
+
+
+class Genus(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('genus')
+        verbose_name_plural = _('genuses')
+
+    def __str__(self):
+        return self.name
+
+
+class SpecificEpithet(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('specific epithet')
+        verbose_name_plural = _('specific epithets')
+
+    def __str__(self):
+        return self.name
+
+
+class TaxonRank(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('taxon rank')
+        verbose_name_plural = _('taxon ranks')
+
+    def __str__(self):
+        return self.name
+
+
+class ScientificNameAuthorship(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('scientific name authorship')
+        verbose_name_plural = _('scientific name authorships')
+
+    def __str__(self):
+        return self.name
+
+
+class VernacularName(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('vernacular name')
+        verbose_name_plural = _('vernacular names')
+
+    def __str__(self):
+        return self.name
+
+
+class NomenclaturalCode(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('nomenclatural code')
+        verbose_name_plural = _('nomenclatural codes')
+
+    def __str__(self):
+        return self.name
+
+
+class TaxonomicStatus(models.Model):
+    name = models.CharField(_('name'), max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = _('taxonomic status')
+        verbose_name_plural = _('taxonomic statuses')
+
+    def __str__(self):
+        return self.name
+
+
 class Record(models.Model):
     class Continents(models.TextChoices):
         AFRICA = 'AF', _('Africa')
@@ -629,6 +774,110 @@ class Record(models.Model):
         _('identification qualifier'), blank=True
     )
     type_status = models.TextField(_('type status'), blank=True)
+
+    # Taxon fields
+    taxon_ID = models.CharField(_('taxon ID'), max_length=255, blank=True)
+    scientific_name_ID = models.CharField(
+        _('scientific name ID'), max_length=255, blank=True
+    )
+    accepted_name_usage_ID = models.CharField(
+        _('accepted name usage ID'), max_length=255, blank=True
+    )
+    parent_name_usage_ID = models.CharField(
+        _('parent name usage ID'), max_length=255, blank=True
+    )
+    original_name_usage_ID = models.CharField(
+        _('original name usage ID'), max_length=255, blank=True
+    )
+    name_according_to_ID = models.CharField(
+        _('name according to ID'), max_length=255, blank=True
+    )
+    name_published_in_ID = models.CharField(
+        _('name published in ID'), max_length=255, blank=True
+    )
+    taxon_concept_ID = models.CharField(
+        _('taxon concept ID'), max_length=255, blank=True
+    )
+    scientific_name = models.ForeignKey(
+        ScientificName, verbose_name=_('scientific name'),
+        on_delete=models.CASCADE, blank=True, null=True
+    )
+    accepted_name_usage = models.CharField(
+        _('accepted name usage'), max_length=255, blank=True
+    )
+    parent_name_usage = models.CharField(
+        _('parent name usage'), max_length=255, blank=True
+    )
+    original_name_usage = models.CharField(
+        _('original name usage'), max_length=255, blank=True
+    )
+    name_according_to = models.TextField(_('name according to'), blank=True)
+    name_published_in = models.TextField(_('name published in'), blank=True)
+    name_published_in_year = models.PositiveSmallIntegerField(
+        _('name published in year'), blank=True, null=True
+    )
+    higher_classification = models.TextField(
+        _('higher classification'), blank=True
+    )
+    kingdom = models.ForeignKey(
+        Kingdom, on_delete=models.CASCADE, verbose_name=_('kingdom'),
+        blank=True, null=True
+    )
+    phylum = models.ForeignKey(
+        Phylum, on_delete=models.CASCADE, verbose_name=_('phylum'),
+        blank=True, null=True
+    )
+    _class = models.ForeignKey(
+        Class, on_delete=models.CASCADE, verbose_name=_('class'),
+        blank=True, null=True
+    )
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, verbose_name=_('order'),
+        blank=True, null=True
+    )
+    family = models.ForeignKey(
+        Family, on_delete=models.CASCADE, verbose_name=_('family'),
+        blank=True, null=True
+    )
+    genus = models.ForeignKey(
+        Genus, on_delete=models.CASCADE, verbose_name=_('genus'),
+        blank=True, null=True
+    )
+    subgenus = models.CharField(_('subgenus'), max_length=255, blank=True)
+    specific_epithet = models.ForeignKey(
+        SpecificEpithet, on_delete=models.CASCADE,
+        verbose_name=_('specific epithet'), blank=True, null=True
+    )
+    infraspecific_epithet = models.CharField(
+        _('infraspecific epithet'), max_length=255, blank=True
+    )
+    taxon_rank = models.ForeignKey(
+        TaxonRank, on_delete=models.CASCADE, verbose_name=_('taxon rank'),
+        blank=True, null=True
+    )
+    verbatim_taxon_rank = models.CharField(
+        _('verbatim taxon rank'), max_length=255, blank=True
+    )
+    scientific_name_authorship = models.ForeignKey(
+        ScientificNameAuthorship, on_delete=models.CASCADE,
+        verbose_name=_('scientific name authorship'), blank=True, null=True
+    )
+    vernacular_name = models.ForeignKey(
+        VernacularName, on_delete=models.CASCADE, blank=True, null=True,
+        verbose_name=_('vernacular name')
+    )
+    nomenclatural_code = models.ForeignKey(
+        NomenclaturalCode, on_delete=models.CASCADE,
+        verbose_name=_('nomenclatural code'), blank=True, null=True
+    )
+    taxonomic_status = models.ForeignKey(
+        TaxonomicStatus, on_delete=models.CASCADE, blank=True, null=True,
+        verbose_name=_('taxonomic status')
+    )
+    nomenclatural_status = models.CharField(
+        _('nomenclatural status'), max_length=255, blank=True
+    )
+    taxon_remarks = models.TextField(_('taxon remarks'), blank=True)
 
     class Meta:
         verbose_name = _('record')

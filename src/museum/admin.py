@@ -4,10 +4,38 @@ from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportModelAdmin
 
 from .models import (
-    Record, Type, CollectionCode, BasisOfRecord, Sex, LifeStage,
-    OccurrenceStatus, Preparation, Disposition, RecordedBy, SamplingProtocol,
-    Habitat, WaterBody, Country, StateProvince, County, Municipality, Locality,
-    IdentifiedBy
+    Record,
+    Type,
+    CollectionCode,
+    BasisOfRecord,
+    Sex,
+    LifeStage,
+    OccurrenceStatus,
+    Preparation,
+    Disposition,
+    RecordedBy,
+    SamplingProtocol,
+    Habitat,
+    WaterBody,
+    Country,
+    StateProvince,
+    County,
+    Municipality,
+    Locality,
+    IdentifiedBy,
+    ScientificName,
+    Kingdom,
+    Phylum,
+    Class,
+    Order,
+    Family,
+    Genus,
+    SpecificEpithet,
+    TaxonRank,
+    ScientificNameAuthorship,
+    VernacularName,
+    NomenclaturalCode,
+    TaxonomicStatus
 )
 
 
@@ -124,13 +152,94 @@ class LocalityAdmin(ImportExportModelAdmin):
     search_fields = ('name',)
 
 
+@admin.register(ScientificName)
+class ScientificNameAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(Kingdom)
+class KingdomAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(Phylum)
+class PhylumAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(Class)
+class ClassAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(Order)
+class OrderAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(Family)
+class FamilyAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(Genus)
+class GenusAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(SpecificEpithet)
+class SpecificEpithetAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(TaxonRank)
+class TaxonRankEpithetAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(ScientificNameAuthorship)
+class ScientificNameAuthorshipAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(VernacularName)
+class VernacularNameAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(NomenclaturalCode)
+class NomenclaturalCodeAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(TaxonomicStatus)
+class TaxonomicStatusAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
 @admin.register(Record)
 class RecordAdmin(ImportExportModelAdmin):
     raw_id_fields = (
         'type', 'collection_code', 'basis_of_record', 'recorded_by', 'sex',
         'life_stage', 'occurrence_status', 'preparations', 'disposition',
         'sampling_protocol', 'habitat', 'water_body', 'locality',
-        'identified_by'
+        'identified_by', 'scientific_name', 'kingdom', 'phylum', '_class',
+        'order', 'family', 'genus', 'specific_epithet', 'taxon_rank',
+        'scientific_name_authorship', 'vernacular_name', 'nomenclatural_code',
+        'taxonomic_status'
     )
     fieldsets = (
         (_('Record Items'), {
@@ -212,6 +321,22 @@ class RecordAdmin(ImportExportModelAdmin):
                 'identification_references',
                 'identification_verification_status', 'identification_remarks',
                 'identification_qualifier', 'type_status'
+            )
+        }),
+        (_('Taxon'), {
+            'fields': (
+                'taxon_ID', 'scientific_name_ID', 'accepted_name_usage_ID',
+                'parent_name_usage_ID', 'original_name_usage_ID',
+                'name_according_to_ID', 'name_published_in_ID',
+                'taxon_concept_ID', 'scientific_name', 'accepted_name_usage',
+                'parent_name_usage', 'original_name_usage',
+                'name_according_to', 'name_published_in',
+                'name_published_in_year', 'higher_classification', 'kingdom',
+                'phylum', '_class', 'order', 'family', 'genus', 'subgenus',
+                'specific_epithet', 'infraspecific_epithet', 'taxon_rank',
+                'verbatim_taxon_rank', 'scientific_name_authorship',
+                'vernacular_name', 'nomenclatural_code', 'taxonomic_status',
+                'nomenclatural_status', 'taxon_remarks'
             )
         })
     )
