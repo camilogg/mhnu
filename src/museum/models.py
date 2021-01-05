@@ -3,8 +3,9 @@ from django.core.validators import RegexValidator, MinValueValidator, \
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-
 # Record Items tables
+from museum.validators import occurrence_id_regex
+
 
 class Type(models.Model):
     name = models.CharField(_('name'), max_length=255, unique=True)
@@ -416,7 +417,9 @@ class Record(models.Model):
     )
     modified = models.DateField(_('modified'), blank=True, null=True)
     language = models.CharField(_('language'), max_length=2, default='es')
-    license = models.CharField(_('license'), max_length=255, blank=True)
+    license = models.CharField(
+        _('license'), max_length=255, blank=True, null=True
+    )
     rights_holder = models.CharField(
         _('rights holder'), max_length=255,
         default='Universidad de los Llanos (Unillanos)'
@@ -425,16 +428,18 @@ class Record(models.Model):
         _('access rights'), max_length=255, default='Sólo uso científico'
     )
     bibliographic_citation = models.TextField(
-        _('bibliographic citation'), blank=True
+        _('bibliographic citation'), blank=True, null=True
     )
-    references = models.TextField(_('references'), blank=True)
+    references = models.TextField(_('references'), blank=True, null=True)
     institution_ID = models.CharField(
         _('institution ID'), default='892000757-3', max_length=255
     )
     collection_ID = models.CharField(
-        _('collection ID'), blank=True, max_length=255
+        _('collection ID'), blank=True, max_length=255, null=True
     )
-    dataset_ID = models.CharField(_('dataset ID'), max_length=255, blank=True)
+    dataset_ID = models.CharField(
+        _('dataset ID'), max_length=255, blank=True, null=True
+    )
     institution_code = models.CharField(
         _('institution code'), max_length=255, default='Unillanos'
     )
@@ -443,30 +448,26 @@ class Record(models.Model):
         verbose_name=_('collection code')
     )
     dataset_name = models.CharField(
-        _('dataset name'), max_length=255, blank=True
+        _('dataset name'), max_length=255, blank=True, null=True
     )
     owner_institution_code = models.CharField(
-        _('owner institution code'), max_length=255, blank=True
+        _('owner institution code'), max_length=255, blank=True, null=True
     )
     basis_of_record = models.ForeignKey(
         BasisOfRecord, on_delete=models.CASCADE,
         verbose_name=_('basis of record')
     )
     information_withheld = models.TextField(
-        _('information withheld'), blank=True
+        _('information withheld'), blank=True, null=True
     )
     data_generalizations = models.TextField(
-        _('data generalizations'), blank=True
+        _('data generalizations'), blank=True, null=True
     )
     dynamic_properties = models.JSONField(
         _('dynamic properties'), blank=True, null=True
     )
 
     # Biological Record fields
-    occurrence_id_regex = RegexValidator(
-        regex=r'Unillanos:MHNU-[A-Z]{1,2}:\d+',
-        message=_('Invalid format')
-    )
     occurrence_ID = models.CharField(
         _('occurrence ID'), max_length=255, validators=[occurrence_id_regex],
         unique=True
@@ -475,7 +476,7 @@ class Record(models.Model):
         _('catalog number'), max_length=255, unique=True
     )
     occurrence_remarks = models.TextField(
-        _('occurrence remarks'), blank=True
+        _('occurrence remarks'), blank=True, null=True
     )
     record_number = models.CharField(
         _('record number'), max_length=255, unique=True, null=True, blank=True
@@ -484,7 +485,25 @@ class Record(models.Model):
         RecordedBy, on_delete=models.CASCADE, verbose_name=_('recorded by')
     )
     organism_ID = models.CharField(
-        _('organism ID'), max_length=255, blank=True
+        _('organism ID'), max_length=255, blank=True, null=True
+    )
+    organism_quantity = models.CharField(
+        _('organism quantity'), max_length=255, blank=True, null=True
+    )
+    organism_quantity_type = models.CharField(
+        _('organism quantity type'), max_length=255, blank=True, null=True
+    )
+    organism_name = models.CharField(
+        _('organism name'), max_length=255, blank=True, null=True
+    )
+    organism_scope = models.CharField(
+        _('organism scope'), max_length=255, blank=True, null=True
+    )
+    associated_organisms = models.TextField(
+        _('associated organisms'), blank=True, null=True
+    )
+    organism_remarks = models.TextField(
+        _('organism remarks'), blank=True, null=True
     )
     individual_count = models.PositiveSmallIntegerField(_('individual count'))
     sex = models.ForeignKey(
@@ -494,11 +513,13 @@ class Record(models.Model):
         LifeStage, on_delete=models.CASCADE, verbose_name=_('life stage')
     )
     reproductive_condition = models.CharField(
-        _('reproductive condition'), max_length=255, blank=True
+        _('reproductive condition'), max_length=255, blank=True, null=True
     )
-    behavior = models.CharField(_('behavior'), max_length=255, blank=True)
+    behavior = models.CharField(
+        _('behavior'), max_length=255, blank=True, null=True
+    )
     establishment_means = models.CharField(
-        _('establishment means'), max_length=255, blank=True
+        _('establishment means'), max_length=255, blank=True, null=True
     )
     occurrence_status = models.ForeignKey(
         OccurrenceStatus, on_delete=models.CASCADE, null=True, blank=True,
@@ -513,44 +534,49 @@ class Record(models.Model):
         verbose_name=_('disposition')
     )
     other_catalog_numbers = models.CharField(
-        _('other catalog numbers'), max_length=255, blank=True
+        _('other catalog numbers'), max_length=255, blank=True, null=True
     )
     previous_identifications = models.CharField(
-        _('previous identifications'), max_length=255, blank=True
+        _('previous identifications'), max_length=255, blank=True, null=True
     )
     associated_media = models.CharField(
-        _('associated media'), max_length=255, blank=True
+        _('associated media'), max_length=255, blank=True, null=True
     )
     associated_references = models.CharField(
-        _('associated references'), max_length=255, blank=True
+        _('associated references'), max_length=255, blank=True, null=True
     )
     associated_occurrences = models.CharField(
-        _('associated occurrences'), max_length=255, blank=True
+        _('associated occurrences'), max_length=255, blank=True, null=True
     )
     associated_sequences = models.CharField(
-        _('associated sequences'), max_length=255, blank=True
+        _('associated sequences'), max_length=255, blank=True, null=True
     )
     associated_taxa = models.CharField(
-        _('associated taxa'), max_length=255, blank=True
+        _('associated taxa'), max_length=255, blank=True, null=True
+    )
+    material_sample_ID = models.CharField(
+        _('material_sample_ID'), max_length=255, blank=True, null=True
     )
 
     # Event fields
-    event_ID = models.CharField(_('event ID'), max_length=255, blank=True)
+    event_ID = models.CharField(
+        _('event ID'), max_length=255, blank=True, null=True
+    )
     parent_event_ID = models.CharField(
-        _('parent event ID'), max_length=255, blank=True
+        _('parent event ID'), max_length=255, blank=True, null=True
     )
     sampling_protocol = models.ForeignKey(
         SamplingProtocol, on_delete=models.CASCADE,
         verbose_name=_('sampling protocol'), blank=True, null=True
     )
     sampling_effort = models.CharField(
-        _('sampling effort'), max_length=255, blank=True
+        _('sampling effort'), max_length=255, blank=True, null=True
     )
     sampling_size_value = models.PositiveSmallIntegerField(
         _('sampling size value'), blank=True, null=True
     )
     sampling_size_unit = models.CharField(
-        _('sampling size unit'), max_length=255, blank=True
+        _('sampling size unit'), max_length=255, blank=True, null=True
     )
     event_date = models.DateField(_('event date'), blank=True, null=True)
     event_time = models.TimeField(_('event time'), blank=True, null=True)
@@ -572,27 +598,27 @@ class Record(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(31)]
     )
     verbatim_event_date = models.CharField(
-        _('verbatim event date'), max_length=255, blank=True
+        _('verbatim event date'), max_length=255, blank=True, null=True
     )
     habitat = models.ForeignKey(
         Habitat, on_delete=models.CASCADE, verbose_name=_('habitat'),
         blank=True, null=True
     )
     field_number = models.CharField(
-        _('field number'), max_length=255, blank=True
+        _('field number'), max_length=255, blank=True, null=True
     )
-    field_notes = models.TextField(_('field notes'), blank=True)
-    event_remarks = models.TextField(_('event remarks'), blank=True)
+    field_notes = models.TextField(_('field notes'), blank=True, null=True)
+    event_remarks = models.TextField(_('event remarks'), blank=True, null=True)
 
     # Location fields
     location_ID = models.CharField(
-        _('location ID'), max_length=255, blank=True
+        _('location ID'), max_length=255, blank=True, null=True
     )
     higher_geography_ID = models.CharField(
-        _(' higher geography ID'), max_length=255, blank=True
+        _(' higher geography ID'), max_length=255, blank=True, null=True
     )
     higher_geography = models.CharField(
-        _(' higher geography'), max_length=255, blank=True
+        _(' higher geography'), max_length=255, blank=True, null=True
     )
     continent = models.CharField(
         _('continent'), max_length=2, choices=Continents.choices,
@@ -603,15 +629,17 @@ class Record(models.Model):
         blank=True, null=True
     )
     island_group = models.CharField(
-        _('island group'), max_length=255, blank=True
+        _('island group'), max_length=255, blank=True, null=True
     )
-    island = models.CharField(_('island'), max_length=255, blank=True)
+    island = models.CharField(
+        _('island'), max_length=255, blank=True, null=True
+    )
     locality = models.ForeignKey(
         Locality, on_delete=models.CASCADE, verbose_name=_('locality'),
         blank=True, null=True
     )
     verbatim_elevation = models.CharField(
-        _('verbatim elevation'), blank=True, max_length=255
+        _('verbatim elevation'), blank=True, max_length=255, null=True
     )
     minimum_elevation_in_meters = models.PositiveSmallIntegerField(
         _('minimum elevation in meters'), blank=True, null=True
@@ -620,7 +648,7 @@ class Record(models.Model):
         _('maximum elevation in meters'), blank=True, null=True
     )
     verbatim_depth = models.CharField(
-        _('verbatim depth'), max_length=255, blank=True
+        _('verbatim depth'), max_length=255, blank=True, null=True
     )
     minimum_depth_in_meters = models.PositiveSmallIntegerField(
         _('minimum depth in meters'), blank=True, null=True
@@ -630,24 +658,26 @@ class Record(models.Model):
     )
     minimum_distance_above_surface_in_meters = models.CharField(
         _('minimum distance above surface in meters'), max_length=255,
-        blank=True
+        blank=True, null=True
     )
     maximum_distance_above_surface_in_meters = models.CharField(
         _('maximum distance above surface in meters'), max_length=255,
-        blank=True
+        blank=True, null=True
     )
     location_according_to = models.CharField(
-        _('location according to'), max_length=255, blank=True
+        _('location according to'), max_length=255, blank=True, null=True
     )
-    location_remarks = models.TextField(_('location remarks'), blank=True)
+    location_remarks = models.TextField(
+        _('location remarks'), blank=True, null=True
+    )
     verbatim_coordinates = models.CharField(
-        _('verbatim coordinates'), max_length=255, blank=True
+        _('verbatim coordinates'), max_length=255, blank=True, null=True
     )
     verbatim_latitude = models.CharField(
-        _('verbatim latitude'), max_length=255, blank=True
+        _('verbatim latitude'), max_length=255, blank=True, null=True
     )
     verbatim_longitude = models.CharField(
-        _('verbatim longitude'), max_length=255, blank=True
+        _('verbatim longitude'), max_length=255, blank=True, null=True
     )
     verbatim_coordinate_system = models.CharField(
         _('verbatim coordinate system'), max_length=50, blank=True,
@@ -655,7 +685,7 @@ class Record(models.Model):
         default=VerbatimCoordinatesSystem.DEGREES_MINUTES_SECONDS
     )
     verbatim_SRS = models.CharField(
-        _('verbatim SRS'), max_length=255, blank=True
+        _('verbatim SRS'), max_length=255, blank=True, null=True
     )
     decimal_latitude = models.FloatField(
         _('decimal latitude'), blank=True, null=True
@@ -664,7 +694,7 @@ class Record(models.Model):
         _('decimal longitude'), blank=True, null=True
     )
     geodetic_datum = models.CharField(
-        _('geodetic datum'), max_length=255, default='WGS84'
+        _('geodetic datum'), max_length=255, default='WGS84', null=True
     )
     coordinate_uncertainty_in_meters = models.PositiveSmallIntegerField(
         _('coordinate uncertainty in meters'), blank=True, null=True
@@ -673,86 +703,105 @@ class Record(models.Model):
         _('coordinate precision'), blank=True, null=True
     )
     point_radius_spatial_fit = models.CharField(
-        _('point radius spatial fit'), max_length=255, blank=True
+        _('point radius spatial fit'), max_length=255, blank=True, null=True
     )
     footprint_WKT = models.CharField(
-        _('footprint WKT'), max_length=255, blank=True
+        _('footprint WKT'), max_length=255, blank=True, null=True
     )
     footprint_SRS = models.CharField(
-        _('footprint SRS'), max_length=255, blank=True
+        _('footprint SRS'), max_length=255, blank=True, null=True
     )
     footprint_spatial_fit = models.CharField(
-        _('footprint spatial fit'), max_length=255, blank=True
+        _('footprint spatial fit'), max_length=255, blank=True, null=True
     )
-    georeferenced_by = models.TextField(_('georeferenced by'), blank=True)
+    georeferenced_by = models.TextField(
+        _('georeferenced by'), blank=True, null=True
+    )
     georeferenced_date = models.CharField(
-        _('georeferenced date'), max_length=255, blank=True
+        _('georeferenced date'), max_length=255, blank=True, null=True
     )
     georeference_protocol = models.CharField(
-        _('georeference protocol'), max_length=255, blank=True
+        _('georeference protocol'), max_length=255, blank=True, null=True
     )
     georeference_sources = models.CharField(
-        _('georeference sources'), max_length=255, blank=True
+        _('georeference sources'), max_length=255, blank=True, null=True
     )
     georeference_verification_status = models.CharField(
         _('georeference verification status'), max_length=255, blank=True,
-        choices=GeoreferenceVerificationStatus.choices
+        choices=GeoreferenceVerificationStatus.choices, null=True
     )
     georeference_remarks = models.TextField(
-        _('georeference remarks'), blank=True
+        _('georeference remarks'), blank=True, null=True
     )
 
     # Biological context fields
     geological_context_ID = models.CharField(
-        _('geological context ID'), max_length=255, blank=True
+        _('geological context ID'), max_length=255, blank=True, null=True
     )
     earliest_eon_or_lowest_eonothem = models.CharField(
-        _('earliest eon or lowest eonothem'), max_length=255, blank=True
+        _('earliest eon or lowest eonothem'), max_length=255, blank=True,
+        null=True
     )
     latest_eon_or_highest_eonothem = models.CharField(
-        _('latest eon or highest eonothem'), max_length=255, blank=True
+        _('latest eon or highest eonothem'), max_length=255, blank=True,
+        null=True
     )
     earliest_era_or_lowest_erathem = models.CharField(
-        _('earliest era or lowest erathem'), max_length=255, blank=True
+        _('earliest era or lowest erathem'), max_length=255, blank=True,
+        null=True
     )
     latest_era_or_highest_erathem = models.CharField(
-        _('latest era or highest erathem'), max_length=255, blank=True
+        _('latest era or highest erathem'), max_length=255, blank=True,
+        null=True
     )
     earliest_period_or_lowest_system = models.CharField(
-        _('earliest period or lowest system'), max_length=255, blank=True
+        _('earliest period or lowest system'), max_length=255, blank=True,
+        null=True
     )
     latest_period_or_highest_system = models.CharField(
-        _('latest period or highest system'), max_length=255, blank=True
+        _('latest period or highest system'), max_length=255, blank=True,
+        null=True
     )
     earliest_epoch_or_lowest_series = models.CharField(
-        _('earliest epoch or lowest series'), max_length=255, blank=True
+        _('earliest epoch or lowest series'), max_length=255, blank=True,
+        null=True
     )
     latest_epoch_or_highest_series = models.CharField(
-        _('latest epoch or highest series'), max_length=255, blank=True
+        _('latest epoch or highest series'), max_length=255, blank=True,
+        null=True
     )
     earliest_age_or_lowest_stage = models.CharField(
-        _('earliest age or lowest stage'), max_length=255, blank=True
+        _('earliest age or lowest stage'), max_length=255, blank=True,
+        null=True
     )
     latest_age_or_highest_stage = models.CharField(
-        _('latest age or highest stage'), max_length=255, blank=True
+        _('latest age or highest stage'), max_length=255, blank=True,
+        null=True
     )
     lowest_biostratigraphic_zone = models.CharField(
-        _('lowest biostratigraphic zone'), max_length=255, blank=True
+        _('lowest biostratigraphic zone'), max_length=255, blank=True,
+        null=True
     )
     highest_biostratigraphic_zone = models.CharField(
-        _('highest biostratigraphic zone'), max_length=255, blank=True
+        _('highest biostratigraphic zone'), max_length=255, blank=True,
+        null=True
     )
     lithostratigraphic_terms = models.CharField(
-        _('lithostratigraphic terms'), max_length=255, blank=True
+        _('lithostratigraphic terms'), max_length=255, blank=True,
+        null=True
     )
-    group = models.CharField(_('group'), max_length=255, blank=True)
-    formation = models.CharField(_('formation'), max_length=255, blank=True)
-    member = models.CharField(_('member'), max_length=255, blank=True)
-    bed = models.CharField(_('bed'), max_length=255, blank=True)
+    group = models.CharField(_('group'), max_length=255, blank=True, null=True)
+    formation = models.CharField(
+        _('formation'), max_length=255, blank=True, null=True
+    )
+    member = models.CharField(
+        _('member'), max_length=255, blank=True, null=True
+    )
+    bed = models.CharField(_('bed'), max_length=255, blank=True, null=True)
 
     # Identification fields
     identification_ID = models.CharField(
-        _('identification ID'), max_length=255, blank=True
+        _('identification ID'), max_length=255, blank=True, null=True
     )
     identified_by = models.ForeignKey(
         IdentifiedBy, on_delete=models.CASCADE, blank=True, null=True,
@@ -762,62 +811,69 @@ class Record(models.Model):
         _('date identified'), blank=True, null=True
     )
     identification_references = models.TextField(
-        _('identification references'), blank=True
+        _('identification references'), blank=True, null=True
     )
     identification_verification_status = models.CharField(
-        _('identification verification status'), blank=True, max_length=255
+        _('identification verification status'), blank=True, max_length=255,
+        null=True
     )
     identification_remarks = models.TextField(
-        _('identification remarks'), blank=True
+        _('identification remarks'), blank=True, null=True
     )
     identification_qualifier = models.TextField(
-        _('identification qualifier'), blank=True
+        _('identification qualifier'), blank=True, null=True
     )
-    type_status = models.TextField(_('type status'), blank=True)
+    type_status = models.TextField(_('type status'), blank=True, null=True)
 
     # Taxon fields
-    taxon_ID = models.CharField(_('taxon ID'), max_length=255, blank=True)
+    taxon_ID = models.CharField(
+        _('taxon ID'), max_length=255, blank=True, null=True
+    )
     scientific_name_ID = models.CharField(
-        _('scientific name ID'), max_length=255, blank=True
+        _('scientific name ID'), max_length=255, blank=True, null=True
     )
     accepted_name_usage_ID = models.CharField(
-        _('accepted name usage ID'), max_length=255, blank=True
+        _('accepted name usage ID'), max_length=255, blank=True, null=True
     )
     parent_name_usage_ID = models.CharField(
-        _('parent name usage ID'), max_length=255, blank=True
+        _('parent name usage ID'), max_length=255, blank=True, null=True
     )
     original_name_usage_ID = models.CharField(
-        _('original name usage ID'), max_length=255, blank=True
+        _('original name usage ID'), max_length=255, blank=True, null=True
     )
     name_according_to_ID = models.CharField(
-        _('name according to ID'), max_length=255, blank=True
+        _('name according to ID'), max_length=255, blank=True, null=True
     )
     name_published_in_ID = models.CharField(
-        _('name published in ID'), max_length=255, blank=True
+        _('name published in ID'), max_length=255, blank=True, null=True
     )
     taxon_concept_ID = models.CharField(
-        _('taxon concept ID'), max_length=255, blank=True
+        _('taxon concept ID'), max_length=255, blank=True, null=True
     )
     scientific_name = models.ForeignKey(
         ScientificName, verbose_name=_('scientific name'),
         on_delete=models.CASCADE, blank=True, null=True
     )
     accepted_name_usage = models.CharField(
-        _('accepted name usage'), max_length=255, blank=True
+        _('accepted name usage'), max_length=255, blank=True, null=True
     )
     parent_name_usage = models.CharField(
-        _('parent name usage'), max_length=255, blank=True
+        _('parent name usage'), max_length=255, blank=True, null=True
     )
     original_name_usage = models.CharField(
-        _('original name usage'), max_length=255, blank=True
+        _('original name usage'), max_length=255, blank=True, null=True
     )
-    name_according_to = models.TextField(_('name according to'), blank=True)
-    name_published_in = models.TextField(_('name published in'), blank=True)
+    name_according_to = models.TextField(
+        _('name according to'), blank=True, null=True
+    )
+    name_published_in = models.TextField(
+        _('name published in'), blank=True, null=True
+    )
     name_published_in_year = models.PositiveSmallIntegerField(
         _('name published in year'), blank=True, null=True
     )
     higher_classification = models.TextField(
-        _('higher classification'), blank=True
+        _('higher classification'), blank=True, null=True
     )
     kingdom = models.ForeignKey(
         Kingdom, on_delete=models.CASCADE, verbose_name=_('kingdom'),
@@ -843,20 +899,22 @@ class Record(models.Model):
         Genus, on_delete=models.CASCADE, verbose_name=_('genus'),
         blank=True, null=True
     )
-    subgenus = models.CharField(_('subgenus'), max_length=255, blank=True)
+    subgenus = models.CharField(
+        _('subgenus'), max_length=255, blank=True, null=True
+    )
     specific_epithet = models.ForeignKey(
         SpecificEpithet, on_delete=models.CASCADE,
         verbose_name=_('specific epithet'), blank=True, null=True
     )
     infraspecific_epithet = models.CharField(
-        _('infraspecific epithet'), max_length=255, blank=True
+        _('infraspecific epithet'), max_length=255, blank=True, null=True
     )
     taxon_rank = models.ForeignKey(
         TaxonRank, on_delete=models.CASCADE, verbose_name=_('taxon rank'),
         blank=True, null=True
     )
     verbatim_taxon_rank = models.CharField(
-        _('verbatim taxon rank'), max_length=255, blank=True
+        _('verbatim taxon rank'), max_length=255, blank=True, null=True
     )
     scientific_name_authorship = models.ForeignKey(
         ScientificNameAuthorship, on_delete=models.CASCADE,
@@ -875,9 +933,9 @@ class Record(models.Model):
         verbose_name=_('taxonomic status')
     )
     nomenclatural_status = models.CharField(
-        _('nomenclatural status'), max_length=255, blank=True
+        _('nomenclatural status'), max_length=255, blank=True, null=True
     )
-    taxon_remarks = models.TextField(_('taxon remarks'), blank=True)
+    taxon_remarks = models.TextField(_('taxon remarks'), blank=True, null=True)
 
     class Meta:
         verbose_name = _('record')

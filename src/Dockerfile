@@ -10,7 +10,7 @@ RUN pip install -r requirements.txt
 COPY . /src/
 EXPOSE 9000
 
-RUN useradd user
-RUN chown -R user:user /src
-RUN chmod -R 755 /src
-USER user
+#RUN useradd user
+#RUN chown -R user:user /src
+#RUN chmod -R 755 /src
+#USER user

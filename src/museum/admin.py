@@ -37,6 +37,7 @@ from .models import (
     NomenclaturalCode,
     TaxonomicStatus
 )
+from .resources import RecordModelResource
 
 
 class ListAndSearchImportExportModelAdmin(ImportExportModelAdmin):
@@ -126,24 +127,28 @@ class CountryAdmin(ImportExportModelAdmin):
 class StateProvinceAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+    raw_id_fields = ('country',)
 
 
 @admin.register(County)
 class CountyAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+    raw_id_fields = ('state_province',)
 
 
 @admin.register(Municipality)
 class MunicipalityAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+    raw_id_fields = ('county',)
 
 
 @admin.register(Locality)
 class LocalityAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+    raw_id_fields = ('municipality',)
 
 
 @admin.register(IdentifiedBy)
@@ -257,13 +262,15 @@ class RecordAdmin(ImportExportModelAdmin):
             'fields': (
                 'occurrence_ID', 'catalog_number', 'occurrence_remarks',
                 'record_number', 'recorded_by', 'organism_ID',
+                'organism_quantity', 'organism_quantity_type', 'organism_name',
+                'organism_scope', 'associated_organisms', 'organism_remarks',
                 'individual_count', 'sex', 'life_stage',
                 'reproductive_condition', 'behavior',
                 'establishment_means', 'occurrence_status', 'preparations',
                 'disposition', 'other_catalog_numbers',
                 'previous_identifications', 'associated_media',
                 'associated_references', 'associated_occurrences',
-                'associated_sequences', 'associated_taxa'
+                'associated_sequences', 'associated_taxa', 'material_sample_ID'
             )
         }),
         (_('Event'), {
@@ -340,3 +347,5 @@ class RecordAdmin(ImportExportModelAdmin):
             )
         })
     )
+
+    resource_class = RecordModelResource
