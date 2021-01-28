@@ -36,3 +36,8 @@ flake:
 reset:
 	docker-compose down -v
 	rm -rf ./postgres-data
+
+clean:
+	rm -rf src/*/migrations/00**.py
+	find . -name "*.pyc" -exec rm -- {} +
+	rm -rf src/*/migrations/__pycache__/*

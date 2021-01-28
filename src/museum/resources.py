@@ -1,34 +1,57 @@
-from import_export import widgets, fields
+from import_export import fields
 from import_export.resources import ModelResource
 
-from museum.models import Record
+from museum.models import (
+    Record,
+    Type,
+    CollectionCode,
+    BasisOfRecord,
+    RecordedBy,
+    Sex,
+    LifeStage,
+    OccurrenceStatus,
+    Preparation,
+    Disposition,
+    SamplingProtocol,
+    Habitat,
+    WaterBody,
+    Country,
+    County,
+    StateProvince,
+    Municipality,
+    Locality,
+    IdentifiedBy,
+    ScientificName,
+    Kingdom,
+    Phylum,
+    Class,
+    Order,
+    Family,
+    Genus,
+    SpecificEpithet,
+    TaxonRank,
+    ScientificNameAuthorship,
+    VernacularName,
+    NomenclaturalCode,
+    TaxonomicStatus
+)
 from museum.utils import snake_case_to_camel_case
 
 
 class RecordModelResource(ModelResource):
-    country = fields.Field(
-        attribute='locality__municipality__county__state_province__country__name',
-        column_name='country',
-        readonly=True
-    )
     country_code = fields.Field(
-        attribute='locality__municipality__county__state_province__country__country_code',
+        attribute='country__country_code',
         column_name='countryCode',
         readonly=True
     )
     state_province = fields.Field(
-        attribute='locality__municipality__county__state_province__name',
+        attribute='county__state_province__name',
         column_name='stateProvince',
         readonly=True
     )
     county = fields.Field(
         attribute='locality__municipality__county__name',
         column_name='county',
-        readonly=True
-    )
-    municipality = fields.Field(
-        attribute='locality__municipality__name',
-        column_name='municipality',
         readonly=True
     )
     verbatim_locality = fields.Field(
@@ -119,6 +142,9 @@ class RecordModelResource(ModelResource):
             'sampling_protocol': {'field': 'name'},
             'habitat': {'field': 'name'},
             'water_body': {'field': 'name'},
+            'country': {'field': 'name'},
+            'county': {'field': 'name'},
+            'municipality': {'field': 'name'},
             'locality': {'field': 'name'},
             'identified_by': {'field': 'name'},
             'scientific_name': {'field': 'name'},
@@ -137,6 +163,8 @@ class RecordModelResource(ModelResource):
         }
         skip_unchanged = True
         clean_model_instances = True
+        use_bulk = True
+        use_transactions = True
 
     @classmethod
     def field_from_django_field(cls, field_name, django_field, readonly):
@@ -153,3 +181,95 @@ class RecordModelResource(ModelResource):
             default=django_field.default,
         )
         return field
+
+    def before_import_row(self, row, row_number=None, **kwargs):
+        print(row_number)
+
+        for key, value in row.items():
+            if value and type(value) == str:
+                row[key] = value.strip()
+
+        if row['type']:
+            Type.objects.get_or_create(name=row['type'])
+        if row['collectionCode']:
+            CollectionCode.objects.get_or_create(name=row['collectionCode'])
+        if row['basisOfRecord']:
+            BasisOfRecord.objects.get_or_create(name=row['basisOfRecord'])
+        if row['recordedBy']:
+            RecordedBy.objects.get_or_create(name=row['recordedBy'])
+        if row['sex']:
+            Sex.objects.get_or_create(name=row['sex'])
+        if row['lifeStage']:
+            LifeStage.objects.get_or_create(name=row['lifeStage'])
+        if row['occurrenceStatus']:
+            OccurrenceStatus.objects.get_or_create(
+                name=row['occurrenceStatus']
+            )
+        if row['preparations']:
+            Preparation.objects.get_or_create(name=row['preparations'])
+        if row['disposition']:
+            Disposition.objects.get_or_create(name=row['disposition'])
+        if row['samplingProtocol']:
+            SamplingProtocol.objects.get_or_create(
+                name=row['samplingProtocol']
+            )
+        if row['habitat']:
+            Habitat.objects.get_or_create(name=row['habitat'])
+        if row['waterBody']:
+            WaterBody.objects.get_or_create(name=row['waterBody'])
+        if row['country'] and row['countryCode']:
+            Country.objects.get_or_create(
+                name=row['country'], country_code=row['countryCode']
+            )
+        if row['county'] and row['stateProvince']:
+            state, created = StateProvince.objects.get_or_create(
+                name=row['stateProvince']
+            )
+            if created:
+                County.objects.get_or_create(
+                    name=row['county'], state_province=state
+                )
+        if row['municipality']:
+            Municipality.objects.get_or_create(name=row['municipality'])
+        if row['locality']:
+            if row['verbatimLocality']:
+                Locality.objects.get_or_create(
+                    name=row['locality'],
+                    verbatim_locality=row['verbatimLocality']
+                )
+            else:
+                Locality.objects.get_or_create(
+                    name=row['locality'], verbatim_locality=''
+                )
+        if row['identifiedBy']:
+            IdentifiedBy.objects.get_or_create(name=row['identifiedBy'])
+        if row['scientificName']:
+            ScientificName.objects.get_or_create(name=row['scientificName'])
+        if row['kingdom']:
+            Kingdom.objects.get_or_create(name=row['kingdom'])
+        if row['phylum']:
+            Phylum.objects.get_or_create(name=row['phylum'])
+        if row['class']:
+            Class.objects.get_or_create(name=row['class'])
+        if row['order']:
+            Order.objects.get_or_create(name=row['order'])
+        if row['family']:
+            Family.objects.get_or_create(name=row['family'])
+        if row['genus']:
+            Genus.objects.get_or_create(name=row['genus'])
+        if row['specificEpithet']:
+            SpecificEpithet.objects.get_or_create(name=row['specificEpithet'])
+        if row['taxonRank']:
+            TaxonRank.objects.get_or_create(name=row['taxonRank'])
+        if row['scientificNameAuthorship']:
+            ScientificNameAuthorship.objects.get_or_create(
+                name=row['scientificNameAuthorship']
+            )
+        if row['vernacularName']:
+            VernacularName.objects.get_or_create(name=row['vernacularName'])
+        if row['nomenclaturalCode']:
+            NomenclaturalCode.objects.get_or_create(
+                name=row['nomenclaturalCode']
+            )
+        if row['taxonomicStatus']:
+            TaxonomicStatus.objects.get_or_create(name=row['taxonomicStatus'])

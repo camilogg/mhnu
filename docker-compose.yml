@@ -33,3 +33,20 @@ services:
 
     depends_on:
       - mhnu
+
+  redis:
+      image: 'redis:alpine'
+      ports:
+        - '6379:6379'
+
+  celery:
+    build: ./src
+    command: watchmedo auto-restart --directory=/src/ --pattern=*.py --recursive -- celery -A MHNU worker -B -l info
+    depends_on:
+      - redis
+    env_file: .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=MHNU.settings.local
+      - TZ=America/Bogota
+    volumes:
+      - ./src:/src

@@ -16,6 +16,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_cleanup.apps.CleanupConfig',
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,10 +25,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'museum.apps.MuseumConfig',
+    'import_export_celery.apps.ImportExportCeleryConfig',
+    'utils.apps.UtilsConfig',
     'import_export',
     'drf_yasg',
     'rest_framework',
     'rosetta',
+    'django_object_actions',
 ]
 
 MIDDLEWARE = [
@@ -39,6 +43,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'crum.CurrentRequestUserMiddleware',
 ]
 
 ROOT_URLCONF = 'MHNU.urls'
@@ -74,16 +79,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'NumericPasswordValidator',
     },
 ]
 
@@ -122,7 +131,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.'
+                                'LimitOffsetPagination',
     'PAGE_SIZE': 100,
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',)
@@ -149,3 +159,23 @@ LOGIN_REDIRECT_URL = reverse_lazy('admin:index')
 LOGOUT_REDIRECT_URL = reverse_lazy('admin:index')
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
+IMPORT_EXPORT_SKIP_ADMIN_LOG = True
+
+CELERY_BROKER_URL = f'redis://{os.environ["REDIS_HOST"]}:6379'
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+
+IMPORT_EXPORT_CELERY_INIT_MODULE = "MHNU.celery"
+
+
+def resource():
+    from museum.resources import RecordModelResource
+    return RecordModelResource
+
+
+IMPORT_EXPORT_CELERY_MODELS = {
+    "Record": {
+        'app_label': 'museum',
+        'model_name': 'Record',
+        'resource': resource,
+    }
+}

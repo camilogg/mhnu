@@ -1,9 +1,9 @@
-from django.core.validators import RegexValidator, MinValueValidator, \
-    MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 # Record Items tables
+from MHNU.settings.base import resource
 from museum.validators import occurrence_id_regex
 
 
@@ -161,10 +161,11 @@ class Country(models.Model):
 
 class StateProvince(models.Model):
     name = models.CharField(_('name'), max_length=255, unique=True)
-    country = models.ForeignKey(
-        Country, on_delete=models.CASCADE, blank=True, null=True,
-        verbose_name=_('country')
-    )
+
+    # country = models.ForeignKey(
+    #     Country, on_delete=models.CASCADE, blank=True, null=True,
+    #     verbose_name=_('country')
+    # )
 
     class Meta:
         verbose_name = _('state province')
@@ -191,10 +192,11 @@ class County(models.Model):
 
 class Municipality(models.Model):
     name = models.CharField(_('name'), max_length=255, unique=True)
-    county = models.ForeignKey(
-        County, on_delete=models.CASCADE, blank=True, null=True,
-        verbose_name=_('county')
-    )
+
+    # county = models.ForeignKey(
+    #     County, on_delete=models.CASCADE, blank=True, null=True,
+    #     verbose_name=_('county')
+    # )
 
     class Meta:
         verbose_name = _('municipality')
@@ -207,12 +209,13 @@ class Municipality(models.Model):
 class Locality(models.Model):
     name = models.CharField(_('name'), max_length=255, unique=True)
     verbatim_locality = models.CharField(
-        _('verbatim locality'), max_length=255, blank=True
+        _('verbatim locality'), max_length=255, blank=True, null=True
     )
-    municipality = models.ForeignKey(
-        Municipality, on_delete=models.CASCADE, blank=True, null=True,
-        verbose_name=_('county')
-    )
+
+    # municipality = models.ForeignKey(
+    #     Municipality, on_delete=models.CASCADE, blank=True, null=True,
+    #     verbose_name=_('county')
+    # )
 
     class Meta:
         verbose_name = _('locality')
@@ -391,11 +394,11 @@ class Record(models.Model):
         ANTARCTICA = 'AN', _('Antarctica')
 
     class VerbatimCoordinatesSystem(models.TextChoices):
-        DECIMAL_DEGREES = 'Grados decimales', _('Decimal degrees')
-        DEGREES_DECIMAL_MINUTES = 'Grados, minutos decimales', _(
+        DECIMAL_DEGREES = 'grados decimales', _('Decimal degrees')
+        DEGREES_DECIMAL_MINUTES = 'grados minutos decimales', _(
             'Degrees, decimal minutes'
         )
-        DEGREES_MINUTES_SECONDS = 'Grados, minutos, segundos', _(
+        DEGREES_MINUTES_SECONDS = 'grados minutos segundos', _(
             'Degrees, minutes, seconds'
         )
         UTM = 'UTM', _('UTM')
@@ -482,7 +485,8 @@ class Record(models.Model):
         _('record number'), max_length=255, unique=True, null=True, blank=True
     )
     recorded_by = models.ForeignKey(
-        RecordedBy, on_delete=models.CASCADE, verbose_name=_('recorded by')
+        RecordedBy, on_delete=models.CASCADE, verbose_name=_('recorded by'),
+        blank=True, null=True
     )
     organism_ID = models.CharField(
         _('organism ID'), max_length=255, blank=True, null=True
@@ -507,10 +511,12 @@ class Record(models.Model):
     )
     individual_count = models.PositiveSmallIntegerField(_('individual count'))
     sex = models.ForeignKey(
-        Sex, on_delete=models.CASCADE, verbose_name=_('sex')
+        Sex, on_delete=models.CASCADE, verbose_name=_('sex'),
+        blank=True, null=True
     )
     life_stage = models.ForeignKey(
-        LifeStage, on_delete=models.CASCADE, verbose_name=_('life stage')
+        LifeStage, on_delete=models.CASCADE, verbose_name=_('life stage'),
+        blank=True, null=True
     )
     reproductive_condition = models.CharField(
         _('reproductive condition'), max_length=255, blank=True, null=True
@@ -633,6 +639,17 @@ class Record(models.Model):
     )
     island = models.CharField(
         _('island'), max_length=255, blank=True, null=True
+    )
+    country = models.ForeignKey(
+        Country, on_delete=models.CASCADE, verbose_name=_('country')
+    )
+    county = models.ForeignKey(
+        County, on_delete=models.CASCADE, verbose_name=_('county'),
+        blank=True, null=True
+    )
+    municipality = models.ForeignKey(
+        Municipality, on_delete=models.CASCADE, verbose_name=_('municipality'),
+        blank=True, null=True
     )
     locality = models.ForeignKey(
         Locality, on_delete=models.CASCADE, verbose_name=_('locality'),
@@ -943,3 +960,11 @@ class Record(models.Model):
 
     def __str__(self):
         return self.occurrence_ID
+
+    @classmethod
+    def export_resource_classes(cls):
+        return {
+            'records': (
+                'Records resource', resource()
+            )
+        }

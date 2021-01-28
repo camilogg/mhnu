@@ -1,8 +1,13 @@
 from django.contrib import admin
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+
+from django_object_actions import DjangoObjectActions
 
 from import_export.admin import ImportExportModelAdmin
 
+from import_export_celery.models import ExportJob
 from .models import (
     Record,
     Type,
@@ -127,7 +132,7 @@ class CountryAdmin(ImportExportModelAdmin):
 class StateProvinceAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
-    raw_id_fields = ('country',)
+    # raw_id_fields = ('country',)
 
 
 @admin.register(County)
@@ -141,18 +146,18 @@ class CountyAdmin(ImportExportModelAdmin):
 class MunicipalityAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
-    raw_id_fields = ('county',)
+    # raw_id_fields = ('county',)
 
 
 @admin.register(Locality)
 class LocalityAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
-    raw_id_fields = ('municipality',)
+    # raw_id_fields = ('municipality',)
 
 
 @admin.register(IdentifiedBy)
-class LocalityAdmin(ImportExportModelAdmin):
+class IdentifiedByAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
 
@@ -236,7 +241,7 @@ class TaxonomicStatusAdmin(ImportExportModelAdmin):
 
 
 @admin.register(Record)
-class RecordAdmin(ImportExportModelAdmin):
+class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
     raw_id_fields = (
         'type', 'collection_code', 'basis_of_record', 'recorded_by', 'sex',
         'life_stage', 'occurrence_status', 'preparations', 'disposition',
@@ -349,3 +354,23 @@ class RecordAdmin(ImportExportModelAdmin):
     )
 
     resource_class = RecordModelResource
+
+    def export(self, request, queryset):
+        app_label = self.opts.app_label
+        model_name = self.opts.model_name
+        ej = ExportJob.objects.create(
+            app_label=app_label,
+            model=model_name,
+            site_of_origin=request.scheme + "://" + request.get_host(),
+        )
+
+        url = reverse(
+            f'admin:{ej._meta.app_label}_{ej._meta.model_name}_change',
+            args=[ej.pk]
+        )
+        return redirect(url)
+
+    export.label = _('Export')
+    export.short_description = _('Export with celery')
+
+    changelist_actions = ['export']
