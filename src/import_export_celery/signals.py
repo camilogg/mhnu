@@ -23,7 +23,6 @@ def import_job_post_save(sender, instance, **kwargs):
     if not instance.processing_initiated:
         instance.processing_initiated = datetime.now()
         instance.save()
-        print('entra al signal')
         transaction.on_commit(
             lambda: run_import_job.delay(instance.pk, dry_run=True)
         )

@@ -14,28 +14,28 @@ class ExportJob(Audit):
         self._content_type = None
 
     file = models.FileField(
-        verbose_name=_("exported file"),
-        upload_to="export-jobs",
+        verbose_name=_('exported file'),
+        upload_to='export-jobs',
         blank=False,
         null=False,
         max_length=255,
     )
 
     processing_initiated = models.DateTimeField(
-        verbose_name=_("Have we started processing the file? If so when?"),
+        verbose_name=_('Have we started processing the file? If so when?'),
         null=True,
         blank=True,
         default=None,
     )
 
     job_status = models.CharField(
-        verbose_name=_("Status of the job"),
+        verbose_name=_('Status of the job'),
         max_length=255,
         blank=True
     )
 
     format = models.CharField(
-        verbose_name=_("Format of file to be exported"),
+        verbose_name=_('Format of file to be exported'),
         max_length=255,
         choices=[(f.CONTENT_TYPE, f().get_title()) for f in DEFAULT_FORMATS],
         blank=False,
@@ -43,19 +43,19 @@ class ExportJob(Audit):
     )
 
     app_label = models.CharField(
-        verbose_name=_("App label of model to export from"),
+        verbose_name=_('App label of model to export from'),
         max_length=160
     )
 
     model = models.CharField(
-        verbose_name=_("Name of model to export from"),
+        verbose_name=_('Name of model to export from'),
         max_length=160
     )
 
     resource = models.CharField(
-        verbose_name=_("Resource to use when exporting"),
+        verbose_name=_('Resource to use when exporting'),
         max_length=255,
-        default=""
+        default=''
     )
 
     collection_code = models.ForeignKey(
@@ -63,18 +63,20 @@ class ExportJob(Audit):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        verbose_name=_('collection code')
+        verbose_name=_('collection code'),
+        help_text=_('select the type of collection to export or leave it empty'
+                    ' to export all records')
     )
 
     email_on_completion = models.BooleanField(
-        verbose_name=_("Send me an email when this export job is complete"),
+        verbose_name=_('Send me an email when this export job is complete'),
         default=True,
     )
 
     site_of_origin = models.TextField(
         _('site of origin'),
         max_length=255,
-        default="",
+        default='',
     )
 
     def get_resource_class(self):

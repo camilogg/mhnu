@@ -4,7 +4,8 @@ from django.utils.translation import gettext_lazy as _
 
 # Record Items tables
 from MHNU.settings.base import resource
-from museum.validators import occurrence_id_regex
+from museum.validators import occurrence_id_regex, date_regex, \
+    validate_date_range
 
 
 class Type(models.Model):
@@ -584,7 +585,10 @@ class Record(models.Model):
     sampling_size_unit = models.CharField(
         _('sampling size unit'), max_length=255, blank=True, null=True
     )
-    event_date = models.DateField(_('event date'), blank=True, null=True)
+    event_date = models.CharField(
+        _('event date'), max_length=255, blank=True, null=True,
+        validators=[date_regex, validate_date_range]
+    )
     event_time = models.TimeField(_('event time'), blank=True, null=True)
     start_day_of_year = models.PositiveSmallIntegerField(
         _('start day of year'), blank=True, null=True,
@@ -604,7 +608,8 @@ class Record(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(31)]
     )
     verbatim_event_date = models.CharField(
-        _('verbatim event date'), max_length=255, blank=True, null=True
+        _('verbatim event date'), max_length=255, blank=True, null=True,
+        validators=[date_regex, validate_date_range]
     )
     habitat = models.ForeignKey(
         Habitat, on_delete=models.CASCADE, verbose_name=_('habitat'),
@@ -735,7 +740,8 @@ class Record(models.Model):
         _('georeferenced by'), blank=True, null=True
     )
     georeferenced_date = models.CharField(
-        _('georeferenced date'), max_length=255, blank=True, null=True
+        _('georeferenced date'), max_length=255, blank=True, null=True,
+        validators=[date_regex, validate_date_range]
     )
     georeference_protocol = models.CharField(
         _('georeference protocol'), max_length=255, blank=True, null=True
@@ -825,7 +831,8 @@ class Record(models.Model):
         verbose_name=_('identified by')
     )
     date_identified = models.DateField(
-        _('date identified'), blank=True, null=True
+        _('date identified'), blank=True, null=True,
+        validators=[date_regex, validate_date_range]
     )
     identification_references = models.TextField(
         _('identification references'), blank=True, null=True

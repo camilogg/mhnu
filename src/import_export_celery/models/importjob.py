@@ -9,53 +9,53 @@ from utils.models import Audit
 
 class ImportJob(Audit):
     file = models.FileField(
-        verbose_name=_("File to be imported"),
-        upload_to="import-jobs",
+        verbose_name=_('File to be imported'),
+        upload_to='import-jobs',
         blank=False,
         null=False,
         max_length=255,
     )
 
     processing_initiated = models.DateTimeField(
-        verbose_name=_("Have we started processing the file? If so when?"),
+        verbose_name=_('Have we started processing the file? If so when?'),
         null=True,
         blank=True,
         default=None,
     )
 
     imported = models.DateTimeField(
-        verbose_name=_("Has the import been completed? If so when?"),
+        verbose_name=_('Has the import been completed? If so when?'),
         null=True,
         blank=True,
         default=None,
     )
 
     format = models.CharField(
-        verbose_name=_("Format of file to be imported"),
+        verbose_name=_('Format of file to be imported'),
         max_length=255,
         choices=[(f.CONTENT_TYPE, f().get_title()) for f in DEFAULT_FORMATS],
     )
 
     change_summary = models.FileField(
-        verbose_name=_("Summary of changes made by this import"),
-        upload_to="summaries",
+        verbose_name=_('Summary of changes made by this import'),
+        upload_to='summaries',
         blank=True,
         null=True,
     )
 
-    errors = models.TextField(_('errors'), default="", blank=True, null=True)
+    errors = models.TextField(_('errors'), default='', blank=True, null=True)
 
     model = models.CharField(
-        verbose_name=_("Name of model to import to"),
+        verbose_name=_('Name of model to import to'),
         max_length=160,
         choices=[
             (x, x) for x in
-            getattr(settings, "IMPORT_EXPORT_CELERY_MODELS", {}).keys()
+            getattr(settings, 'IMPORT_EXPORT_CELERY_MODELS', {}).keys()
         ],
     )
 
     job_status = models.CharField(
-        verbose_name=_("Status of the job"),
+        verbose_name=_('Status of the job'),
         max_length=160,
         blank=True,
     )

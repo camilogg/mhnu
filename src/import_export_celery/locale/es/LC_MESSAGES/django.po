@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 03:21-0500\n"
-"PO-Revision-Date: 2021-01-28 03:25-0456\n"
+"POT-Creation-Date: 2021-01-30 04:57-0500\n"
+"PO-Revision-Date: 2021-01-29 02:41-0456\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -69,25 +69,33 @@ msgstr "Recurso a utilizar al exportar"
 msgid "collection code"
 msgstr "Código de colección"
 
-#: import_export_celery/models/exportjob.py:70
+#: import_export_celery/models/exportjob.py:67
+msgid ""
+"select the type of collection to export or leave it empty to export all "
+"records"
+msgstr ""
+"selecciona el tipo de colección a exportar o dejalo vacío para exportar "
+"todos los registros"
+
+#: import_export_celery/models/exportjob.py:72
 msgid "Send me an email when this export job is complete"
 msgstr ""
 "Envíame un correo electrónico cuando este trabajo de exportación esté "
 "completo"
 
-#: import_export_celery/models/exportjob.py:75
+#: import_export_celery/models/exportjob.py:77
 msgid "site of origin"
 msgstr "Sitio de origen"
 
-#: import_export_celery/models/exportjob.py:111
+#: import_export_celery/models/exportjob.py:113
 msgid "export job"
 msgstr "Trabajo de exportación"
 
-#: import_export_celery/models/exportjob.py:112
+#: import_export_celery/models/exportjob.py:114
 msgid "export jobs"
 msgstr "Trabajos de exportación"
 
-#: import_export_celery/models/exportjob.py:115
+#: import_export_celery/models/exportjob.py:117
 msgid "{} export job #{}"
 msgstr "{} TRabajo de exportación #{}"
 
@@ -135,7 +143,6 @@ msgstr "[Detalle] "
 #: import_export_celery/tasks.py:71 import_export_celery/tasks.py:75
 #: import_export_celery/tasks.py:85 import_export_celery/tasks.py:101
 #: import_export_celery/tasks.py:126 import_export_celery/tasks.py:139
-#| msgid "import job"
 msgid "import"
 msgstr "Importar"
 
@@ -148,7 +155,6 @@ msgid "Imported file has a wrong encoding: {}"
 msgstr "El archivo importado tiene una codificación incorrecta: {}"
 
 #: import_export_celery/tasks.py:64
-#| msgid "Imported file has a wrong encoding: {}"
 msgid "Imported file has a wrong encoding"
 msgstr "El archivo importado tiene una codificación incorrecta"
 
@@ -157,7 +163,6 @@ msgid "Error reading file: {}"
 msgstr "Error al leer el archivo: {}"
 
 #: import_export_celery/tasks.py:71
-#| msgid "Error reading file: {}"
 msgid "Error reading file"
 msgstr "Error al leer el archivo"
 
@@ -166,7 +171,6 @@ msgid "2/5 Processing import data"
 msgstr "2/5 Procesamiento de datos de importación"
 
 #: import_export_celery/tasks.py:86
-#| msgid "Import error {}"
 msgid "3/5 Importing row {}/{}"
 msgstr "3/5 Importando fila {}/{}"
 
@@ -175,10 +179,6 @@ msgid "4/5 Generating import summary"
 msgstr "4/5 Generando resumen de importación"
 
 #: import_export_celery/tasks.py:109
-#| msgid ""
-#| "Line: {} - {}\n"
-#| "\t{}\n"
-#| "{}"
 msgid ""
 "Line: {} - {}\n"
 "\t{}\n"
@@ -193,17 +193,14 @@ msgid "5/5 Import job finished"
 msgstr "5/5 Trabajo de importación terminado"
 
 #: import_export_celery/tasks.py:138
-#| msgid "Import error {}"
 msgid "Import error {}"
 msgstr "Error de importación {}"
 
 #: import_export_celery/tasks.py:139
-#| msgid "Import error {}"
 msgid "Import error"
 msgstr "Error de importación"
 
 #: import_export_celery/tasks.py:161 import_export_celery/tasks.py:172
-#| msgid "export job"
 msgid "export"
 msgstr "Exportar"
 
@@ -222,11 +219,13 @@ msgstr "Django: trabajo de exportación completado"
 #: import_export_celery/tasks.py:190
 #, python-brace-format
 msgid ""
-"Your export job on model {app_label}.{model} has completed. You can download the file at the following link:\n"
+"Your export job on model {app_label}.{model} has completed. You can download "
+"the file at the following link:\n"
 "\n"
 "{link}"
 msgstr ""
-"Your export job on model {app_label}.{model} has completed. You can download the file at the following link:\n"
+"Your export job on model {app_label}.{model} has completed. You can download "
+"the file at the following link:\n"
 "\n"
 "{link}"
 

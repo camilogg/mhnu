@@ -17,7 +17,6 @@ run_import_job_action.short_description = _("Perform import")
 def run_import_job_action_dry(modeladmin, request, queryset):
     for instance in queryset:
         tasks.logger.info(f"Importing {instance.pk} dry-run: True")
-        print('entra al action')
         tasks.run_import_job.delay(instance.pk, dry_run=True)
 
 
