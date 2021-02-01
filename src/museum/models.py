@@ -1,13 +1,17 @@
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-# Record Items tables
 from MHNU.settings.base import resource
-from museum.validators import occurrence_id_regex, date_regex, \
-    validate_date_range
+from museum.validators import (
+    occurrence_id_regex,
+    validate_date,
+    catalog_number_regex
+)
 
 
+# Record Items tables
 class Type(models.Model):
     name = models.CharField(_('name'), max_length=255, unique=True)
 
@@ -44,7 +48,7 @@ class BasisOfRecord(models.Model):
 # Biological Record tables
 
 class RecordedBy(models.Model):
-    name = models.CharField(_('name'), max_length=255, unique=True)
+    name = models.CharField(_('name'), max_length=300, unique=True)
 
     class Meta:
         verbose_name = _('recorded by')
@@ -425,8 +429,7 @@ class Record(models.Model):
         _('license'), max_length=255, blank=True, null=True
     )
     rights_holder = models.CharField(
-        _('rights holder'), max_length=255,
-        default='Universidad de los Llanos (Unillanos)'
+        _('rights holder'), max_length=255, blank=True, null=True
     )
     access_rights = models.CharField(
         _('access rights'), max_length=255, default='Sólo uso científico'
@@ -477,13 +480,14 @@ class Record(models.Model):
         unique=True
     )
     catalog_number = models.CharField(
-        _('catalog number'), max_length=255, unique=True
+        _('catalog number'), max_length=255, unique=True,
+        validators=[catalog_number_regex]
     )
     occurrence_remarks = models.TextField(
         _('occurrence remarks'), blank=True, null=True
     )
     record_number = models.CharField(
-        _('record number'), max_length=255, unique=True, null=True, blank=True
+        _('record number'), max_length=255, null=True, blank=True
     )
     recorded_by = models.ForeignKey(
         RecordedBy, on_delete=models.CASCADE, verbose_name=_('recorded by'),
@@ -587,9 +591,11 @@ class Record(models.Model):
     )
     event_date = models.CharField(
         _('event date'), max_length=255, blank=True, null=True,
-        validators=[date_regex, validate_date_range]
+        validators=[validate_date]
     )
-    event_time = models.TimeField(_('event time'), blank=True, null=True)
+    event_time = models.CharField(
+        _('event time'), max_length=255,blank=True, null=True
+    )
     start_day_of_year = models.PositiveSmallIntegerField(
         _('start day of year'), blank=True, null=True,
         validators=[MinValueValidator(1), MaxValueValidator(366)]
@@ -608,8 +614,7 @@ class Record(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(31)]
     )
     verbatim_event_date = models.CharField(
-        _('verbatim event date'), max_length=255, blank=True, null=True,
-        validators=[date_regex, validate_date_range]
+        _('verbatim event date'), max_length=255, blank=True, null=True
     )
     habitat = models.ForeignKey(
         Habitat, on_delete=models.CASCADE, verbose_name=_('habitat'),
@@ -741,7 +746,7 @@ class Record(models.Model):
     )
     georeferenced_date = models.CharField(
         _('georeferenced date'), max_length=255, blank=True, null=True,
-        validators=[date_regex, validate_date_range]
+        validators=[validate_date]
     )
     georeference_protocol = models.CharField(
         _('georeference protocol'), max_length=255, blank=True, null=True
@@ -830,9 +835,9 @@ class Record(models.Model):
         IdentifiedBy, on_delete=models.CASCADE, blank=True, null=True,
         verbose_name=_('identified by')
     )
-    date_identified = models.DateField(
-        _('date identified'), blank=True, null=True,
-        validators=[date_regex, validate_date_range]
+    date_identified = models.CharField(
+        _('date identified'), max_length=255,blank=True, null=True,
+        validators=[validate_date]
     )
     identification_references = models.TextField(
         _('identification references'), blank=True, null=True
@@ -967,6 +972,18 @@ class Record(models.Model):
 
     def __str__(self):
         return self.occurrence_ID
+
+    def clean(self):
+        if not self.catalog_number.startswith(self.collection_code.name):
+            raise ValidationError(
+                {'catalog_number': _(
+                    'Should start with the collection code: {}').format(
+                    self.collection_code.name)}
+            )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(Record, self).save(*args, **kwargs)
 
     @classmethod
     def export_resource_classes(cls):

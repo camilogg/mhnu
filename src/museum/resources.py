@@ -183,6 +183,7 @@ class RecordModelResource(ModelResource):
         return field
 
     def before_import_row(self, row, row_number=None, **kwargs):
+        print(row_number)
         for key, value in row.items():
             if value and type(value) == str:
                 row[key] = value.strip()

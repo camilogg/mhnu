@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db import models
+from django.forms import Textarea
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -72,6 +74,9 @@ class BasisOfRecordAdmin(ImportExportModelAdmin):
 class RecordedByAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+    formfield_overrides = {
+        models.CharField: {'widget': Textarea}
+    }
 
 
 @admin.register(Sex)
@@ -251,6 +256,7 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
         'scientific_name_authorship', 'vernacular_name', 'nomenclatural_code',
         'taxonomic_status'
     )
+    list_filter = ('collection_code',)
     fieldsets = (
         (_('Record Items'), {
             'fields': (
