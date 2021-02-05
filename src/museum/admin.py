@@ -47,29 +47,6 @@ from .models import (
 from .resources import RecordModelResource
 
 
-class ListAndSearchImportExportModelAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Type)
-class TypeAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(CollectionCode)
-class CollectionCodeAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(BasisOfRecord)
-class BasisOfRecordAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
 @admin.register(RecordedBy)
 class RecordedByAdmin(ImportExportModelAdmin):
     list_display = ('name',)
@@ -79,170 +56,11 @@ class RecordedByAdmin(ImportExportModelAdmin):
     }
 
 
-@admin.register(Sex)
-class SexAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(LifeStage)
-class LifeStageAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(OccurrenceStatus)
-class OccurrenceStatusAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Preparation)
-class PreparationAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Disposition)
-class DispositionAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(SamplingProtocol)
-class SamplingProtocolAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Habitat)
-class HabitatAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(WaterBody)
-class WaterBodyAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Country)
-class CountryAdmin(ImportExportModelAdmin):
-    list_display = ('name', 'country_code')
-    search_fields = ('name',)
-
-
-@admin.register(StateProvince)
-class StateProvinceAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-    # raw_id_fields = ('country',)
-
-
 @admin.register(County)
 class CountyAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
     raw_id_fields = ('state_province',)
-
-
-@admin.register(Municipality)
-class MunicipalityAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-    # raw_id_fields = ('county',)
-
-
-@admin.register(Locality)
-class LocalityAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-    # raw_id_fields = ('municipality',)
-
-
-@admin.register(IdentifiedBy)
-class IdentifiedByAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(ScientificName)
-class ScientificNameAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Kingdom)
-class KingdomAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Phylum)
-class PhylumAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Class)
-class ClassAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Order)
-class OrderAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Family)
-class FamilyAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(Genus)
-class GenusAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(SpecificEpithet)
-class SpecificEpithetAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(TaxonRank)
-class TaxonRankEpithetAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(ScientificNameAuthorship)
-class ScientificNameAuthorshipAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(VernacularName)
-class VernacularNameAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(NomenclaturalCode)
-class NomenclaturalCodeAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(TaxonomicStatus)
-class TaxonomicStatusAdmin(ImportExportModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
 
 
 @admin.register(Record)
@@ -380,3 +198,18 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
     export.short_description = _('Export with celery')
 
     changelist_actions = ['export']
+
+
+MODELS = [Type, CollectionCode, BasisOfRecord, Sex, LifeStage,
+          OccurrenceStatus, Preparation, Disposition, SamplingProtocol,
+          Habitat, WaterBody, Country, StateProvince, Municipality, Locality,
+          IdentifiedBy, ScientificName, Kingdom, Phylum, Class, Order, Family,
+          Genus, SpecificEpithet, TaxonRank, ScientificNameAuthorship,
+          VernacularName, NomenclaturalCode, TaxonomicStatus]
+
+
+@admin.register(*MODELS)
+class ListAndSearchImportExportModelAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+

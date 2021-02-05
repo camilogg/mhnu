@@ -212,7 +212,7 @@ class Municipality(models.Model):
 
 
 class Locality(models.Model):
-    name = models.CharField(_('name'), max_length=255, unique=True)
+    name = models.CharField(_('name'), max_length=255)
     verbatim_locality = models.CharField(
         _('verbatim locality'), max_length=255, blank=True, null=True
     )
@@ -225,6 +225,7 @@ class Locality(models.Model):
     class Meta:
         verbose_name = _('locality')
         verbose_name_plural = _('localities')
+        unique_together = ['name', 'verbatim_locality']
 
     def __str__(self):
         return self.name
@@ -594,7 +595,7 @@ class Record(models.Model):
         validators=[validate_date]
     )
     event_time = models.CharField(
-        _('event time'), max_length=255,blank=True, null=True
+        _('event time'), max_length=255, blank=True, null=True
     )
     start_day_of_year = models.PositiveSmallIntegerField(
         _('start day of year'), blank=True, null=True,
@@ -707,7 +708,7 @@ class Record(models.Model):
         _('verbatim longitude'), max_length=255, blank=True, null=True
     )
     verbatim_coordinate_system = models.CharField(
-        _('verbatim coordinate system'), max_length=50, blank=True,
+        _('verbatim coordinate system'), max_length=50, blank=True, null=True,
         choices=VerbatimCoordinatesSystem.choices,
         default=VerbatimCoordinatesSystem.DEGREES_MINUTES_SECONDS
     )
@@ -721,7 +722,8 @@ class Record(models.Model):
         _('decimal longitude'), blank=True, null=True
     )
     geodetic_datum = models.CharField(
-        _('geodetic datum'), max_length=255, default='WGS84', null=True
+        _('geodetic datum'), max_length=255, default='WGS84', null=True,
+        blank=True
     )
     coordinate_uncertainty_in_meters = models.PositiveSmallIntegerField(
         _('coordinate uncertainty in meters'), blank=True, null=True
@@ -836,7 +838,7 @@ class Record(models.Model):
         verbose_name=_('identified by')
     )
     date_identified = models.CharField(
-        _('date identified'), max_length=255,blank=True, null=True,
+        _('date identified'), max_length=255, blank=True, null=True,
         validators=[validate_date]
     )
     identification_references = models.TextField(
@@ -974,7 +976,7 @@ class Record(models.Model):
         return self.occurrence_ID
 
     def clean(self):
-        if not self.catalog_number.startswith(self.collection_code.name):
+        if not str(self.catalog_number).startswith(self.collection_code.name):
             raise ValidationError(
                 {'catalog_number': _(
                     'Should start with the collection code: {}').format(

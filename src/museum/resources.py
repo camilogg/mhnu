@@ -36,6 +36,7 @@ from museum.models import (
     TaxonomicStatus
 )
 from museum.utils import snake_case_to_camel_case
+from museum.widgets import LocalityForeignKeyWidget
 
 
 class RecordModelResource(ModelResource):
@@ -58,6 +59,11 @@ class RecordModelResource(ModelResource):
         attribute='locality__verbatim_locality',
         column_name='verbatimLocality',
         readonly=True
+    )
+    locality = fields.Field(
+        attribute='name',
+        column_name='locality',
+        widget=LocalityForeignKeyWidget(Locality, 'name')
     )
 
     class Meta:
@@ -145,7 +151,6 @@ class RecordModelResource(ModelResource):
             'country': {'field': 'name'},
             'county': {'field': 'name'},
             'municipality': {'field': 'name'},
-            'locality': {'field': 'name'},
             'identified_by': {'field': 'name'},
             'scientific_name': {'field': 'name'},
             'kingdom': {'field': 'name'},
@@ -231,15 +236,10 @@ class RecordModelResource(ModelResource):
         if row['municipality']:
             Municipality.objects.get_or_create(name=row['municipality'])
         if row['locality']:
-            if row['verbatimLocality']:
-                Locality.objects.get_or_create(
-                    name=row['locality'],
-                    verbatim_locality=row['verbatimLocality']
-                )
-            else:
-                Locality.objects.get_or_create(
-                    name=row['locality'], verbatim_locality=''
-                )
+            Locality.objects.get_or_create(
+                name=row['locality'],
+                verbatim_locality=row['verbatimLocality']
+            )
         if row['identifiedBy']:
             IdentifiedBy.objects.get_or_create(name=row['identifiedBy'])
         if row['scientificName']:
