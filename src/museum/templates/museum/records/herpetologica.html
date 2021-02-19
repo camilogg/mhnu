@@ -1,0 +1,28 @@
+{% load static %}
+{% load qr_code %}
+<div id="first-label">
+  {% qr_from_text 'hello wordl!' image_format="png" size=2 %}
+  <div class="data-wrapper">
+    <p class="title">MUSEO UNILLANOS</p>
+    <p class="acronym">{{ record.catalog_number }}</p>
+  </div>
+</div>
+
+<div id="second-label">
+  <div class="first-content">
+    <div class="logo-wrapper">
+      <img src="{% static 'museum/img/logo.png' %}" alt="logo unillanos" width="57">
+    </div>
+    <div class="title-wrapper">
+      <p>Museo de Historia Natural Unillanos</p>
+      <p>Colección herpetológica</p>
+    </div>
+  </div>
+  <div class="second-content">
+    <div class="wrapper">
+      <p>{{ record.scientific_name }}</p>
+      <p>{{ record.scientific_name_authorship }}</p>
+    </div>
+    {% qr_from_text 'otro hello wordl!' image_format="png" size=2 %}
+  </div>
+</div>

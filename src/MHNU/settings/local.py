@@ -15,3 +15,5 @@ DEBUG_TOOLBAR_CONFIG = {
     "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG
 }
+
+WEASYPRINT_BASEURL = 'localhost'

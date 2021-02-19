@@ -16,7 +16,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django_cleanup.apps.CleanupConfig',
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,6 +31,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rosetta',
     'django_object_actions',
+    'qr_code',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

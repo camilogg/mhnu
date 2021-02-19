@@ -19,20 +19,22 @@ services:
       - db
     environment:
       - DJANGO_SETTINGS_MODULE=MHNU.settings.local
-
-  nginx:
-    image: nginx:alpine
-    logging:
-      driver: none
-    volumes:
-      - ./src/static:/static
-      - ./src/media:/media
-      - ./nginx/local/dev.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
-      - "80:80"
+      - '9000:9000'
 
-    depends_on:
-      - mhnu
+  #nginx:
+    #image: nginx:alpine
+    #logging:
+      #driver: none
+    #volumes:
+      #- ./src/static:/static
+      #- ./src/media:/media
+      #- ./nginx/local/dev.conf:/etc/nginx/conf.d/default.conf:ro
+    #ports:
+      #- "80:80"
+
+    #depends_on:
+      #- mhnu
 
   redis:
       image: 'redis:alpine'

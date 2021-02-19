@@ -1,0 +1,38 @@
+{% load static %}
+{% load qr_code %}
+
+<div class="ictiologica">
+  <div class="first-content">
+    <div class="logo-wrapper">
+      <img src="{% static 'museum/img/logo.png' %}" alt="logo unillanos" width="57">
+    </div>
+    <div class="title-wrapper">
+      <p>Museo de Historia Natural Unillanos</p>
+      <p>Colección Ictiológica</p>
+      <p class="catalog-number">{{ record.catalog_number }}</p>
+    </div>
+  </div>
+  <div class="second-content">
+    <div class="order">
+      <b>Orden:</b> {{ record.order }}
+    </div>
+    <div class="family">
+      <b>Familia:</b> {{ record.family }}
+    </div>
+  </div>
+  <p class="species">{{ record.scientific_name }}</p>
+  <p class="author"><b>Autor:</b> {{ record.scientific_name_authorship }}</p>
+  <p class="locality">
+    <b>Localidad:</b> {{ record.country }}, {{ record.county.state_province|default:'-' }}, {{ record.county|default:'-' }},
+    {{ record.municipality|default:'-' }}, {{ record.locality|default:'-' }}, {{ record.verbatim_longitude }}
+    {{ record.verbatim_latitude }}, {{ record.minimum_elevation_in_meters|default:'-' }} m
+  </p>
+  <div class="data">
+    <p><b>Colector:</b> Ariel J, Aya-Baquero E y Cortes M.</p>
+    <p><b>Fecha de colecta:</b> 31-oct-2019</p>
+    <p><b>Determinador:</b> Cortes M.</p>
+    <p><b>Fecha de determinación:</b> 2-oct-2019</p>
+    <p><b>Método de colecta:</b> {{ record.sampling_protocol|default:'-' }}</p>
+  </div>
+  {% qr_from_text 'otro hello wordl!' image_format="png" size=3 %}
+</div>

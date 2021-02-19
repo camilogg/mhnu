@@ -45,6 +45,7 @@ from .models import (
     TaxonomicStatus
 )
 from .resources import RecordModelResource
+from .views import record_detail_pdf, record_list_pdf
 
 
 @admin.register(RecordedBy)
@@ -197,7 +198,26 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
     export.label = _('Export')
     export.short_description = _('Export with celery')
 
+    def pdf_list(self, request, queryset):
+        print(queryset)
+        print(request.POST, request.GET)
+        return record_list_pdf(request, queryset)
+
+    pdf_list.label = _('PDF')
+    pdf_list.short_description = _('Generate pdf')
+
+    def pdf_detail(self, request, obj):
+        return record_detail_pdf(request, obj.pk)
+
+    pdf_detail.label = _('PDF')
+    pdf_detail.short_description = _('Generate pdf')
+    pdf_detail.attrs = {
+        'target': '_blank'
+    }
+
     changelist_actions = ['export']
+    actions = ['pdf_list']
+    change_actions = ['pdf_detail']
 
 
 MODELS = [Type, CollectionCode, BasisOfRecord, Sex, LifeStage,
@@ -212,4 +232,3 @@ MODELS = [Type, CollectionCode, BasisOfRecord, Sex, LifeStage,
 class ListAndSearchImportExportModelAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
-

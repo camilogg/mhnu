@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etiqueta de registro</title>
+  {% if record.collection_code.name == 'MHNU-H' %}
+    <link rel="stylesheet" href="{% static 'museum/css/herpetologica.css' %}">
+  {% elif record.collection_code.name == 'MHNU-I' %}
+    <link rel="stylesheet" href="{% static 'museum/css/ictiologica.css' %}">
+  {% endif %}
+  <style>
+      .label {
+          display: flex;
+          margin-bottom: 5px;
+      }
+
+      * {
+          margin: 0;
+          box-sizing: border-box;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+  </style>
+</head>
+
+<body>
+<div class="label">
+  {% if record.collection_code.name == 'MHNU-H' %}
+    {% include 'museum/records/herpetologica.html' %}
+  {% elif record.collection_code.name == 'MHNU-I' %}
+    {% include 'museum/records/ictiologica.html' %}
+  {% endif %}
+</div>
+</body>
+
+</html>
