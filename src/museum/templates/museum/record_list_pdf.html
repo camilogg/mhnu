@@ -10,12 +10,8 @@
   <title>Etiqueta de registro</title>
   <link rel="stylesheet" href="{% static 'museum/css/herpetologica.css' %}">
   <link rel="stylesheet" href="{% static 'museum/css/ictiologica.css' %}">
+  <link rel="stylesheet" href="{% static 'museum/css/macroinvertebrados.css' %}">
   <style>
-      .label {
-          display: flex;
-          margin-bottom: 5px;
-      }
-
       * {
           margin: 0;
           box-sizing: border-box;
@@ -25,13 +21,15 @@
 </head>
 
 <body>
-{% for record in records %}
-  <div class="label">
+  {% for record in records %}
     {% if record.collection_code.name == 'MHNU-H' %}
       {% include 'museum/records/herpetologica.html' %}
+    {% elif record.collection_code.name == 'MHNU-I' %}
+      {% include 'museum/records/ictiologica.html' %}
+    {% elif record.collection_code.name == 'MHNU-MA' %}
+      {% include 'museum/records/macroinvertebrados.html' %}
     {% endif %}
-  </div>
-{% endfor %}
+  {% endfor %}
 </body>
 
 </html>

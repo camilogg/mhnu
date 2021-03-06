@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{% static 'museum/css/herpetologica.css' %}">
   {% elif record.collection_code.name == 'MHNU-I' %}
     <link rel="stylesheet" href="{% static 'museum/css/ictiologica.css' %}">
+  {% elif record.collection_code.name == 'MHNU-MA' %}
+    <link rel="stylesheet" href="{% static 'museum/css/macroinvertebrados.css' %}">
   {% endif %}
   <style>
       .label {
@@ -33,6 +35,8 @@
     {% include 'museum/records/herpetologica.html' %}
   {% elif record.collection_code.name == 'MHNU-I' %}
     {% include 'museum/records/ictiologica.html' %}
+  {% elif record.collection_code.name == 'MHNU-MA' %}
+    {% include 'museum/records/macroinvertebrados.html' %}
   {% endif %}
 </div>
 </body>

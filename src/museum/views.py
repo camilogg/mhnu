@@ -8,7 +8,6 @@ from museum.models import Record
 
 def record_detail_pdf(request, pk):
     record = get_object_or_404(Record, pk=pk)
-    print(record)
     response = HttpResponse(content_type='application/pdf')
 
     # Lo descarga directamente

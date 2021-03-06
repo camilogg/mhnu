@@ -199,8 +199,6 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
     export.short_description = _('Export with celery')
 
     def pdf_list(self, request, queryset):
-        print(queryset)
-        print(request.POST, request.GET)
         return record_list_pdf(request, queryset)
 
     pdf_list.label = _('PDF')

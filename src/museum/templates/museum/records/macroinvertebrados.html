@@ -1,0 +1,32 @@
+{% load static %}
+{% load qr_code %}
+
+<div class="ma-label">
+  <div class="ma-first-label">
+    <div class="data-wrapper">
+      <div class="first-content">
+        <p style="font-weight: bold">{{ record.catalog_number }}</p>
+        <p>Orden: {{ record.order.name }}</p>
+        <p>Familia: {{ record.family.name }}</p>
+        <p>Género: {{ record.genus.name }}</p>
+      </div>
+      <div class="second-content">
+        <p>Det: Vasquez J</p>
+        <p>Fecha: 31-oct-19</p>
+      </div>
+    </div>
+    <div class="qr-container">
+      {% qr_from_text 'hello wordl!' image_format="png" size=3 %}
+    </div>
+  </div>
+
+  <div class="ma-second-label">
+    <p>
+      Colombia, Meta, Puerto Gaitán, Fca
+      Manacacias, río Manacacias, 4°
+      73’43,5’’N 72°48’89’’O. 146 m. Margen
+      riparia. Red Surber, 21-oct-18.
+      JMV 001, Vasquez J, Ortega A, Aya E.
+    </p>
+  </div>
+</div>
