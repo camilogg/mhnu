@@ -33,6 +33,9 @@ def record_list_pdf(request, queryset):
 
     response = HttpResponse(content_type='application/pdf')
 
+    obj = queryset.first()
+    collection_code = obj.collection_code.name
+
     # Lo descarga directamente
     # response['Content-Disposition'] = "attachment; filename=certificado.pdf"
 
@@ -40,7 +43,8 @@ def record_list_pdf(request, queryset):
     response['Content-Disposition'] = 'inline; filename=record.pdf'
 
     html_string = render_to_string('museum/record_list_pdf.html', {
-        'records': queryset
+        'records': queryset,
+        'collection_code': collection_code
     })
 
     HTML(

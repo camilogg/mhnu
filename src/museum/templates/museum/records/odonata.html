@@ -1,0 +1,52 @@
+{% load static %}
+{% load qr_code %}
+<div class="odonata-label">
+  <div class="odonata-label__header">
+    <div class="info">
+      <p><strong>Familia:</strong>Hypolestidae</p>
+      <p><strong>Especie:</strong>Hypolestes Tillyard & Fraser, 1938</p>
+      <p><strong>Sexo:</strong></p>
+    </div>
+    <div class="logo">
+      <img src="{% static 'museum/img/logo.png' %}" alt="logo unillanos" width="57">
+      <p><strong>MHNU-OD 001</strong></p>
+    </div>
+  </div>
+  <p><strong>Latitud:</strong>4,3596</p>
+  <p><strong>Longitud:</strong>72,3648</p>
+  <p><strong>Elevación:</strong>146 m</p>
+  <p><strong>Pais:</strong>Colombia</p>
+  <p><strong>Departamento:</strong>Meta</p>
+  <p><strong>Municipio:</strong>Puerto Gaitan</p>
+  <p><strong>Localidad:</strong>Fca. Manacacias</p>
+  <p><strong>Determinador:</strong>Vásquez J</p>
+  <p><strong>Fecha de evento:</strong>31-oct-2019</p>
+  <div class="qr">
+    {% qr_from_text 'otro hello wordl!' image_format="png" size=3 %}
+  </div>
+</div>
+<div class="odonata-label">
+  <div class="odonata-label__header">
+    <div class="info">
+      <p><strong>Familia:</strong>Hypolestidae</p>
+      <p><strong>Especie:</strong>Hypolestes Tillyard & Fraser, 1938</p>
+      <p><strong>Sexo:</strong></p>
+    </div>
+    <div class="logo">
+      <img src="{% static 'museum/img/logo.png' %}" alt="logo unillanos" width="57">
+      <p><strong>MHNU-OD 001</strong></p>
+    </div>
+  </div>
+  <p><strong>Latitud:</strong>4,3596</p>
+  <p><strong>Longitud:</strong>72,3648</p>
+  <p><strong>Elevación:</strong>146 m</p>
+  <p><strong>Pais:</strong>Colombia</p>
+  <p><strong>Departamento:</strong>Meta</p>
+  <p><strong>Municipio:</strong>Puerto Gaitan</p>
+  <p><strong>Localidad:</strong>Fca. Manacacias</p>
+  <p><strong>Determinador:</strong>Vásquez J</p>
+  <p><strong>Fecha de evento:</strong>31-oct-2019</p>
+  <div class="qr">
+    {% qr_from_text 'otro hello wordl!' image_format="png" size=3 %}
+  </div>
+</div>

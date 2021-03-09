@@ -1,7 +1,7 @@
 {% load static %}
 {% load qr_code %}
 <div class="h-label">
-  <div id="first-label">
+  <div class="first-label">
     {% qr_from_text 'hello wordl!' image_format="png" size=2 %}
     <div class="data-wrapper">
       <p class="title">MUSEO UNILLANOS</p>
@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <div id="second-label">
+  <div class="second-label">
     <div class="first-content">
       <div class="logo-wrapper">
         <img src="{% static 'museum/img/logo.png' %}" alt="logo unillanos" width="57">
