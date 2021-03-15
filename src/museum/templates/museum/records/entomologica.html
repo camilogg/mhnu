@@ -1,0 +1,21 @@
+{% load static %}
+
+<div class="entomologica-label">
+  <div class="item">
+    {{ record.country.name }}. {{ record.county.state_province.name }}. {{ record.county.name }}.
+    {{ record.municipality.name|default:"-" }}. {{ record.locality.name|default:"-" }}. {{ record.verbatim_latitude }}
+    {{ record.verbatim_longitude }}. {{ record.minimum_elevation_in_meters }} m.
+    {{ record.sampling_protocol.name }}.
+    12.vi.2019. C. Yara
+  </div>
+  <div class="item">
+    <div class="wrapper">
+      <p>{{ record.scientific_name.name }}</p>
+      <p>(Latreille, 1802)</p>
+      <p>Det. C. Yara, 2019</p>
+    </div>
+  </div>
+  <div class="item">
+    <p class="catalog-number">{{ record.catalog_number }}</p>
+  </div>
+</div>

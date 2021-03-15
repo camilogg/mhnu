@@ -50,11 +50,6 @@ class RecordModelResource(ModelResource):
         column_name='stateProvince',
         readonly=True
     )
-    county = fields.Field(
-        attribute='locality__municipality__county__name',
-        column_name='county',
-        readonly=True
-    )
     verbatim_locality = fields.Field(
         attribute='locality__verbatim_locality',
         column_name='verbatimLocality',
@@ -229,10 +224,9 @@ class RecordModelResource(ModelResource):
             state, created = StateProvince.objects.get_or_create(
                 name=row['stateProvince']
             )
-            if created:
-                County.objects.get_or_create(
-                    name=row['county'], state_province=state
-                )
+            County.objects.get_or_create(
+                name=row['county'], state_province=state
+            )
         if row['municipality']:
             Municipality.objects.get_or_create(name=row['municipality'])
         if row['locality']:

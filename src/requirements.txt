@@ -18,3 +18,4 @@ django-crum==0.7.9
 django-object-actions==3.0.1
 WeasyPrint
 django-qr-code==2.1.0
+django-extensions==3.1.1

@@ -62,6 +62,7 @@ class CountyAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
     raw_id_fields = ('state_province',)
+    list_filter = ('state_province',)
 
 
 @admin.register(Record)
@@ -73,7 +74,7 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
         'identified_by', 'scientific_name', 'kingdom', 'phylum', '_class',
         'order', 'family', 'genus', 'specific_epithet', 'taxon_rank',
         'scientific_name_authorship', 'vernacular_name', 'nomenclatural_code',
-        'taxonomic_status'
+        'taxonomic_status', 'country', 'county', 'municipality'
     )
     list_filter = ('collection_code',)
     fieldsets = (
@@ -117,7 +118,8 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
             'fields': (
                 'location_ID', 'higher_geography_ID', 'higher_geography',
                 'continent', 'water_body', 'island_group',
-                'island', 'locality', 'verbatim_elevation',
+                'island', 'country', 'county', 'municipality', 'locality',
+                'verbatim_elevation',
                 'minimum_elevation_in_meters', 'maximum_elevation_in_meters',
                 'verbatim_depth', 'minimum_depth_in_meters',
                 'maximum_depth_in_meters',
