@@ -2,7 +2,9 @@
 {% load qr_code %}
 <div class="h-label">
   <div class="first-label">
-    {% qr_from_text 'hello wordl!' image_format="png" size=2 %}
+    <div class="qr-wrapper">
+      {% qr_from_text 'hello wordl!' image_format="png" size=2 %}
+    </div>
     <div class="data-wrapper">
       <p class="title">MUSEO UNILLANOS</p>
       <p class="acronym">{{ record.catalog_number }}</p>
@@ -24,6 +26,8 @@
         <p>{{ record.scientific_name }}</p>
         <p>{{ record.scientific_name_authorship }}</p>
       </div>
+    </div>
+    <div class="qr-wrapper">
       {% qr_from_text 'otro hello wordl!' image_format="png" size=2 %}
     </div>
   </div>

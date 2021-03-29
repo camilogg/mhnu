@@ -9,7 +9,7 @@ COPY requirements.txt /src/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /src/
-EXPOSE 9000
+EXPOSE 8000
 
 #RUN useradd user
 #RUN chown -R user:user /src

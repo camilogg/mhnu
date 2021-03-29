@@ -1,9 +1,11 @@
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.template.loader import render_to_string
 from weasyprint import HTML
 
 from museum.models import Record
+from museum.utils import django_url_fetcher
 
 
 def record_detail_pdf(request, pk):
@@ -21,7 +23,9 @@ def record_detail_pdf(request, pk):
     })
 
     HTML(
-        string=html_string, base_url=request.build_absolute_uri(),
+        string=html_string,
+        base_url=settings.WEASYPRINT_BASEURL,
+        url_fetcher=django_url_fetcher
     ).write_pdf(response, presentational_hints=True)
     return response
     # return render(request, 'museum/record_detail_pdf.html', {
@@ -59,7 +63,9 @@ def record_list_pdf(request, queryset):
     })
 
     HTML(
-        string=html_string, base_url=request.build_absolute_uri(),
+        string=html_string,
+        base_url=settings.WEASYPRINT_BASEURL,
+        url_fetcher=django_url_fetcher
     ).write_pdf(response, presentational_hints=True)
     return response
     # return render(request, 'museum/record_list_pdf.html', {

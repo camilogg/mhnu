@@ -10,8 +10,8 @@ services:
 
   mhnu:
     build: ./src
-    command: >
-      sh -c "./wait-for-it.sh db:5432 -- python manage.py runserver 0.0.0.0:9000"
+    command: ["./wait-for-it.sh", "db:5432", "--",
+              "python", "manage.py", "runserver",  "0.0.0.0:8000"]
     env_file: .env
     volumes:
       - ./src:/src
@@ -20,21 +20,21 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=MHNU.settings.local
     ports:
-      - '9000:9000'
+      - '8000:8000'
 
-  #nginx:
-    #image: nginx:alpine
-    #logging:
-      #driver: none
-    #volumes:
-      #- ./src/static:/static
-      #- ./src/media:/media
-      #- ./nginx/local/dev.conf:/etc/nginx/conf.d/default.conf:ro
-    #ports:
-      #- "80:80"
+  nginx:
+    image: nginx:alpine
+    logging:
+      driver: none
+    volumes:
+      - ./src/static:/static
+      - ./src/media:/media
+      - ./nginx/local/dev.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
 
-    #depends_on:
-      #- mhnu
+    depends_on:
+      - mhnu
 
   redis:
       image: 'redis:alpine'
@@ -43,7 +43,8 @@ services:
 
   celery:
     build: ./src
-    command: watchmedo auto-restart --directory=/src/ --pattern=*.py --recursive -- celery -A MHNU worker -B -l info
+    command: ["watchmedo", "auto-restart", "--directory=/src/", "--pattern=*.py", "--recursive", "--",
+              "celery", "-A", "MHNU", "worker", "-B", "-l", "info"]
     depends_on:
       - redis
     env_file: .env

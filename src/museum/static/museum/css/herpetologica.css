@@ -1,0 +1,89 @@
+.h-label {
+    display: inline-flex;
+}
+
+.h-label .first-label {
+    border: 1px solid black;
+    width: 4cm;
+    height: 1.3cm;
+    font-size: 6px;
+    display: flex;
+    margin-right: 5px;
+}
+
+.h-label .first-label .qr-wrapper {
+    display: flex;
+    width: 2cm;
+    /*height: inherit;*/
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.h-label .first-label .qr-wrapper img {
+    height: 1.1cm;
+}
+
+.h-label .first-label .data-wrapper {
+    width: 2cm;
+    /*height: inherit;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    font-weight: bold;
+}
+
+.h-label .second-label {
+    width: 10cm;
+    height: 7cm;
+    border: 1px solid black;
+    position: relative;
+}
+
+.h-label .second-label .first-content {
+    display: flex;
+    justify-content: space-evenly;
+    height: 2cm;
+}
+
+.h-label .second-label .first-content .logo-wrapper {
+    width: 1.5cm;
+    padding-top: 10px;
+}
+
+.h-label .second-label .first-content .title-wrapper {
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.h-label .second-label .second-content {
+    height: 5cm;
+    text-align: center;
+    position: relative;
+}
+
+.h-label .second-label .second-content .wrapper {
+    position: absolute;
+    top: 30%;
+    text-align: center;
+    /*transform: translateY(-40%);*/
+    width: 100%;
+    font-size: 13px;
+}
+
+.h-label .second-label .second-content .wrapper p:first-child {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.h-label .second-label .qr-wrapper {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+}
+
+.h-label .second-label .qr-wrapper img {
+    width: 2.5cm;
+}
