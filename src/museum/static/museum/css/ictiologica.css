@@ -1,0 +1,71 @@
+@page {
+    size: A4 landscape;
+}
+
+.ictiologica {
+    width: 11cm;
+    height: 7cm;
+    border: 1px solid black;
+    font-size: 12px;
+    position: relative;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.ictiologica .first-content {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 10px;
+}
+
+.ictiologica .first-content .title-wrapper > p {
+    margin-bottom: 2px;
+}
+
+.ictiologica .first-content .title-wrapper {
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.ictiologica .first-content .title-wrapper .catalog-number {
+    text-align: end;
+}
+
+.ictiologica .second-content {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.ictiologica .species {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.ictiologica .author {
+    text-align: center;
+}
+
+.ictiologica .locality {
+    margin-top: 10px;
+    padding: 0 5px;
+}
+
+.ictiologica > img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 2.5cm;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.ictiologica .data {
+    position: absolute;
+    padding: 0 5px;
+    bottom: 5px;
+}
