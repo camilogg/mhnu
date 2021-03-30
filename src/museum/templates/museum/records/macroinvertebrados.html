@@ -6,17 +6,17 @@
     <div class="data-wrapper">
       <div class="first-content">
         <p style="font-weight: bold">{{ record.catalog_number }}</p>
-        <p>Orden: {{ record.order.name }}</p>
-        <p>Familia: {{ record.family.name }}</p>
-        <p>Género: {{ record.genus.name }}</p>
+        <p><strong>Orden:</strong> {{ record.order.name }}</p>
+        <p><strong>Familia:</strong> {{ record.family.name }}</p>
+        <p><strong>Género:</strong> {{ record.genus.name }}</p>
       </div>
       <div class="second-content">
-        <p>Det: Vasquez J</p>
-        <p>Fecha: 31-oct-19</p>
+        <p><strong>Det:</strong> Vasquez J</p>
+        <p><strong>Fecha:</strong> 31-oct-19</p>
       </div>
     </div>
     <div class="qr-container">
-      {% qr_from_text 'hello wordl!' image_format="png" size=3 %}
+      {% qr_from_text 'hello wordl!' image_format="png" size=2 %}
     </div>
   </div>
 

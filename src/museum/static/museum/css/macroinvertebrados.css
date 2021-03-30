@@ -1,0 +1,48 @@
+@page {
+    size: A4 landscape;
+}
+
+.ma-label {
+    display: inline-block;
+}
+
+.ma-label .ma-first-label {
+    width: 2cm;
+    height: 1cm;
+    /*border: 1px solid black;*/
+    outline: solid 1px black;
+    font-size: 3px;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.ma-label .ma-first-label .data-wrapper {
+    width: 1cm;
+    position: relative;
+    padding: 2px 0 0 2px;
+}
+
+.ma-label .ma-first-label .data-wrapper .second-content {
+    position: absolute;
+    bottom: 2px;
+}
+
+.ma-label .ma-first-label .qr-container {
+    width: 1cm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ma-label .ma-first-label .qr-container img {
+    width: 38px
+}
+
+.ma-label .ma-second-label {
+    width: 2cm;
+    height: 1cm;
+    font-size: 4px;
+    outline: solid 1px black;
+    padding: 3px;
+    margin-bottom: 5px;
+}
