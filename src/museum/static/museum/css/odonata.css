@@ -1,0 +1,47 @@
+.odonata-label {
+    display: inline-block;
+    width: 13cm;
+    height: 7.5cm;
+    outline: 1px solid black;
+    font-size: 14px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.odonata-label .odonata-label__header {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.odonata-label .odonata-label__header .logo {
+    text-align: center;
+}
+
+.odonata-label .qr {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 2.5cm;
+    height: 2.5cm;
+}
+
+.odonata-label .data {
+    width: 10cm;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 10px 10px;
+}
+
+.odonata-label p {
+    margin-bottom: 5px;
+}
+
+.odonata-label .info strong,
+.odonata-label .data strong {
+    margin-right: 5px;
+}
+
+
+
