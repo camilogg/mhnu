@@ -8,39 +8,42 @@
       <p><strong>Museo de Historia Natural - Universidad de los llanos</strong></p>
       <p><strong>Colección de Mastozoología</strong></p>
     </div>
-    <p>Especie: <span class="especie"></span></p>
-    <p>Colector: <span class="colector"></span></p>
-    <p>Número de campo: <span class="campo"></span></p>
-    <p>
-      Sexo <span class="short"></span>
-      LT <span class="short"></span>
-      LC <span class="short"></span>
-      AB <span class="short"></span>
-      LP <span class="short"></span>
-      LO <span class="short"></span>
-      TP <span class="short"></span>
-      MC <span class="short"></span>
-    </p>
+    <div class="data">
+      <p>Especie:<span class="especie"></span></p>
+      <p>Colector:<span class="colector"></span></p>
+      <p>Número de campo:<span class="campo"></span></p>
+      <p>
+        Sexo<span class="short"></span>
+        LT<span class="short"></span>
+        LC<span class="short"></span>
+        AB<span class="short"></span>
+        LP<span class="short"></span>
+        LO<span class="short"></span>
+        TP<span class="short"></span>
+        MC<span class="short"></span>
+      </p>
+    </div>
     <img src="{% static 'museum/img/logo.png' %}" alt="logo" width="40px">
   </div>
   <span class="divisor"></span>
   <span class="divisor"></span>
   <div class="second-content">
     <p>
-      País <span class="country">{{ record.country }}</span>
-      Departamento <span class="state">{{ record.county.state_province.name }}</span>
+      País<span class="country">{{ record.country.name }}</span>
+      Departamento<span class="state">{{ record.county.state_province.name }}</span>
     </p>
-    <p>Municipio <span class="county">{{ record.county.name }}</span></p>
-    <p>Sitio <span class="site"></span></p>
+    <p>Municipio<span class="county">{{ record.county.name }}</span></p>
+    <p>Sitio<span class="site"></span></p>
     <p>
-      Altura <span class="height"></span>
-      Coordenadas <span class="coords"></span>N <span class="coords"></span>W
+      Altura<span class="height"></span>
+      Coordenadas<span class="coords">{{ record.verbatim_latitude|default:'' }}</span>
+      <span class="coords">{{ record.verbatim_longitude|default:'' }}</span>
     </p>
-    <p>Observaciones <span class="observations"></span></p>
+    <p>Observaciones<span class="observations"></span></p>
     <p>
-      Día <span class="short"></span>
-      Mes <span class="short"></span>
-      Año <span class="short"></span>
+      Día<span class="short"></span>
+      Mes<span class="short"></span>
+      Año<span class="short"></span>
     </p>
   </div>
 </div>

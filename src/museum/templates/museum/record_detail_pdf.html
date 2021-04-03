@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="{% static 'museum/css/macroinvertebrados.css' %}">
   {% elif record.collection_code.name == 'MHNU-OD' %}
     <link rel="stylesheet" href="{% static 'museum/css/odonata.css' %}">
-  {% elif collection_code == 'MHNU-M' %}
+  {% elif record.collection_code.name == 'MHNU-M' %}
     <link rel="stylesheet" href="{% static 'museum/css/mastozoologica.css' %}">
-  {% elif collection_code == 'MHNU-E' %}
+  {% elif record.collection_code.name == 'MHNU-E' %}
     <link rel="stylesheet" href="{% static 'museum/css/entomologica.css' %}">
   {% endif %}
   <style>
@@ -40,12 +40,11 @@
   {% include 'museum/records/macroinvertebrados.html' %}
 {% elif record.collection_code.name == 'MHNU-OD' %}
   {% include 'museum/records/odonata.html' %}
-{% elif collection_code == 'MHNU-M' %}
+{% elif record.collection_code.name == 'MHNU-M' %}
   {% include 'museum/records/mastozoologica.html' %}
-{% elif collection_code == 'MHNU-E' %}
+{% elif record.collection_code.name == 'MHNU-E' %}
   {% include 'museum/records/entomologica.html' %}
 {% endif %}
-
 </body>
 
 </html>

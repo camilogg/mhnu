@@ -19,7 +19,7 @@ def record_detail_pdf(request, pk):
     response['Content-Disposition'] = 'inline; filename=record.pdf'
 
     html_string = render_to_string('museum/record_detail_pdf.html', {
-        'record': record
+        'record': record,
     })
 
     HTML(
