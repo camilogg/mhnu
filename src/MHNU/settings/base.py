@@ -178,3 +178,5 @@ IMPORT_EXPORT_CELERY_MODELS = {
         'resource': resource,
     }
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

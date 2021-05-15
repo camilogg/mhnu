@@ -163,7 +163,6 @@ class RecordModelResource(ModelResource):
         }
         skip_unchanged = True
         clean_model_instances = True
-        use_bulk = True
         use_transactions = True
 
     @classmethod

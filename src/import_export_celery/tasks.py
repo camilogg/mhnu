@@ -90,8 +90,9 @@ def _run_import_job(import_job, dry_run=True):
 
     resource = Resource()
 
-    result = resource.import_data(dataset, dry_run=dry_run, raise_errors=True)
-    print(result.has_errors(), result.has_validation_errors(), "***"*50)
+    result = resource.import_data(
+        dataset, dry_run=dry_run, raise_errors=not dry_run
+    )
     change_job_status(
         import_job,
         _('import'),
