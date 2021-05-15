@@ -52,5 +52,6 @@ class Audit(models.Model):
             user = None
         if not self.pk:
             self.created_by = user
+            self.modified_by = user
         self.modified_by = user
         super().save(*args, **kwargs)

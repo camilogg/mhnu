@@ -9,6 +9,7 @@ from django_object_actions import DjangoObjectActions
 
 from import_export.admin import ImportExportModelAdmin
 
+from import_export_celery.admin_actions import create_export_job_action
 from import_export_celery.models import ExportJob
 from .models import (
     Record,
@@ -76,7 +77,15 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
         'scientific_name_authorship', 'vernacular_name', 'nomenclatural_code',
         'taxonomic_status', 'country', 'county', 'municipality'
     )
-    list_filter = ('collection_code',)
+    list_filter = (
+        'collection_code', 'type', 'basis_of_record', 'recorded_by', 'sex',
+        'life_stage', 'occurrence_status', 'preparations', 'disposition',
+        'sampling_protocol', 'habitat', 'water_body', 'country', 'county',
+        'municipality', 'locality', 'identified_by', 'scientific_name',
+        'kingdom', 'phylum', '_class', 'order', 'family', 'genus',
+        'specific_epithet', 'taxon_rank', 'scientific_name_authorship',
+        'vernacular_name', 'nomenclatural_code', 'taxonomic_status',
+    )
     fieldsets = (
         (_('Record Items'), {
             'fields': (
@@ -183,11 +192,11 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
     resource_class = RecordModelResource
 
     def export(self, request, queryset):
-        app_label = self.opts.app_label
-        model_name = self.opts.model_name
+        # app_label = self.opts.app_label
+        # model_name = self.opts.model_name
         ej = ExportJob.objects.create(
-            app_label=app_label,
-            model=model_name,
+            # app_label=app_label,
+            # model=model_name,
             site_of_origin=request.scheme + "://" + request.get_host(),
         )
 
@@ -216,7 +225,7 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
     }
 
     changelist_actions = ['export']
-    actions = ['pdf_list']
+    actions = ['pdf_list', create_export_job_action]
     change_actions = ['pdf_detail']
 
 

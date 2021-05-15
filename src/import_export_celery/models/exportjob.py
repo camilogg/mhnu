@@ -1,17 +1,17 @@
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from import_export.formats.base_formats import DEFAULT_FORMATS
 
-from museum.models import CollectionCode
+from museum.models import CollectionCode, Record
 from utils.models import Audit
 
 
 class ExportJob(Audit):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._content_type = None
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self._content_type = None
 
     file = models.FileField(
         verbose_name=_('exported file'),
@@ -42,21 +42,21 @@ class ExportJob(Audit):
         null=True,
     )
 
-    app_label = models.CharField(
-        verbose_name=_('App label of model to export from'),
-        max_length=160
-    )
+    # app_label = models.CharField(
+    #     verbose_name=_('App label of model to export from'),
+    #     max_length=160
+    # )
 
-    model = models.CharField(
-        verbose_name=_('Name of model to export from'),
-        max_length=160
-    )
+    # model = models.CharField(
+    #     verbose_name=_('Name of model to export from'),
+    #     max_length=160
+    # )
 
-    resource = models.CharField(
-        verbose_name=_('Resource to use when exporting'),
-        max_length=255,
-        default=''
-    )
+    # resource = models.CharField(
+    #     verbose_name=_('Resource to use when exporting'),
+    #     max_length=255,
+    #     default=''
+    # )
 
     collection_code = models.ForeignKey(
         CollectionCode,
@@ -79,39 +79,44 @@ class ExportJob(Audit):
         default='',
     )
 
-    def get_resource_class(self):
-        if self.resource:
-            return (
-                self.get_content_type()
-                    .model_class()
-                    .export_resource_classes()[self.resource][1]
-            )
+    queryset = models.JSONField(
+        verbose_name=_('JSON list of pks to export'), blank=True, null=True
+    )
 
-    def get_content_type(self):
-        if not self._content_type:
-            self._content_type = ContentType.objects.get(
-                app_label=self.app_label, model=self.model,
-            )
-        return self._content_type
+    # def get_resource_class(self):
+    #     if self.resource:
+    #         return (
+    #             self.get_content_type()
+    #                 .model_class()
+    #                 .export_resource_classes()[self.resource][1]
+    #         )
+
+    # def get_content_type(self):
+    #     if not self._content_type:
+    #         self._content_type = ContentType.objects.get(
+    #             app_label=self.app_label, model=self.model,
+    #         )
+    #     return self._content_type
 
     def get_queryset(self):
+        queryset = Record.objects.all()
         if self.collection_code:
-            return self.get_content_type().model_class().objects.filter(
-                collection_code=self.collection_code
-            )
-        return self.get_content_type().model_class().objects.all()
+            queryset = queryset.filter(collection_code=self.collection_code)
+        if self.queryset:
+            queryset = queryset.filter(pk__in=self.queryset)
+        return queryset
 
-    def get_resource_choices(self):
-        return [
-            (k, v[0]) for k, v in self.get_content_type()
-                .model_class()
-                .export_resource_classes()
-                .items()
-        ]
+    # def get_resource_choices(self):
+    #     return [
+    #         (k, v[0]) for k, v in self.get_content_type()
+    #             .model_class()
+    #             .export_resource_classes()
+    #             .items()
+    #     ]
 
     class Meta:
         verbose_name = _('export job')
         verbose_name_plural = _('export jobs')
 
     def __str__(self):
-        return _('{} export job #{}').format(self.model, self.pk)
+        return _('Export job #{}').format(self.pk)

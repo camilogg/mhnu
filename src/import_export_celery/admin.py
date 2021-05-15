@@ -1,11 +1,14 @@
 from django import forms
 from django.contrib import admin
 from django.core.cache import cache
+from django.utils.translation import gettext_lazy as _
 
 from . import models, admin_actions
 
 
 class JobWithStatusMixin:
+    direction = None
+
     def job_status_info(self, obj):
         job_status = cache.get(f'{self.direction}_job_status_{obj.pk}')
         if job_status:
@@ -13,31 +16,34 @@ class JobWithStatusMixin:
         else:
             return obj.job_status
 
+    job_status_info.short_description = _('status')
+
 
 @admin.register(models.ImportJob)
 class ImportJobAdmin(JobWithStatusMixin, admin.ModelAdmin):
-    direction = "import"
+    direction = 'import'
     list_display = (
-        "model",
-        "job_status_info",
-        "file",
-        "change_summary",
-        "imported",
+        # 'model',
+        'id',
+        'job_status_info',
+        'file',
+        'change_summary',
+        'imported',
         'created_by',
         'modified_by'
     )
     readonly_fields = (
-        "job_status_info",
-        "change_summary",
+        'job_status_info',
+        'change_summary',
         'processing_initiated',
-        "imported",
-        "errors",
+        'imported',
+        'errors',
         'created_by',
         'modified_by'
     )
-    exclude = ("job_status",)
+    exclude = ('job_status',)
 
-    list_filter = ("model", "imported")
+    list_filter = ('imported',)
     actions = (
         admin_actions.run_import_job_action,
         admin_actions.run_import_job_action_dry,
@@ -47,38 +53,40 @@ class ImportJobAdmin(JobWithStatusMixin, admin.ModelAdmin):
 class ExportJobForm(forms.ModelForm):
     class Meta:
         model = models.ExportJob
-        exclude = ("site_of_origin",)
+        exclude = ('site_of_origin',)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["resource"].widget = forms.Select(
-            choices=self.instance.get_resource_choices()
-        )
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['resource'].widget = forms.Select(
+    #         choices=self.instance.get_resource_choices()
+    #     )
 
 
 @admin.register(models.ExportJob)
 class ExportJobAdmin(JobWithStatusMixin, admin.ModelAdmin):
-    direction = "export"
+    direction = 'export'
     form = ExportJobForm
     list_display = (
-        "model",
-        "app_label",
-        "file",
-        "job_status_info",
+        # 'model',
+        # 'app_label',
+        'id',
+        'file',
+        'job_status_info',
         'created_by',
         'modified_by'
     )
     readonly_fields = (
-        "job_status_info",
-        "app_label",
-        "model",
-        "file",
-        "processing_initiated",
+        'job_status_info',
+        # 'app_label',
+        # 'model',
+        'file',
+        'processing_initiated',
         'created_by',
-        'modified_by'
+        'modified_by',
+        'queryset'
     )
-    exclude = ("job_status",)
-    list_filter = ("model",)
+    exclude = ('job_status',)
+    # list_filter = ('model',)
     actions = (admin_actions.run_export_job_action,)
     raw_id_fields = ('collection_code',)
 

@@ -1,8 +1,11 @@
 from datetime import datetime
 
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils.translation import ugettext as _
 
 from . import tasks
+from .models import ExportJob
 
 
 def run_import_job_action(modeladmin, request, queryset):
@@ -31,3 +34,22 @@ def run_export_job_action(modeladmin, request, queryset):
 
 
 run_export_job_action.short_description = _("Run export job")
+
+
+def create_export_job_action(modeladmin, request, queryset):
+    if queryset:
+        # arbitrary_obj = queryset.first()
+        ej = ExportJob.objects.create(
+            # app_label=arbitrary_obj._meta.app_label,
+            # model=arbitrary_obj._meta.model_name,
+            queryset=[obj.pk for obj in queryset],
+            site_of_origin=request.scheme + "://" + request.get_host(),
+        )
+    url = reverse(
+        'admin:{}_{}_change'.format(ej._meta.app_label, ej._meta.model_name),
+        args=[ej.pk],
+    )
+    return redirect(url)
+
+
+create_export_job_action.short_description = _('Export')

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 13:24-0500\n"
+"POT-Creation-Date: 2021-05-15 01:51-0500\n"
 "PO-Revision-Date: 2021-03-15 01:12-0456\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,47 +19,47 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
-#: museum/admin.py:81
+#: museum/admin.py:90
 msgid "Record Items"
 msgstr "Elementos de registro"
 
-#: museum/admin.py:92
+#: museum/admin.py:101
 msgid "Biological Record"
 msgstr "Registro biológico"
 
-#: museum/admin.py:107
+#: museum/admin.py:116
 msgid "Event"
 msgstr "evento"
 
-#: museum/admin.py:117
+#: museum/admin.py:126
 msgid "Location"
 msgstr "Ubicación"
 
-#: museum/admin.py:140
+#: museum/admin.py:149
 msgid "Geological Context"
 msgstr "Contexto geológico"
 
-#: museum/admin.py:157
+#: museum/admin.py:166
 msgid "Identification"
 msgstr "Identificación"
 
-#: museum/admin.py:165
+#: museum/admin.py:174
 msgid "Taxon"
 msgstr "Taxón"
 
-#: museum/admin.py:200
+#: museum/admin.py:209
 msgid "Export"
 msgstr "Exportar"
 
-#: museum/admin.py:201
+#: museum/admin.py:210
 msgid "Export with celery"
 msgstr "Exportar con celery"
 
-#: museum/admin.py:206 museum/admin.py:212
+#: museum/admin.py:215 museum/admin.py:221
 msgid "PDF"
 msgstr "PDF"
 
-#: museum/admin.py:207 museum/admin.py:213
+#: museum/admin.py:216 museum/admin.py:222
 msgid "Generate pdf"
 msgstr "Generar PDF"
 

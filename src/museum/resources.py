@@ -171,12 +171,12 @@ class RecordModelResource(ModelResource):
         """
         Returns a Resource Field instance for the given Django model field.
         """
-        FieldWidget = cls.widget_from_django_field(django_field)
+        field_widget = cls.widget_from_django_field(django_field)
         widget_kwargs = cls.widget_kwargs_for_field(field_name)
         field = cls.DEFAULT_RESOURCE_FIELD(
             attribute=field_name,
             column_name=snake_case_to_camel_case(field_name),
-            widget=FieldWidget(**widget_kwargs),
+            widget=field_widget(**widget_kwargs),
             readonly=readonly,
             default=django_field.default,
         )

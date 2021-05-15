@@ -6,7 +6,7 @@ from celery import shared_task
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.cache import cache
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
 from django.urls import reverse
@@ -15,8 +15,8 @@ from django.utils.translation import ugettext as _
 
 from import_export.formats.base_formats import DEFAULT_FORMATS
 
+from museum.resources import RecordModelResource
 from . import models
-from .model_config import ModelConfig
 
 from celery.utils.log import get_task_logger
 import logging
@@ -49,7 +49,6 @@ def _run_import_job(import_job, dry_run=True):
                       dry_run)
     if dry_run:
         import_job.errors = ''
-    model_config = ModelConfig(**importables[import_job.model])
     import_format = get_format(import_job)
     try:
         data = import_job.file.read()
@@ -75,7 +74,7 @@ def _run_import_job(import_job, dry_run=True):
     change_job_status(import_job, _('import'), _('2/5 Processing import data'),
                       dry_run)
 
-    class Resource(model_config.resource):
+    class Resource(RecordModelResource):
         def before_import_row(self, row, **kwargs):
             if 'row_number' in kwargs:
                 row_number = kwargs['row_number']
@@ -91,11 +90,8 @@ def _run_import_job(import_job, dry_run=True):
 
     resource = Resource()
 
-    if dry_run:
-        result = resource.import_data(dataset, dry_run=dry_run)
-    else:
-        result = resource.import_data(dataset, dry_run=dry_run,
-                                      raise_errors=True)
+    result = resource.import_data(dataset, dry_run=dry_run, raise_errors=True)
+    print(result.has_errors(), result.has_validation_errors(), "***"*50)
     change_job_status(
         import_job,
         _('import'),
@@ -145,14 +141,15 @@ def run_import_job(pk, dry_run=True):
 def run_export_job(pk):
     log.info("Exporting {}".format(pk))
     export_job = models.ExportJob.objects.get(pk=pk)
-    resource_class = export_job.get_resource_class()
+    # resource_class = export_job.get_resource_class()
+    resource_class = RecordModelResource
     queryset = export_job.get_queryset()
     qs_len = len(queryset)
 
     class Resource(resource_class):
         def __init__(self, *args, **kwargs):
             self.row_number = 1
-            super().__init__(*args, **kwargs)
+            # super().__init__(*args, **kwargs)
 
         def export_resource(self, *args, **kwargs):
             if self.row_number % 20 == 0 or self.row_number == 1:
@@ -170,9 +167,7 @@ def run_export_job(pk):
     format = get_format(export_job)
     serialized = format.export_data(data)
     change_job_status(export_job, _('export'), _('Export complete'))
-    filename = "{app}-{model}-{date}.{extension}".format(
-        app=export_job.app_label,
-        model=export_job.model,
+    filename = "records-{date}.{extension}".format(
         date=str(datetime.now()),
         extension=format.get_extension(),
     )
@@ -184,16 +179,17 @@ def run_export_job(pk):
             export_job._meta.app_label,
             export_job._meta.model_name,
         ), args=[export_job.pk])
-        send_mail(
+        message = EmailMessage(
             _('Django: Export job completed'),
             _(
-                'Your export job on model {app_label}.{model} has completed. '
-                'You can download the file at the following link:\n\n{link}'
+                'Your export job has completed. You can download the file at '
+                'the following link:\n\n{link}'
             ).format(
-                app_label=export_job.app_label,
-                model=export_job.model,
                 link=export_job.site_of_origin + link,
             ),
-            settings.SERVER_EMAIL,
-            [export_job.updated_by.email],
+            settings.EMAIL_HOST,
+            [export_job.modified_by.email if export_job.modified_by else
+             export_job.created_by.email],
         )
+        message.attach_file(export_job.file.path)
+        message.send()

@@ -45,14 +45,14 @@ class ImportJob(Audit):
 
     errors = models.TextField(_('errors'), default='', blank=True, null=True)
 
-    model = models.CharField(
-        verbose_name=_('Name of model to import to'),
-        max_length=160,
-        choices=[
-            (x, x) for x in
-            getattr(settings, 'IMPORT_EXPORT_CELERY_MODELS', {}).keys()
-        ],
-    )
+    # model = models.CharField(
+    #     verbose_name=_('Name of model to import to'),
+    #     max_length=160,
+    #     choices=[
+    #         (x, x) for x in
+    #         getattr(settings, 'IMPORT_EXPORT_CELERY_MODELS', {}).keys()
+    #     ],
+    # )
 
     job_status = models.CharField(
         verbose_name=_('Status of the job'),
@@ -65,4 +65,4 @@ class ImportJob(Audit):
         verbose_name_plural = _('import jobs')
 
     def __str__(self):
-        return _('{} import job #{}').format(self.model, self.pk)
+        return _('Import job #{}').format(self.pk)
