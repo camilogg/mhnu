@@ -43,7 +43,7 @@ from .models import (
     ScientificNameAuthorship,
     VernacularName,
     NomenclaturalCode,
-    TaxonomicStatus
+    TaxonomicStatus, Image
 )
 from .resources import RecordModelResource
 from .views import record_detail_pdf, record_list_pdf
@@ -66,6 +66,17 @@ class CountyAdmin(ImportExportModelAdmin):
     list_filter = ('state_province',)
 
 
+class ImageInline(admin.StackedInline):
+    model = Image
+    extra = 0
+    readonly_fields = (
+        'created_at', 'modified_at', 'created_by', 'modified_by'
+    )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('record')
+
+
 @admin.register(Record)
 class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
     raw_id_fields = (
@@ -86,6 +97,7 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
         'specific_epithet', 'taxon_rank', 'scientific_name_authorship',
         'vernacular_name', 'nomenclatural_code', 'taxonomic_status',
     )
+    search_fields = ('occurrence_ID', 'catalog_number')
     fieldsets = (
         (_('Record Items'), {
             'fields': (
@@ -188,6 +200,7 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
             )
         })
     )
+    inlines = (ImageInline,)
 
     resource_class = RecordModelResource
 

@@ -12,6 +12,9 @@ from museum.validators import (
 
 
 # Record Items tables
+from utils.models import Audit
+
+
 class Type(models.Model):
     name = models.CharField(_('name'), max_length=255, unique=True)
 
@@ -994,3 +997,17 @@ class Record(models.Model):
                 'Records resource', resource()
             )
         }
+
+
+class Image(Audit):
+    record = models.ForeignKey(
+        Record, verbose_name=_('record'), on_delete=models.CASCADE
+    )
+    image = models.ImageField(_('image'), upload_to='images')
+
+    class Meta:
+        verbose_name = _('image')
+        verbose_name_plural = _('images')
+
+    def __str__(self):
+        return _('Image of record {}').format(self.record.occurrence_ID)
