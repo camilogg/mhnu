@@ -88,7 +88,7 @@ class ExportJobAdmin(JobWithStatusMixin, admin.ModelAdmin):
     exclude = ('job_status',)
     # list_filter = ('model',)
     actions = (admin_actions.run_export_job_action,)
-    raw_id_fields = ('collection_code',)
+    autocomplete_fields = ('collection_code',)
 
     def has_add_permission(self, request):
         return False

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 18:25-0500\n"
-"PO-Revision-Date: 2021-05-17 18:26-0456\n"
+"POT-Creation-Date: 2021-05-30 23:44-0500\n"
+"PO-Revision-Date: 2021-05-30 23:45-0456\n"
 "Last-Translator: b'  <adcamilogg@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,47 +19,52 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
-#: museum/admin.py:98
+#: museum/admin.py:230
 msgid "Record Items"
 msgstr "Elementos de registro"
 
-#: museum/admin.py:109
+#: museum/admin.py:231
 msgid "Biological Record"
 msgstr "Registro biológico"
 
-#: museum/admin.py:124
+#: museum/admin.py:232
 msgid "Event"
 msgstr "evento"
 
-#: museum/admin.py:134
+#: museum/admin.py:233
 msgid "Location"
 msgstr "Ubicación"
 
-#: museum/admin.py:157
+#: museum/admin.py:234
 msgid "Geological Context"
 msgstr "Contexto geológico"
 
-#: museum/admin.py:174
+#: museum/admin.py:235
 msgid "Identification"
 msgstr "Identificación"
 
-#: museum/admin.py:182
+#: museum/admin.py:236
 msgid "Taxon"
 msgstr "Taxón"
 
-#: museum/admin.py:218
+#: museum/admin.py:237
+#| msgid "images"
+msgid "Images"
+msgstr "Imágenes"
+
+#: museum/admin.py:257
 msgid "Export"
 msgstr "Exportar"
 
-#: museum/admin.py:219
+#: museum/admin.py:258
 msgid "Export with celery"
 msgstr "Exportar con celery"
 
-#: museum/admin.py:224 museum/admin.py:230
+#: museum/admin.py:263 museum/admin.py:269
 msgid "PDF"
 msgstr "PDF"
 
-#: museum/admin.py:225 museum/admin.py:231
+#: museum/admin.py:264 museum/admin.py:270
 msgid "Generate pdf"
 msgstr "Generar PDF"
 
@@ -954,7 +959,6 @@ msgid "images"
 msgstr "imágenes"
 
 #: museum/models.py:1013
-#| msgid "basis of record"
 msgid "Image of record {}"
 msgstr "imagen del registro {}"
 

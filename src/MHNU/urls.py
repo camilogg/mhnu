@@ -20,7 +20,6 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', 'rest_framework')),
     path('museum/', include('museum.urls', 'museum')),

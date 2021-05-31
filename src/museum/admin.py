@@ -2,12 +2,17 @@ from django.contrib import admin
 from django.db import models
 from django.forms import Textarea
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import reverse, path
 from django.utils.translation import gettext_lazy as _
 
 from django_object_actions import DjangoObjectActions
 
+from autocompletefilter.admin import AutocompleteFilterMixin
+from autocompletefilter.filters import AutocompleteListFilter
+from search_admin_autocomplete.admin import SearchAutoCompleteAdmin
+
 from import_export.admin import ImportExportModelAdmin
+from tabbed_admin import TabbedModelAdmin
 
 from import_export_celery.admin_actions import create_export_job_action
 from import_export_celery.models import ExportJob
@@ -56,14 +61,16 @@ class RecordedByAdmin(ImportExportModelAdmin):
     formfield_overrides = {
         models.CharField: {'widget': Textarea}
     }
+    ordering = ('name',)
 
 
 @admin.register(County)
 class CountyAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
-    raw_id_fields = ('state_province',)
+    autocomplete_fields = ('state_province',)
     list_filter = ('state_province',)
+    ordering = ('name',)
 
 
 class ImageInline(admin.StackedInline):
@@ -78,8 +85,20 @@ class ImageInline(admin.StackedInline):
 
 
 @admin.register(Record)
-class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
-    raw_id_fields = (
+class RecordAdmin(AutocompleteFilterMixin, DjangoObjectActions,
+                  TabbedModelAdmin, SearchAutoCompleteAdmin):
+    change_form_template = 'custom_change_form.html'
+
+    def get_urls(self):
+        urls = super().get_urls()
+        api_urls = [
+            path('search/<str:search_term>', self.search_api)
+        ]
+        return api_urls + urls
+
+    search_prefix = '__icontains'
+
+    autocomplete_fields = (
         'type', 'collection_code', 'basis_of_record', 'recorded_by', 'sex',
         'life_stage', 'occurrence_status', 'preparations', 'disposition',
         'sampling_protocol', 'habitat', 'water_body', 'locality',
@@ -88,18 +107,12 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
         'scientific_name_authorship', 'vernacular_name', 'nomenclatural_code',
         'taxonomic_status', 'country', 'county', 'municipality'
     )
-    list_filter = (
-        'collection_code', 'type', 'basis_of_record', 'recorded_by', 'sex',
-        'life_stage', 'occurrence_status', 'preparations', 'disposition',
-        'sampling_protocol', 'habitat', 'water_body', 'country', 'county',
-        'municipality', 'locality', 'identified_by', 'scientific_name',
-        'kingdom', 'phylum', '_class', 'order', 'family', 'genus',
-        'specific_epithet', 'taxon_rank', 'scientific_name_authorship',
-        'vernacular_name', 'nomenclatural_code', 'taxonomic_status',
+    list_filter = tuple(
+        map(lambda x: (x, AutocompleteListFilter), autocomplete_fields)
     )
     search_fields = ('occurrence_ID', 'catalog_number')
-    fieldsets = (
-        (_('Record Items'), {
+    tab_record_items = [
+        (None, {
             'fields': (
                 'type', 'modified', 'language', 'license', 'rights_holder',
                 'access_rights', 'bibliographic_citation', 'references',
@@ -109,8 +122,10 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
                 'information_withheld', 'data_generalizations',
                 'dynamic_properties'
             ),
-        }),
-        (_('Biological Record'), {
+        })
+    ]
+    tab_biological_record = [
+        (None, {
             'fields': (
                 'occurrence_ID', 'catalog_number', 'occurrence_remarks',
                 'record_number', 'recorded_by', 'organism_ID',
@@ -124,8 +139,10 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
                 'associated_references', 'associated_occurrences',
                 'associated_sequences', 'associated_taxa', 'material_sample_ID'
             )
-        }),
-        (_('Event'), {
+        })
+    ]
+    tab_event = [
+        (None, {
             'fields': (
                 'event_ID', 'parent_event_ID', 'sampling_protocol',
                 'sampling_effort', 'sampling_size_value', 'sampling_size_unit',
@@ -134,8 +151,10 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
                 'verbatim_event_date', 'habitat', 'field_number',
                 'field_notes', 'event_remarks',
             )
-        }),
-        (_('Location'), {
+        })
+    ]
+    tab_location = [
+        (None, {
             'fields': (
                 'location_ID', 'higher_geography_ID', 'higher_geography',
                 'continent', 'water_body', 'island_group',
@@ -157,8 +176,10 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
                 'georeference_protocol', 'georeference_sources',
                 'georeference_verification_status', 'georeference_remarks'
             )
-        }),
-        (_('Geological Context'), {
+        })
+    ]
+    tab_geological_context = [
+        (None, {
             'fields': (
                 'geological_context_ID', 'earliest_eon_or_lowest_eonothem',
                 'latest_eon_or_highest_eonothem',
@@ -175,7 +196,9 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
                 'group', 'formation', 'member', 'bed'
             )
         }),
-        (_('Identification'), {
+    ]
+    tab_identification = [
+        (None, {
             'fields': (
                 'identification_ID', 'identified_by', 'date_identified',
                 'identification_references',
@@ -183,7 +206,9 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
                 'identification_qualifier', 'type_status'
             )
         }),
-        (_('Taxon'), {
+    ]
+    tab_taxon = [
+        (None, {
             'fields': (
                 'taxon_ID', 'scientific_name_ID', 'accepted_name_usage_ID',
                 'parent_name_usage_ID', 'original_name_usage_ID',
@@ -199,8 +224,18 @@ class RecordAdmin(DjangoObjectActions, admin.ModelAdmin):
                 'nomenclatural_status', 'taxon_remarks'
             )
         })
+    ]
+
+    tabs = (
+        (_('Record Items'), tab_record_items),
+        (_('Biological Record'), tab_biological_record),
+        (_('Event'), tab_event),
+        (_('Location'), tab_location),
+        (_('Geological Context'), tab_geological_context),
+        (_('Identification'), tab_identification),
+        (_('Taxon'), tab_taxon),
+        (_('Images'), (ImageInline,)),
     )
-    inlines = (ImageInline,)
 
     resource_class = RecordModelResource
 
@@ -254,3 +289,4 @@ MODELS = [Type, CollectionCode, BasisOfRecord, Sex, LifeStage,
 class ListAndSearchImportExportModelAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+    ordering = ('name',)

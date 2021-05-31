@@ -14,7 +14,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jet',
+    'admin_interface',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,6 +32,9 @@ INSTALLED_APPS = [
     'django_object_actions',
     'qr_code',
     'django_cleanup.apps.CleanupConfig',
+    'autocompletefilter',
+    'search_admin_autocomplete',
+    'tabbed_admin',
 ]
 
 MIDDLEWARE = [
@@ -180,3 +184,5 @@ IMPORT_EXPORT_CELERY_MODELS = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TABBED_ADMIN_USE_JQUERY_UI = True

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 18:25-0500\n"
+"POT-Creation-Date: 2021-05-30 23:44-0500\n"
 "PO-Revision-Date: 2021-01-28 03:16-0456\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,9 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
-#: MHNU/settings/base.py:101
+#: MHNU/settings/base.py:105
 msgid "Spanish"
 msgstr "Español"
+
+#: templates/custom_change_form.html:33
+msgid "Please correct the error below."
+msgstr ""
+
+#: templates/custom_change_form.html:34
+msgid "Please correct the errors below."
+msgstr ""
 
 #: templates/import_export_celery/import.html:62
 #: templates/import_export_celery/import.html:91

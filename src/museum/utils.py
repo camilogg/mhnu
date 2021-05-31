@@ -8,6 +8,7 @@ from django.contrib.staticfiles.finders import find
 from django.core.files.storage import default_storage
 from django.urls import get_script_prefix
 
+
 def snake_case_to_camel_case(value: str):
     # split underscore using split
     str_values = value.split('_')
