@@ -8,7 +8,7 @@ django-rosetta==0.9.5
 flake8==3.8.4
 django-debug-toolbar==3.1.1
 pillow==8.0.1
-celery==5.0.5
+celery==5.1.2
 watchdog==1.0.2
 redis==3.5.3
 PyYAML==5.3.1
@@ -22,3 +22,8 @@ django-extensions==3.1.1
 django-autocompletefilter==0.0.7
 django-search-admin-autocomplete==0.2.1
 django-tabbed-admin==1.0.4
+pytest-django
+pytest
+django-filter==2.4.0
+django-cors-headers==3.7.0
+djangorestframework-camel-case==1.2.0

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-30 23:44-0500\n"
-"PO-Revision-Date: 2021-05-30 23:45-0456\n"
-"Last-Translator: b'  <adcamilogg@gmail.com>'\n"
+"POT-Creation-Date: 2021-08-02 01:29-0500\n"
+"PO-Revision-Date: 2021-08-02 01:32-0456\n"
+"Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,6 @@ msgid "Taxon"
 msgstr "Taxón"
 
 #: museum/admin.py:237
-#| msgid "images"
 msgid "Images"
 msgstr "Imágenes"
 
@@ -961,6 +960,10 @@ msgstr "imágenes"
 #: museum/models.py:1013
 msgid "Image of record {}"
 msgstr "imagen del registro {}"
+
+#: museum/tasks.py:10
+msgid "Contact email"
+msgstr "Email de contacto"
 
 #: museum/validators.py:21
 msgid "Invalid format"
