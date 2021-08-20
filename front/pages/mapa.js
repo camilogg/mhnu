@@ -7,9 +7,14 @@ const Contact = () => {
   return (
     <Layout>
       <main>
-        <section className="contact-area ptb-100">
-          <div className="container">
-            <Map />
+        <section className='contact-area ptb-100'>
+          <div className='container'>
+            <Map
+              coords={{
+                lat: 4.1551704,
+                lng: -73.6428228,
+              }}
+            />
           </div>
         </section>
       </main>

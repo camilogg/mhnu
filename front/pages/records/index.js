@@ -70,7 +70,7 @@ const Records = ({
     // This will get called when the table needs new data
     // You could fetch your data from literally anywhere,
     // even a server.
-
+    console.log('render from list')
     // Give this fetch an ID
     const fetchId = ++fetchIdRef.current
 
@@ -86,7 +86,8 @@ const Records = ({
       )
       const fetchData = await response.json()
       setData(fetchData.results)
-      setPageCount(count)
+      console.log(count, 'count')
+      setPageCount(Math.ceil(count / 8))
       setLoading(false)
     }
   }, [])
@@ -120,6 +121,7 @@ const Records = ({
 export default Records
 
 export async function getServerSideProps({ query }) {
+  console.log(query)
   const {
     collection = '',
     genus = '',

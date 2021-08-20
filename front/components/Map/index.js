@@ -1,18 +1,21 @@
-import { MapContainer, TileLayer } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import styles from './Map.module.css'
+import L from 'leaflet'
 
-const Map = () => (
+const icon = L.icon({ iconUrl: '/images/marker-icon.png' })
+
+const Map = ({ coords }) => (
   <MapContainer
-    center={[4.1248423, -73.6441654]}
+    center={coords}
     zoom={14}
     // scrollWheelZoom={false}
-    className={styles.map}
+    style={{ height: 400, width: '100%' }}
   >
     <TileLayer
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     />
+    <Marker position={coords} icon={icon}></Marker>
   </MapContainer>
 )
 

@@ -3,6 +3,12 @@ import AsyncSelect from 'react-select/async'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
+const RADIO_VALUES = {
+  'scientific-names': 'scientificName',
+  families: 'family',
+  genus: 'genus'
+}
+
 const SearchCard = ({ collection }) => {
   const [selectValue, setSelectValue] = useState('')
   const [radioValue, setRadioValue] = useState('scientific-names')
@@ -29,10 +35,8 @@ const SearchCard = ({ collection }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const radioValueFormatted =
-      radioValue === 'scientific-names' ? 'scientificName' : radioValue
     router.push(
-      `/records?collection=${collection}&${radioValueFormatted}=${selectValue.label}`
+      `/records?collection=${collection}&${RADIO_VALUES[radioValue]}=${selectValue.label}`
     )
   }
 

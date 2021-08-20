@@ -55,11 +55,11 @@ class RecordModelResource(ModelResource):
         column_name='verbatimLocality',
         readonly=True
     )
-    locality = fields.Field(
-        attribute='name',
-        column_name='locality',
-        widget=LocalityForeignKeyWidget(Locality, 'name')
-    )
+    # locality = fields.Field(
+    #     attribute='name',
+    #     column_name='locality',
+    #     widget=LocalityForeignKeyWidget(Locality, 'name')
+    # )
 
     class Meta:
         model = Record
@@ -146,6 +146,7 @@ class RecordModelResource(ModelResource):
             'country': {'field': 'name'},
             'county': {'field': 'name'},
             'municipality': {'field': 'name'},
+            'locality': {'field': 'name'},
             'identified_by': {'field': 'name'},
             'scientific_name': {'field': 'name'},
             'kingdom': {'field': 'name'},
@@ -229,10 +230,11 @@ class RecordModelResource(ModelResource):
         if row['municipality']:
             Municipality.objects.get_or_create(name=row['municipality'])
         if row['locality']:
-            Locality.objects.get_or_create(
+            obj, created = Locality.objects.get_or_create(
                 name=row['locality'],
-                verbatim_locality=row['verbatimLocality']
+                defaults={'verbatim_locality': row['verbatimLocality']}
             )
+            print(obj, created)
         if row['identifiedBy']:
             IdentifiedBy.objects.get_or_create(name=row['identifiedBy'])
         if row['scientificName']:

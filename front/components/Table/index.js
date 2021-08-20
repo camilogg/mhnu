@@ -23,7 +23,7 @@ const Table = ({
     nextPage,
     previousPage,
     // Get the state from the instance
-    state: { pageIndex, pageSize },
+    state: { pageIndex },
   } = useTable(
     {
       columns,
@@ -39,9 +39,10 @@ const Table = ({
   )
 
   useEffect(() => {
-    fetchData({ pageIndex, pageSize })
-  }, [fetchData, pageIndex, pageSize])
-  console.log(data)
+    console.log('render form Table')
+    fetchData({ pageIndex })
+  }, [fetchData, pageIndex])
+
   return (
     <Styles>
       <div className='tableWrap'>
