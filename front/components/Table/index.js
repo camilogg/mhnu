@@ -8,6 +8,9 @@ const Table = ({
   fetchData,
   loading,
   pageCount: controlledPageCount,
+  collection,
+  filter,
+  search,
 }) => {
   const {
     getTableProps,
@@ -39,12 +42,12 @@ const Table = ({
   )
 
   useEffect(() => {
-    console.log('render form Table')
-    fetchData({ pageIndex })
+    console.log('render from Table')
+    fetchData({ pageIndex, collection, filter, search })
   }, [fetchData, pageIndex])
 
   return (
-    <Styles>
+    <Styles className='p-3 p-sm-4'>
       <div className='tableWrap'>
         <table {...getTableProps()}>
           <thead>
@@ -95,25 +98,25 @@ const Table = ({
           </tbody>
         </table>
       </div>
-      <div className='pagination row'>
-        <div className='d-flex mb-2 justify-content-center'>
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-            <i className='fas fa-angle-double-left'></i>
-          </button>
-          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-            <i className='fas fa-angle-left'></i>
-          </button>
-          <button onClick={() => nextPage()} disabled={!canNextPage}>
-            <i className='fas fa-angle-right'></i>
-          </button>
-          <button
-            onClick={() => gotoPage(pageCount - 1)}
-            disabled={!canNextPage}
-          >
-            <i className='fas fa-angle-double-right'></i>
-          </button>
-        </div>
-        {!!pageOptions.length && (
+      {!!data.length && (
+        <div className='pagination row'>
+          <div className='d-flex mb-2 justify-content-center'>
+            <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+              <i className='fas fa-angle-double-left'></i>
+            </button>
+            <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+              <i className='fas fa-angle-left'></i>
+            </button>
+            <button onClick={() => nextPage()} disabled={!canNextPage}>
+              <i className='fas fa-angle-right'></i>
+            </button>
+            <button
+              onClick={() => gotoPage(pageCount - 1)}
+              disabled={!canNextPage}
+            >
+              <i className='fas fa-angle-double-right'></i>
+            </button>
+          </div>
           <div className='text-center'>
             <span>
               Página{' '}
@@ -134,8 +137,8 @@ const Table = ({
               />
             </span>{' '}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </Styles>
   )
 }

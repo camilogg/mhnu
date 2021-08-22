@@ -27,3 +27,5 @@ pytest
 django-filter==2.4.0
 django-cors-headers==3.7.0
 djangorestframework-camel-case==1.2.0
+pytest-sugar==0.9.4
+pytest-xdist==2.3.0

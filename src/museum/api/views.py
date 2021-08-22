@@ -41,6 +41,14 @@ class RecordListAPIView(ListAPIView):
     serializer_class = RecordModelSerializer
     filterset_class = RecordFilter
 
+    def get_queryset(self):
+        return super().get_queryset().select_related(
+            'family', 'genus', 'scientific_name', 'country',
+            'county__state_province', 'recorded_by', 'type', 'identified_by',
+            'kingdom', 'phylum', '_class', 'order', 'specific_epithet',
+            'taxon_rank', 'nomenclatural_code', 'scientific_name_authorship'
+        ).prefetch_related('image_set')
+
 
 class RecordRetrieveAPIView(RetrieveAPIView):
     queryset = Record.objects.all()

@@ -25,8 +25,6 @@ logger = logging.getLogger(__name__)
 
 log = get_task_logger(__name__)
 
-importables = getattr(settings, "IMPORT_EXPORT_CELERY_MODELS", {})
-
 
 def change_job_status(job, direction, job_status, dry_run=False):
     if dry_run:

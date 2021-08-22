@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-02 01:29-0500\n"
-"PO-Revision-Date: 2021-08-02 01:31-0456\n"
-"Last-Translator: b'  <>'\n"
+"POT-Creation-Date: 2021-08-22 05:12-0500\n"
+"PO-Revision-Date: 2021-08-22 05:12-0456\n"
+"Last-Translator: b'Adrian Gonzalez <adrian@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
-#: MHNU/settings/base.py:108
+#: MHNU/settings/base.py:109
 msgid "Spanish"
 msgstr "Español"
 
@@ -79,6 +79,26 @@ msgstr "Eliminar"
 #: templates/import_export_celery/import.html:159
 msgid "Update"
 msgstr "Actualizar"
+
+#: users/apps.py:7
+msgid "users"
+msgstr "usuarios"
+
+#: users/models.py:16
+msgid "The Email must be set"
+msgstr "El correo electrónico se debe establecer"
+
+#: users/models.py:32
+msgid "Superuser must have is_staff=True."
+msgstr "El superusuario debe tener is_staff = True."
+
+#: users/models.py:34
+msgid "Superuser must have is_superuser=True."
+msgstr "El superusuario debe tener is_superuser = True."
+
+#: users/models.py:40
+msgid "email"
+msgstr "correo"
 
 #~ msgid "English"
 #~ msgstr "Inglés"

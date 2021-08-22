@@ -52,81 +52,8 @@ const Navbar = () => {
                   </li>
 
                   <li className='nav-item'>
-                    <Link href='/#'>
-                      <a className='nav-link' onClick={e => e.preventDefault()}>
-                        Colecciones <i className='fa fa-plus'></i>
-                      </a>
-                    </Link>
-
-                    <ul className='dropdown-menu'>
-                      <li className='nav-item'>
-                        <Link
-                          href='/colecciones/herpetologica'
-                          activeClassName='active'
-                        >
-                          <a className='nav-link'>Herpetológica</a>
-                        </Link>
-                      </li>
-
-                      <li className='nav-item'>
-                        <Link
-                          href='/colecciones/mastozoologica'
-                          activeClassName='active'
-                        >
-                          <a className='nav-link'>Mastozoológica</a>
-                        </Link>
-                      </li>
-
-                      <li className='nav-item'>
-                        <Link
-                          href='/colecciones/tejidos'
-                          activeClassName='active'
-                        >
-                          <a className='nav-link'>Tejidos</a>
-                        </Link>
-                      </li>
-
-                      <li className='nav-item'>
-                        <Link
-                          href='/colecciones/ornitologica'
-                          activeClassName='active'
-                        >
-                          <a className='nav-link'>Ornitológica</a>
-                        </Link>
-                      </li>
-
-                      <li className='nav-item'>
-                        <Link
-                          href='/colecciones/macroinvertebrados'
-                          activeClassName='active'
-                        >
-                          <a className='nav-link'>Macroinvertebrados</a>
-                        </Link>
-                      </li>
-
-                      <li className='nav-item'>
-                        <Link
-                          href='/colecciones/entomologica'
-                          activeClassName='active'
-                        >
-                          <a className='nav-link'>Entomológica</a>
-                        </Link>
-                      </li>
-
-                      <li className='nav-item'>
-                        <Link
-                          href='/colecciones/ictiologica'
-                          activeClassName='active'
-                        >
-                          <a className='nav-link'>Ictiológica</a>
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li className='nav-item'>
-                    <Link href='/mapa' activeClassName='active'>
-                      <a className='nav-link'>Mapa</a>
+                    <Link href='/colecciones' activeClassName='active'>
+                      <a className='nav-link'>Colecciones</a>
                     </Link>
                   </li>
 

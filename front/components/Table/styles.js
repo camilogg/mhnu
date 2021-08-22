@@ -6,7 +6,6 @@ export const Styles = styled.div`
   max-width: 100%;
   /* box-shadow: 2px 2px 4px hsl(0deg 0% 51% / 16%); */
   box-shadow: 7px 5px 30px rgb(72 73 121 / 15%);
-  padding: 2rem;
   background-color: #fff;
   border-radius: 5px;
 
@@ -17,14 +16,14 @@ export const Styles = styled.div`
     overflow-y: hidden;
     border-bottom: 1px solid black;
     ::-webkit-scrollbar {
-      height: 10px;
+      height: 5px;
     }
     ::-webkit-scrollbar-track {
       background: #fff; /* color of the tracking area */
     }
     ::-webkit-scrollbar-thumb {
       background-color: #e5e5e5; /* color of the scroll thumb */
-      border-radius: 20px; /* roundness of the scroll thumb */
+      border-radius: 5px; /* roundness of the scroll thumb */
     }
     border: 1px solid #e5e5e5;
   }

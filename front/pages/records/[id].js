@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic'
 const Map = dynamic(() => import('@components/Map'), { ssr: false })
 
 const RecordDetail = record => {
-  console.log(record)
   return (
     <Layout>
       <main>

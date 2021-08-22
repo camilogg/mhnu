@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'museum.apps.MuseumConfig',
+    'users.apps.UsersConfig',
     'import_export_celery.apps.ImportExportCeleryConfig',
     'utils.apps.UtilsConfig',
     'import_export',
@@ -173,22 +174,39 @@ IMPORT_EXPORT_SKIP_ADMIN_LOG = True
 CELERY_BROKER_URL = f'redis://{os.environ["REDIS_HOST"]}:6379'
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 
-IMPORT_EXPORT_CELERY_INIT_MODULE = "MHNU.celery"
-
-
-def resource():
-    from museum.resources import RecordModelResource
-    return RecordModelResource
-
-
-IMPORT_EXPORT_CELERY_MODELS = {
-    "Record": {
-        'app_label': 'museum',
-        'model_name': 'Record',
-        'resource': resource,
-    }
-}
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'users.User'
+
 TABBED_ADMIN_USE_JQUERY_UI = True
+
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "formatters": {
+#         "colorful": {
+#             "format": (
+#                 "\033[31m[%(levelname)s]\033[0m \033[34m[%(name)s]\033"
+#                 "[0m %(message)s"
+#             )
+#         }
+#     },
+#     "handlers": {
+#         "console": {
+#             "level": "DEBUG",
+#             "class": "logging.StreamHandler",
+#             "formatter": "colorful",
+#         }
+#     },
+#     "root": {
+#         "level": os.environ.get("ROOT_LOGLEVEL", "WARNING").upper(),
+#         "handlers": ["console"],
+#     },
+#     "loggers": {
+#         "django.db.backends": {
+#             "level": "DEBUG",
+#             "handlers": ["console"],
+#             "propagate": False,
+#         },
+#     },
+# }

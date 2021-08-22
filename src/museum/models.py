@@ -3,13 +3,11 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from MHNU.settings.base import resource
 from museum.validators import (
     occurrence_id_regex,
     validate_date,
     catalog_number_regex
 )
-
 
 # Record Items tables
 from utils.models import Audit
@@ -21,6 +19,7 @@ class Type(models.Model):
     class Meta:
         verbose_name = _('type')
         verbose_name_plural = _('types')
+        db_table = 'type'
 
     def __str__(self):
         return self.name
@@ -32,6 +31,7 @@ class CollectionCode(models.Model):
     class Meta:
         verbose_name = _('collection code')
         verbose_name_plural = _('collection codes')
+        db_table = 'collection_code'
 
     def __str__(self):
         return self.name
@@ -43,6 +43,7 @@ class BasisOfRecord(models.Model):
     class Meta:
         verbose_name = _('basis of record')
         verbose_name_plural = _('basis of record')
+        db_table = 'basis_of_record'
 
     def __str__(self):
         return self.name
@@ -56,6 +57,7 @@ class RecordedBy(models.Model):
     class Meta:
         verbose_name = _('recorded by')
         verbose_name_plural = _('recorded by')
+        db_table = 'recorded_by'
 
     def __str__(self):
         return self.name
@@ -67,6 +69,7 @@ class Sex(models.Model):
     class Meta:
         verbose_name = _('sex')
         verbose_name_plural = _('sexes')
+        db_table = 'sex'
 
     def __str__(self):
         return self.name
@@ -78,6 +81,7 @@ class LifeStage(models.Model):
     class Meta:
         verbose_name = _('life stage')
         verbose_name_plural = _('life stages')
+        db_table = 'life_stage'
 
     def __str__(self):
         return self.name
@@ -89,6 +93,7 @@ class OccurrenceStatus(models.Model):
     class Meta:
         verbose_name = _('occurrence status')
         verbose_name_plural = _('occurrence statuses')
+        db_table = 'occurrence_status'
 
     def __str__(self):
         return self.name
@@ -100,6 +105,7 @@ class Preparation(models.Model):
     class Meta:
         verbose_name = _('preparation')
         verbose_name_plural = _('preparations')
+        db_table = 'preparation'
 
     def __str__(self):
         return self.name
@@ -111,6 +117,7 @@ class Disposition(models.Model):
     class Meta:
         verbose_name = _('disposition')
         verbose_name_plural = _('dispositions')
+        db_table = 'disposition'
 
     def __str__(self):
         return self.name
@@ -124,6 +131,7 @@ class SamplingProtocol(models.Model):
     class Meta:
         verbose_name = _('sampling protocol')
         verbose_name_plural = _('sampling protocols')
+        db_table = 'sampling_protocol'
 
     def __str__(self):
         return self.name
@@ -135,6 +143,7 @@ class Habitat(models.Model):
     class Meta:
         verbose_name = _('habitat')
         verbose_name_plural = _('habitats')
+        db_table = 'habitat'
 
     def __str__(self):
         return self.name
@@ -148,6 +157,7 @@ class WaterBody(models.Model):
     class Meta:
         verbose_name = _('water body')
         verbose_name_plural = _('water bodies')
+        db_table = 'water_body'
 
     def __str__(self):
         return self.name
@@ -162,6 +172,7 @@ class Country(models.Model):
     class Meta:
         verbose_name = _('country')
         verbose_name_plural = _('countries')
+        db_table = 'country'
 
     def __str__(self):
         return self.name
@@ -170,14 +181,10 @@ class Country(models.Model):
 class StateProvince(models.Model):
     name = models.CharField(_('name'), max_length=255, unique=True)
 
-    # country = models.ForeignKey(
-    #     Country, on_delete=models.CASCADE, blank=True, null=True,
-    #     verbose_name=_('country')
-    # )
-
     class Meta:
         verbose_name = _('state province')
         verbose_name_plural = _('state provinces')
+        db_table = 'state_province'
 
     def __str__(self):
         return self.name
@@ -193,6 +200,7 @@ class County(models.Model):
     class Meta:
         verbose_name = _('county')
         verbose_name_plural = _('counties')
+        db_table = 'county'
 
     def __str__(self):
         return self.name
@@ -201,14 +209,10 @@ class County(models.Model):
 class Municipality(models.Model):
     name = models.CharField(_('name'), max_length=255, unique=True)
 
-    # county = models.ForeignKey(
-    #     County, on_delete=models.CASCADE, blank=True, null=True,
-    #     verbose_name=_('county')
-    # )
-
     class Meta:
         verbose_name = _('municipality')
         verbose_name_plural = _('municipalities')
+        db_table = 'municipality'
 
     def __str__(self):
         return self.name
@@ -220,15 +224,11 @@ class Locality(models.Model):
         _('verbatim locality'), max_length=255, blank=True, null=True
     )
 
-    # municipality = models.ForeignKey(
-    #     Municipality, on_delete=models.CASCADE, blank=True, null=True,
-    #     verbose_name=_('county')
-    # )
-
     class Meta:
         verbose_name = _('locality')
         verbose_name_plural = _('localities')
         unique_together = ['name', 'verbatim_locality']
+        db_table = 'locality'
 
     def __str__(self):
         return self.name
@@ -242,6 +242,7 @@ class IdentifiedBy(models.Model):
     class Meta:
         verbose_name = _('Identified by')
         verbose_name_plural = _('Identified by')
+        db_table = 'identified_by'
 
     def __str__(self):
         return self.name
@@ -255,6 +256,7 @@ class ScientificName(models.Model):
     class Meta:
         verbose_name = _('scientific name')
         verbose_name_plural = _('scientific names')
+        db_table = 'scientific_name'
 
     def __str__(self):
         return self.name
@@ -266,6 +268,7 @@ class Kingdom(models.Model):
     class Meta:
         verbose_name = _('kingdom')
         verbose_name_plural = _('kingdoms')
+        db_table = 'kingdom'
 
     def __str__(self):
         return self.name
@@ -277,6 +280,7 @@ class Phylum(models.Model):
     class Meta:
         verbose_name = _('phylum')
         verbose_name_plural = _('phylum')
+        db_table = 'phylum'
 
     def __str__(self):
         return self.name
@@ -288,6 +292,7 @@ class Class(models.Model):
     class Meta:
         verbose_name = _('class')
         verbose_name_plural = _('classes')
+        db_table = 'class'
 
     def __str__(self):
         return self.name
@@ -299,6 +304,7 @@ class Order(models.Model):
     class Meta:
         verbose_name = _('order')
         verbose_name_plural = _('orders')
+        db_table = 'order'
 
     def __str__(self):
         return self.name
@@ -310,6 +316,7 @@ class Family(models.Model):
     class Meta:
         verbose_name = _('family')
         verbose_name_plural = _('families')
+        db_table = 'family'
 
     def __str__(self):
         return self.name
@@ -320,7 +327,8 @@ class Genus(models.Model):
 
     class Meta:
         verbose_name = _('genus')
-        verbose_name_plural = _('genuses')
+        verbose_name_plural = _('genus')
+        db_table = 'genus'
 
     def __str__(self):
         return self.name
@@ -332,6 +340,7 @@ class SpecificEpithet(models.Model):
     class Meta:
         verbose_name = _('specific epithet')
         verbose_name_plural = _('specific epithets')
+        db_table = 'specific_epithet'
 
     def __str__(self):
         return self.name
@@ -343,6 +352,7 @@ class TaxonRank(models.Model):
     class Meta:
         verbose_name = _('taxon rank')
         verbose_name_plural = _('taxon ranks')
+        db_table = 'taxon_rank'
 
     def __str__(self):
         return self.name
@@ -354,6 +364,7 @@ class ScientificNameAuthorship(models.Model):
     class Meta:
         verbose_name = _('scientific name authorship')
         verbose_name_plural = _('scientific name authorships')
+        db_table = 'scientific_name_authorship'
 
     def __str__(self):
         return self.name
@@ -365,6 +376,7 @@ class VernacularName(models.Model):
     class Meta:
         verbose_name = _('vernacular name')
         verbose_name_plural = _('vernacular names')
+        db_table = 'vernacular_name'
 
     def __str__(self):
         return self.name
@@ -376,6 +388,7 @@ class NomenclaturalCode(models.Model):
     class Meta:
         verbose_name = _('nomenclatural code')
         verbose_name_plural = _('nomenclatural codes')
+        db_table = 'nomenclatural_code'
 
     def __str__(self):
         return self.name
@@ -387,6 +400,7 @@ class TaxonomicStatus(models.Model):
     class Meta:
         verbose_name = _('taxonomic status')
         verbose_name_plural = _('taxonomic statuses')
+        db_table = 'taxonomic_status'
 
     def __str__(self):
         return self.name
@@ -974,6 +988,7 @@ class Record(models.Model):
     class Meta:
         verbose_name = _('record')
         verbose_name_plural = _('records')
+        db_table = 'record'
 
     def __str__(self):
         return self.occurrence_ID
@@ -990,24 +1005,18 @@ class Record(models.Model):
         self.full_clean()
         super(Record, self).save(*args, **kwargs)
 
-    @classmethod
-    def export_resource_classes(cls):
-        return {
-            'records': (
-                'Records resource', resource()
-            )
-        }
-
 
 class Image(Audit):
     record = models.ForeignKey(
-        Record, verbose_name=_('record'), on_delete=models.CASCADE
+        Record, verbose_name=_('record'), on_delete=models.CASCADE,
+        related_name='images'
     )
     image = models.ImageField(_('image'), upload_to='images')
 
     class Meta:
         verbose_name = _('image')
         verbose_name_plural = _('images')
+        db_table = 'image'
 
     def __str__(self):
         return _('Image of record {}').format(self.record.occurrence_ID)
