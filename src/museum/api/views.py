@@ -47,7 +47,7 @@ class RecordListAPIView(ListAPIView):
             'county__state_province', 'recorded_by', 'type', 'identified_by',
             'kingdom', 'phylum', '_class', 'order', 'specific_epithet',
             'taxon_rank', 'nomenclatural_code', 'scientific_name_authorship'
-        ).prefetch_related('image_set')
+        ).prefetch_related('images')
 
 
 class RecordRetrieveAPIView(RetrieveAPIView):

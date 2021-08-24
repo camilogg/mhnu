@@ -984,6 +984,9 @@ class Record(models.Model):
         _('nomenclatural status'), max_length=255, blank=True, null=True
     )
     taxon_remarks = models.TextField(_('taxon remarks'), blank=True, null=True)
+    additional_data = models.JSONField(
+        _('additional data'), blank=True, null=True
+    )
 
     class Meta:
         verbose_name = _('record')

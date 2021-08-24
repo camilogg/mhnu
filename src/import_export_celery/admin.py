@@ -23,7 +23,6 @@ class JobWithStatusMixin:
 class ImportJobAdmin(JobWithStatusMixin, admin.ModelAdmin):
     direction = 'import'
     list_display = (
-        # 'model',
         'id',
         'job_status_info',
         'file',
@@ -55,20 +54,12 @@ class ExportJobForm(forms.ModelForm):
         model = models.ExportJob
         exclude = ('site_of_origin',)
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['resource'].widget = forms.Select(
-    #         choices=self.instance.get_resource_choices()
-    #     )
-
 
 @admin.register(models.ExportJob)
 class ExportJobAdmin(JobWithStatusMixin, admin.ModelAdmin):
     direction = 'export'
     form = ExportJobForm
     list_display = (
-        # 'model',
-        # 'app_label',
         'id',
         'file',
         'job_status_info',
@@ -77,8 +68,6 @@ class ExportJobAdmin(JobWithStatusMixin, admin.ModelAdmin):
     )
     readonly_fields = (
         'job_status_info',
-        # 'app_label',
-        # 'model',
         'file',
         'processing_initiated',
         'created_by',
@@ -86,7 +75,6 @@ class ExportJobAdmin(JobWithStatusMixin, admin.ModelAdmin):
         'queryset'
     )
     exclude = ('job_status',)
-    # list_filter = ('model',)
     actions = (admin_actions.run_export_job_action,)
     autocomplete_fields = ('collection_code',)
 

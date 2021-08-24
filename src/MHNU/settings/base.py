@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'tabbed_admin',
     'django_filters',
     'corsheaders',
+    'django_json_widget',
 ]
 
 MIDDLEWARE = [

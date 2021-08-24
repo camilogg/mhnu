@@ -142,7 +142,7 @@ class RecordModelSerializer(serializers.ModelSerializer):
     taxon_rank = TaxonRankSerializer()
     scientific_name_authorship = ScientificNameAuthorshipSerializer()
     nomenclatural_code = NomenclaturalCodeSerializer()
-    image_set = ImageSerializer(many=True)
+    images = ImageSerializer(many=True)
 
     class Meta:
         model = Record
@@ -154,7 +154,7 @@ class RecordModelSerializer(serializers.ModelSerializer):
             'scientific_name_authorship', 'locality', 'geodetic_datum',
             'minimum_elevation_in_meters', 'maximum_elevation_in_meters',
             'verbatim_latitude', 'verbatim_longitude', 'decimal_latitude',
-            'decimal_longitude', 'image_set'
+            'decimal_longitude', 'images'
         )
 
 

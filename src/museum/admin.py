@@ -4,6 +4,7 @@ from django.forms import Textarea
 from django.shortcuts import redirect
 from django.urls import reverse, path
 from django.utils.translation import gettext_lazy as _
+from django_json_widget.widgets import JSONEditorWidget
 
 from django_object_actions import DjangoObjectActions
 
@@ -48,7 +49,8 @@ from .models import (
     ScientificNameAuthorship,
     VernacularName,
     NomenclaturalCode,
-    TaxonomicStatus, Image
+    TaxonomicStatus,
+    Image
 )
 from .resources import RecordModelResource
 from .views import record_detail_pdf, record_list_pdf
@@ -98,6 +100,10 @@ class RecordAdmin(AutocompleteFilterMixin, DjangoObjectActions,
 
     search_prefix = '__icontains'
 
+    formfield_overrides = {
+        models.JSONField: {'widget': JSONEditorWidget},
+    }
+
     autocomplete_fields = (
         'type', 'collection_code', 'basis_of_record', 'recorded_by', 'sex',
         'life_stage', 'occurrence_status', 'preparations', 'disposition',
@@ -120,7 +126,7 @@ class RecordAdmin(AutocompleteFilterMixin, DjangoObjectActions,
                 'institution_code', 'collection_code', 'dataset_name',
                 'owner_institution_code', 'basis_of_record',
                 'information_withheld', 'data_generalizations',
-                'dynamic_properties'
+                'dynamic_properties', 'additional_data'
             ),
         })
     ]

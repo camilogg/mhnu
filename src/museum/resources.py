@@ -1,3 +1,4 @@
+import tablib
 from import_export import fields
 from import_export.resources import ModelResource
 
@@ -36,7 +37,6 @@ from museum.models import (
     TaxonomicStatus
 )
 from museum.utils import snake_case_to_camel_case
-from museum.widgets import LocalityForeignKeyWidget
 
 
 class RecordModelResource(ModelResource):
@@ -55,11 +55,6 @@ class RecordModelResource(ModelResource):
         column_name='verbatimLocality',
         readonly=True
     )
-    # locality = fields.Field(
-    #     attribute='name',
-    #     column_name='locality',
-    #     widget=LocalityForeignKeyWidget(Locality, 'name')
-    # )
 
     class Meta:
         model = Record
@@ -128,7 +123,7 @@ class RecordModelResource(ModelResource):
             'specific_epithet', 'infraspecific_epithet', 'taxon_rank',
             'verbatim_taxon_rank', 'scientific_name_authorship',
             'vernacular_name', 'nomenclatural_code', 'taxonomic_status',
-            'nomenclatural_status', 'taxon_remarks'
+            'nomenclatural_status', 'taxon_remarks', 'additional_data'
         )
         widgets = {
             'basis_of_record': {'field': 'name'},
@@ -184,9 +179,24 @@ class RecordModelResource(ModelResource):
 
     def before_import_row(self, row, row_number=None, **kwargs):
         print(row_number)
+
         for key, value in row.items():
             if value and type(value) == str:
                 row[key] = value.strip()
+
+        index = list(
+            map(lambda x: x[0], list(row.items()))
+        ).index('taxonRemarks')
+
+        additional_data_columns = list(row.items())[index + 1:]
+
+        if additional_data_columns:
+            data_dict = dict()
+
+            for data in additional_data_columns:
+                data_dict[data[0]] = data[1]
+
+            row['additionalData'] = data_dict
 
         if row['type']:
             Type.objects.get_or_create(name=row['type'])
@@ -234,7 +244,6 @@ class RecordModelResource(ModelResource):
                 name=row['locality'],
                 defaults={'verbatim_locality': row['verbatimLocality']}
             )
-            print(obj, created)
         if row['identifiedBy']:
             IdentifiedBy.objects.get_or_create(name=row['identifiedBy'])
         if row['scientificName']:
@@ -267,3 +276,36 @@ class RecordModelResource(ModelResource):
             )
         if row['taxonomicStatus']:
             TaxonomicStatus.objects.get_or_create(name=row['taxonomicStatus'])
+
+    def export(self, queryset=None, *args, **kwargs):
+        """Exports a resource."""
+
+        self.before_export(queryset, *args, **kwargs)
+
+        if queryset is None:
+            queryset = self.get_queryset()
+
+        obj = queryset.first()
+
+        if obj.additional_data and type(obj.additional_data) == dict:
+            additional_headers = list(obj.additional_data.keys())
+            headers = self.get_export_headers()[:-1]
+            headers.extend(additional_headers)
+
+            data = tablib.Dataset(headers=headers)
+
+            for obj in self.iter_queryset(queryset):
+                resource = self.export_resource(obj)[:-1]
+                resource.extend(list(obj.additional_data.values()))
+                data.append(resource)
+
+        else:
+            headers = self.get_export_headers()
+            data = tablib.Dataset(headers=headers)
+
+            for obj in self.iter_queryset(queryset):
+                data.append(self.export_resource(obj))
+
+        self.after_export(queryset, data, *args, **kwargs)
+
+        return data

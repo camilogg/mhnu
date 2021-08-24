@@ -7,11 +7,11 @@ const RecordDetail = record => {
   return (
     <Layout>
       <main>
-        <div className='container my-4'>
+        <div className='container my-5'>
           <div className='row'>
             <h1>
-              {record.scientificName.name}{' '}
-              {record.scientificNameAuthorship.name}
+              {record.scientificName?.name}{' '}
+              {record.scientificNameAuthorship?.name}
             </h1>
             <div className='col-lg-6'>
               <div className='row'>
@@ -19,7 +19,7 @@ const RecordDetail = record => {
                 <div className='col-6 fw-bold'>Número de Catálogo</div>
                 <div className='col-6'>{record.catalogNumber}</div>
                 <div className='col-6 fw-bold'>Registrado por</div>
-                <div className='col-6'>{record.recordedBy.name}</div>
+                <div className='col-6'>{record.recordedBy?.name}</div>
                 <div className='col-6 fw-bold'>Número del registro</div>
                 <div className='col-6'>{record.recordNumber}</div>
                 <div className='col-6 fw-bold'>Georrferenciado por</div>
@@ -30,38 +30,40 @@ const RecordDetail = record => {
               <div className='row'>
                 <h3 className='mt-4'>Taxonomía</h3>
                 <div className='col-6 fw-bold'>Reino</div>
-                <div className='col-6'>{record.kingdom.name}</div>
+                <div className='col-6'>{record.kingdom?.name}</div>
                 <div className='col-6 fw-bold'>Phylum</div>
-                <div className='col-6'>{record.phylum.name}</div>
+                <div className='col-6'>{record.phylum?.name}</div>
                 <div className='col-6 fw-bold'>Clase</div>
-                <div className='col-6'>{record.Class.name}</div>
+                <div className='col-6'>{record.Class?.name}</div>
                 <div className='col-6 fw-bold'>Orden</div>
-                <div className='col-6'>{record.order.name}</div>
+                <div className='col-6'>{record.order?.name}</div>
                 <div className='col-6 fw-bold'>Familia</div>
-                <div className='col-6'>{record.family.name}</div>
+                <div className='col-6'>{record.family?.name}</div>
                 <div className='col-6 fw-bold'>Género</div>
-                <div className='col-6'>{record.genus.name}</div>
+                <div className='col-6'>{record.genus?.name}</div>
                 <div className='col-6 fw-bold'>Epiteto específico</div>
                 <div className='col-6'>{record.specificEpithet?.name}</div>
                 <div className='col-6 fw-bold'>Categoría</div>
-                <div className='col-6'>{record.taxonRank.name}</div>
+                <div className='col-6'>{record.taxonRank?.name}</div>
                 <div className='col-6 fw-bold'>
                   Autoría del nombre científico
                 </div>
                 <div className='col-6'>
-                  {record.scientificNameAuthorship.name}
+                  {record.scientificNameAuthorship?.name}
                 </div>
                 <div className='col-6 fw-bold'>Código nomenclatural</div>
-                <div className='col-6'>{record.nomenclaturalCode.name}</div>
+                <div className='col-6'>{record.nomenclaturalCode?.name}</div>
               </div>
               <div className='row'>
                 <h3 className='mt-4'>Información geográfica</h3>
                 <div className='col-6 fw-bold'>País</div>
-                <div className='col-6'>{record.country.name}</div>
+                <div className='col-6'>{record.country?.name}</div>
                 <div className='col-6 fw-bold'>Departamento</div>
-                <div className='col-6'>{record.county.stateProvince.name}</div>
+                <div className='col-6'>
+                  {record.county?.stateProvince?.name}
+                </div>
                 <div className='col-6 fw-bold'>Municipio</div>
-                <div className='col-6'>{record.county.name}</div>
+                <div className='col-6'>{record.county?.name}</div>
                 <div className='col-6 fw-bold'>Localidad</div>
                 <div className='col-6'>{record.locality?.name}</div>
                 <div className='col-6 fw-bold'>Altitud mínima (m)</div>
@@ -91,7 +93,7 @@ const RecordDetail = record => {
                   />
                 </div>
                 <div className='col-12 mt-4'>
-                  <img src={record.imageSet[0]?.image} />
+                  <img src={record.images[0]?.image} />
                 </div>
               </div>
             </div>
