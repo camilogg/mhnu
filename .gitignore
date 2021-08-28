@@ -132,3 +132,5 @@ dmypy.json
 .pyre/
 
 src/media/
+
+docker-compose.override.yml

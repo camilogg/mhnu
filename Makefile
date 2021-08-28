@@ -35,9 +35,14 @@ flake:
 
 reset:
 	docker-compose down -v
-	rm -rf ./postgres-data
 
 clean:
 	rm -rf src/*/migrations/00**.py
 	find . -name "*.pyc" -exec rm -- {} +
 	rm -rf src/*/migrations/__pycache__/*
+
+FILENAME=mhnu
+USER=mhnu-user
+DATABASE=mhnu-db
+backup:
+	docker-compose exec db sh -c "pg_dump -U $(USER) -Fc -x -O $(DATABASE) > /docker-entrypoint-initdb.d/dumps/$(FILENAME).dump"

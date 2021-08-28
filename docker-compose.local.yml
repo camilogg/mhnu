@@ -1,0 +1,9 @@
+# Local docker-compose development
+#
+# ln -s docker-compose.local.yml docker-compose.override.yml
+
+version: '3.9'
+services:
+  db:
+    volumes:
+      - ./src/.docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
