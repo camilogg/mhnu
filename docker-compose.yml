@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 services:
   db:
     image: postgres:13-alpine
@@ -6,12 +6,11 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
 
   mhnu:
     build: ./src
-    command: ["./wait-for-it.sh", "db:5432", "--",
-              "python", "manage.py", "runserver",  "0.0.0.0:8000"]
+    command: ["wait-for-it", "db:5432", "--", "python", "manage.py", "runserver",  "0.0.0.0:8000"]
     env_file: .env
     volumes:
       - ./src:/src
@@ -53,3 +52,6 @@ services:
       - TZ=America/Bogota
     volumes:
       - ./src:/src
+
+volumes:
+  postgres-data:

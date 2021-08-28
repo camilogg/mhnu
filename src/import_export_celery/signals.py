@@ -9,7 +9,7 @@ from .tasks import run_export_job, run_import_job
 
 
 @receiver(post_save, sender=ExportJob)
-def export_job_post_save(sender, instance, **kwargs):
+def export_job_post_save(sender, instance, **_):
     if instance.format and not instance.processing_initiated:
         instance.processing_initiated = timezone.now()
         instance.save()
@@ -19,7 +19,7 @@ def export_job_post_save(sender, instance, **kwargs):
 
 
 @receiver(post_save, sender=ImportJob)
-def import_job_post_save(sender, instance, **kwargs):
+def import_job_post_save(sender, instance, **_):
     if not instance.processing_initiated:
         instance.processing_initiated = timezone.now()
         instance.save()
