@@ -22,9 +22,10 @@
 
   <div class="ma-second-label">
     <p>
-      Colombia, Meta, Puerto Gaitán, Fca
-      Manacacias, río Manacacias, 4°
-      73’43,5’’N 72°48’89’’O. 146 m. Margen
+      {{ record.country.name }}, {{ record.county.state_province|default:'-' }}, {{ record.county|default:'-' }},
+      {{ record.municipality|default:'-' }}, {{ record.locality|default:'-' }}, {{ record.verbatim_longitude }}
+      {{ record.verbatim_latitude }}. {{ record.minimum_elevation_in_meters|default:'-' }}
+      {% if record.minimum_elevation_in_meters %}m{% endif %}. Margen
       riparia. Red Surber, 21-oct-18.
       JMV 001, Vasquez J, Ortega A, Aya E.
     </p>
