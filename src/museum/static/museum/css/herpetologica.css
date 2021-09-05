@@ -5,7 +5,7 @@
 .h-label .first-label {
     border: 1px solid black;
     width: 4cm;
-    height: 1.3cm;
+    height: 1.5cm;
     font-size: 6px;
     display: flex;
     margin-right: 5px;
@@ -14,18 +14,16 @@
 .h-label .first-label .qr-wrapper {
     display: flex;
     width: 2cm;
-    /*height: inherit;*/
     justify-content: flex-end;
     align-items: center;
 }
 
 .h-label .first-label .qr-wrapper img {
-    height: 1.1cm;
+    height: 1.4cm;
 }
 
 .h-label .first-label .data-wrapper {
     width: 2cm;
-    /*height: inherit;*/
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -48,32 +46,30 @@
 
 .h-label .second-label .first-content .logo-wrapper {
     width: 1.5cm;
-    padding-top: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .h-label .second-label .first-content .title-wrapper {
     font-size: 13px;
     font-weight: bold;
     text-align: center;
-    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .h-label .second-label .second-content {
     height: 5cm;
     text-align: center;
     position: relative;
-}
-
-.h-label .second-label .second-content .wrapper {
-    position: absolute;
-    top: 30%;
-    text-align: center;
-    /*transform: translateY(-40%);*/
-    width: 100%;
+    display: flex;
+    flex-direction: column;
     font-size: 13px;
+    padding-top: 1.5cm;
 }
 
-.h-label .second-label .second-content .wrapper p:first-child {
+.h-label .second-label .second-content p:first-child {
     font-weight: bold;
     font-style: italic;
 }

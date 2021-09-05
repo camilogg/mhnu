@@ -22,10 +22,8 @@
       </div>
     </div>
     <div class="second-content">
-      <div class="wrapper">
-        <p>{{ record.scientific_name }}</p>
-        <p>{{ record.scientific_name_authorship }}</p>
-      </div>
+      <p>{{ record.scientific_name }}</p>
+      <p>{{ record.scientific_name_authorship }}</p>
     </div>
     <div class="qr-wrapper">
       {% qr_from_text 'otro hello wordl!' image_format="png" size=2 %}
