@@ -1,11 +1,19 @@
 @page {
-    size: A4 landscape;
+    size: A4;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.mb-5 {
+    margin-bottom: 5px;
 }
 
 .mastozoologica-label {
-    width: 23cm;
+    width: 18cm;
     height: 3.5cm;
-    font-size: 11px;
+    font-size: 10px;
     display: flex;
     outline: 1px solid black;
     margin-bottom: 20px;
@@ -18,56 +26,85 @@
 
 .mastozoologica-label .first-content {
     position: relative;
-    width: 10.5cm;
-    padding: 10px;
+    width: 8cm;
 }
 
-.mastozoologica-label .first-content .titles {
-    width: 9cm;
-    text-align: center;
+.mastozoologica-label .first-content .wrapper {
+    display: flex;
 }
 
+.mastozoologica-label .first-content .wrapper .titles {
+    width: 160px;
+    padding-top: 5px;
+    padding-left: 5px;
+}
 
-.mastozoologica-label .first-content img {
+.mastozoologica-label .first-content .wrapper .catalog-number {
+    width: 95px;
+    padding-top: 17px;
+}
+
+.mastozoologica-label .first-content .logo {
     position: absolute;
     top: 5px;
     right: 5px;
 }
 
-.mastozoologica-label .first-content .data {
+.mastozoologica-label .first-content .qr-wrapper {
     position: absolute;
-    left: 10px;
-    bottom: 10px;
-    width: 10cm;
+    right: 1px;
+    bottom: 0;
+    width: 1.5cm;
+    height: 1.5cm;
 }
 
-.mastozoologica-label .first-content .data > p {
+.mastozoologica-label .first-content .qr-wrapper img {
+    width: 100%;
+}
+
+.mastozoologica-label .first-content .data {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 6.2cm;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.mastozoologica-label .first-content .data > div {
     margin-bottom: 5px;
 }
 
 .mastozoologica-label .first-content .data .especie {
-    width: 300px;
+    width: 100%;
     display: inline-block;
     border-bottom: 1px solid black;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .mastozoologica-label .first-content .data .colector {
-    width: 297px;
+    width: 100%;
+    display: inline-block;
+    border-bottom: 1px solid black;
+    margin-left: 10px;
+}
+
+.mastozoologica-label .first-content .data .campo {
+    width: 100%;
     display: inline-block;
     border-bottom: 1px solid black;
     margin-left: 5px;
 }
 
-.mastozoologica-label .first-content .data .campo {
-    width: 240px;
-    display: inline-block;
+.mastozoologica-label .first-content .data p .sex {
+    width: 45px;
     border-bottom: 1px solid black;
+    display: inline-block;
     margin-left: 5px;
 }
 
 .mastozoologica-label .first-content .data p .short {
-    width: 20px;
+    width: 30px;
     border-bottom: 1px solid black;
     display: inline-block;
     margin-left: 5px;
@@ -82,7 +119,7 @@
 }
 
 .mastozoologica-label .second-content {
-    width: 10.5cm;
+    width: 8cm;
     padding: 10px;
 }
 
@@ -90,52 +127,65 @@
     margin-bottom: 6px;
 }
 
-.mastozoologica-label .second-content .country,
+.mastozoologica-label .second-content .country {
+    display: flex;
+    width: 40%;
+}
+
 .mastozoologica-label .second-content .state {
-    display: inline-block;
-    margin-left: 5px;
-    border-bottom: 1px solid black;
-    width: 130px;
+    width: 60%;
+    display: flex;
 }
 
-.mastozoologica-label .second-content .county {
-    display: inline-block;
-    margin-left: 5px;
+.country .short,
+.state .short{
+    width: 100%;
     border-bottom: 1px solid black;
-    width: 318px;
+    margin-left: 5px;
 }
 
+.state .short{
+    margin-left: 35px;
+}
+
+.mastozoologica-label .second-content .county,
 .mastozoologica-label .second-content .site {
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 10px;
     border-bottom: 1px solid black;
-    width: 346px;
+    width: 100%;
 }
 
 .mastozoologica-label .second-content .height {
-    display: inline-block;
-    margin-left: 5px;
-    border-bottom: 1px solid black;
-    width: 60px;
+    width: 25%;
+    display: flex;
+}
+.mastozoologica-label .second-content .coords {
+    width: 75%;
+    display: flex;
 }
 
-.mastozoologica-label .second-content .coords {
-    display: inline-block;
-    margin-left: 5px;
+.mastozoologica-label .second-content .height .short,
+.mastozoologica-label .second-content .coords .short {
+    width: 100%;
     border-bottom: 1px solid black;
-    width: 94px;
+    margin-left: 15px;
+}
+
+.mastozoologica-label .second-content .coords .short {
+    margin-left: 20px;
 }
 
 .mastozoologica-label .second-content .observations {
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 20px;
     border-bottom: 1px solid black;
-    width: 290px;
+    width: 100%;
 }
 
-.mastozoologica-label .second-content .short {
+.mastozoologica-label .second-content .dates .short {
     display: inline-block;
     margin-left: 5px;
     border-bottom: 1px solid black;
-    width: 30px;
+    width: 50px;
 }
