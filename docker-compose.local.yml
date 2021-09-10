@@ -6,4 +6,4 @@ version: '3.9'
 services:
   db:
     volumes:
-      - ./src/.docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
+      - ./backend/.docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d

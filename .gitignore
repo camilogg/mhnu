@@ -134,3 +134,7 @@ dmypy.json
 src/media/
 
 docker-compose.override.yml
+
+backend/static/
+
+backend/media/

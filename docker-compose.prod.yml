@@ -11,25 +11,16 @@ services:
 
   backend:
     build: ./backend
-    command: ["wait-for-it", "db:5432", "--", "python", "manage.py", "runserver",  "0.0.0.0:8000"]
+    command: ["wait-for-it", "db:5432", "--", "gunicorn", "MHNU.wsgi:application", "--bind",  "0.0.0.0:8000"]
     env_file: .env
     volumes:
       - ./backend:/backend
     depends_on:
       - db
     environment:
-      - DJANGO_SETTINGS_MODULE=MHNU.settings.local
+      - DJANGO_SETTINGS_MODULE=MHNU.settings.prod
     ports:
       - '8000:8000'
-
-#  frontend:
-#    build: ./frontend
-#    container_name: nextjs
-#    volumes:
-#      - ./frontend:/frontend
-#    ports:
-#      - '3000:3000'
-#    command: ["npm", "run", "dev"]
 
   nginx:
     image: nginx:alpine
@@ -43,7 +34,6 @@ services:
       - "80:80"
     depends_on:
       - backend
-#      - frontend
 
   redis:
     image: 'redis:alpine'
@@ -52,13 +42,12 @@ services:
 
   celery:
     build: ./backend
-    command: ["watchmedo", "auto-restart", "--directory=/backend/", "--pattern=*.py", "--recursive", "--",
-              "celery", "-A", "MHNU", "worker", "-B", "-l", "info"]
+    command: ["celery", "-A", "MHNU", "worker", "-B", "-l", "info"]
     depends_on:
       - redis
     env_file: .env
     environment:
-      - DJANGO_SETTINGS_MODULE=MHNU.settings.local
+      - DJANGO_SETTINGS_MODULE=MHNU.settings.prod
       - TZ=America/Bogota
     volumes:
       - ./backend:/backend
