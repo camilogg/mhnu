@@ -82,8 +82,8 @@ const Navbar = () => {
         }
 
         #navbar {
-          -webkit-box-shadow: 0 2px 28px 0 rgb(0 0 0 / 6%);
-          box-shadow: 0 2px 28px 0 rgb(0 0 0 / 6%);
+          -webkit-box-shadow: 0 0 8px rgb(0 0 0 / 10%);
+          box-shadow: 0 0 8px rgb(0 0 0 / 10%);
         }
       `}</style>
     </>

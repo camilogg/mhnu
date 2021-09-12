@@ -99,7 +99,7 @@ const Contact = () => {
             <div className='row align-items-center'>
               <div className='col-lg-6 col-md-6'>
                 <div className='contact-text'>
-                  <h3>Get in Touch</h3>
+                  <h3>Póngase en contacto</h3>
                   <p>
                     Orci varius natoque penatibus et magnis dis parturient
                     montes, nascetur ridiculus mus. Etiam tempus magna vel
@@ -112,37 +112,37 @@ const Contact = () => {
 
                   <ul className='social-links'>
                     <li>
-                      <Link href='/contact/#'>
-                        <a>
+                      <Link href='https://www.facebook.com/UnillanosOficial'>
+                        <a target='__blank'>
                           <i className='fab fa-facebook-f'></i>
                         </a>
                       </Link>
                     </li>
                     <li>
-                      <Link href='/contact/#'>
-                        <a>
+                      <Link href='https://twitter.com/unillanos_'>
+                        <a target='_blank'>
                           <i className='fab fa-twitter'></i>
                         </a>
                       </Link>
                     </li>
                     <li>
-                      <Link href='/contact/#'>
-                        <a>
+                      <Link href='https://www.instagram.com/unillanos_/'>
+                        <a target='_blank'>
                           <i className='fab fa-instagram'></i>
                         </a>
                       </Link>
                     </li>
                     <li>
-                      <Link href='/contact/#'>
-                        <a>
+                      <Link href='https://www.linkedin.com/school/universidad-de-los-llanos/'>
+                        <a target='_blank'>
                           <i className='fab fa-linkedin'></i>
                         </a>
                       </Link>
                     </li>
                     <li>
-                      <Link href='/contact/#'>
-                        <a>
-                          <i className='fab fa-pinterest'></i>
+                      <Link href='https://www.unillanos.edu.co/'>
+                        <a target='_blank'>
+                          <i className='fab fa-chrome'></i>
                         </a>
                       </Link>
                     </li>

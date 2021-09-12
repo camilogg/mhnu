@@ -1,37 +1,37 @@
 migrate:
-	docker-compose exec mhnu ./manage.py makemigrations
-	docker-compose exec mhnu ./manage.py migrate
+	docker-compose exec backend ./manage.py makemigrations
+	docker-compose exec backend ./manage.py migrate
 
 requirements:
-	docker-compose exec mhnu pip install -r requirements.txt
+	docker-compose exec backend pip install -r requirements.txt
 
 statics:
-	docker-compose exec mhnu ./manage.py collectstatic --no-input
+	docker-compose exec backend ./manage.py collectstatic --no-input
 
 superuser:
-	docker-compose exec mhnu ./manage.py createsuperuser
+	docker-compose exec backend ./manage.py createsuperuser
 
 app:
-	docker-compose exec mhnu ./manage.py startapp $(APP_NAME)
+	docker-compose exec backend ./manage.py startapp $(APP_NAME)
 
 logs:
 	docker-compose logs -f -t --tail=$(lines) $(service)
 
 mergemigrations:
-	docker-compose exec mhnu ./manage.py makemigrations --merge
+	docker-compose exec backend ./manage.py makemigrations --merge
 
 test:
-	docker-compose exec mhnu ./manage.py test
+	docker-compose exec backend ./manage.py test
 
 makemessages:
-	docker-compose exec mhnu ./manage.py makemessages -l es
-	# docker-compose exec mhnu ./manage.py makemessages -l en
+	docker-compose exec backend ./manage.py makemessages -l es
+	# docker-compose exec backend ./manage.py makemessages -l en
 
 compilemessages:
-	docker-compose exec mhnu ./manage.py compilemessages -f
+	docker-compose exec backend ./manage.py compilemessages -f
 
 flake:
-	docker-compose exec mhnu flake8
+	docker-compose exec backend flake8
 
 reset:
 	docker-compose down -v
@@ -41,8 +41,8 @@ clean:
 	find . -name "*.pyc" -exec rm -- {} +
 	rm -rf src/*/migrations/__pycache__/*
 
-FILENAME=mhnu
-USER=mhnu-user
-DATABASE=mhnu-db
+FILENAME=backend
+USER=backend-user
+DATABASE=backend-db
 backup:
 	docker-compose exec db sh -c "pg_dump -U $(USER) -Fc -x -O $(DATABASE) > /docker-entrypoint-initdb.d/dumps/$(FILENAME).dump"

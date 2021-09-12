@@ -3,17 +3,18 @@ import Image from 'next/image'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 
-import { Autoplay, Pagination } from 'swiper'
+import { Pagination, Navigation } from 'swiper'
 
-const Slider = ({ sliders }) => {
+const RecordSlider = ({ sliders }) => {
   return (
     <Swiper
       loop={true}
-      autoplay={{ delay: 4000, disableOnInteraction: false }}
       pagination={{ clickable: true, dynamicBullets: true }}
       lazy={true}
-      modules={[Autoplay, Pagination]}
+      modules={[Pagination, Navigation]}
+      navigation={true}
     >
       {sliders.map(slider => {
         return (
@@ -24,7 +25,7 @@ const Slider = ({ sliders }) => {
               width={16}
               height={9}
               layout='responsive'
-              objectFit='cover'
+              objectFit='contain'
             />
           </SwiperSlide>
         )
@@ -33,4 +34,4 @@ const Slider = ({ sliders }) => {
   )
 }
 
-export default Slider
+export default RecordSlider

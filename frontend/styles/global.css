@@ -9,7 +9,7 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 body::-webkit-scrollbar-track {
   background: #fff; /* color of the tracking area */
@@ -36,7 +36,11 @@ main {
   background-size: 40px 40px;
   background-position: 0 0, 20px 20px;
   overflow: hidden;
-  padding-top: 78px;
+  padding-top: 82px;
+}
+
+.swiper-slide {
+  max-height: calc(100vh - 82px);
 }
 
 button {

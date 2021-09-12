@@ -2,6 +2,9 @@ import Layout from '@components/Layout'
 import dynamic from 'next/dynamic'
 
 const Map = dynamic(() => import('@components/Map'), { ssr: false })
+const RecordSlider = dynamic(() => import('@components/RecordSlider'), {
+  ssr: false,
+})
 
 const RecordDetail = record => {
   return (
@@ -94,7 +97,7 @@ const RecordDetail = record => {
                 </div>
                 {!!record.images.length && (
                   <div className='col-12 mt-4'>
-                    <img src={record.images[0]?.image} />
+                    <RecordSlider sliders={record.images} />
                   </div>
                 )}
               </div>

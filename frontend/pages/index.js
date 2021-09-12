@@ -9,7 +9,7 @@ const Home = ({ sliders, members }) => {
   return (
     <Layout>
       <main>
-        <Slider sliders={sliders} />
+        {!!sliders.length && <Slider sliders={sliders} />}
         <section className='container pt-100 pb-70'>
           <div className='section-title'>
             <h3>Misión</h3>
@@ -106,13 +106,8 @@ const Home = ({ sliders, members }) => {
             </div>
           </div>
         </section>
-        <Team members={members} />
+        {!!members.length && <Team members={members} />}
       </main>
-      <style jsx>{`
-        div > .row {
-          padding-top: 300px;
-        }
-      `}</style>
     </Layout>
   )
 }
