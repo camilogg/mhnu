@@ -13,4 +13,4 @@ DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG
 }
 
-WEASYPRINT_BASEURL = 'localhost'
+HOST_URL = os.environ.get('HOST_URL')

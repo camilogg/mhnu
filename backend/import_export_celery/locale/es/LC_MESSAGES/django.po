@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 05:12-0500\n"
+"POT-Creation-Date: 2021-09-13 03:17-0500\n"
 "PO-Revision-Date: 2021-05-30 23:00-0456\n"
 "Last-Translator: b'  <adcamilogg@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,29 +43,29 @@ msgstr "Exportar"
 msgid "Imports and exports"
 msgstr "Importaciones y Exportaciones"
 
-#: import_export_celery/models/exportjob.py:17
+#: import_export_celery/models/exportjob.py:13
 msgid "exported file"
 msgstr "Archivo exportado"
 
-#: import_export_celery/models/exportjob.py:25
-#: import_export_celery/models/importjob.py:20
+#: import_export_celery/models/exportjob.py:21
+#: import_export_celery/models/importjob.py:19
 msgid "Have we started processing the file? If so when?"
 msgstr "¿Hemos comenzado a procesar el archivo? ¿Si es así cuando?"
 
-#: import_export_celery/models/exportjob.py:32
-#: import_export_celery/models/importjob.py:58
+#: import_export_celery/models/exportjob.py:28
+#: import_export_celery/models/importjob.py:48
 msgid "Status of the job"
 msgstr "Estado del trabajo"
 
-#: import_export_celery/models/exportjob.py:38
+#: import_export_celery/models/exportjob.py:34
 msgid "Format of file to be exported"
 msgstr "Formato de archivo a exportar"
 
-#: import_export_celery/models/exportjob.py:66
+#: import_export_celery/models/exportjob.py:46
 msgid "collection code"
 msgstr "Código de colección"
 
-#: import_export_celery/models/exportjob.py:67
+#: import_export_celery/models/exportjob.py:47
 msgid ""
 "select the type of collection to export or leave it empty to export all "
 "records"
@@ -73,108 +73,108 @@ msgstr ""
 "selecciona el tipo de colección a exportar o dejalo vacío para exportar "
 "todos los registros"
 
-#: import_export_celery/models/exportjob.py:72
+#: import_export_celery/models/exportjob.py:52
 msgid "Send me an email when this export job is complete"
 msgstr ""
 "Envíame un correo electrónico cuando este trabajo de exportación esté "
 "completo"
 
-#: import_export_celery/models/exportjob.py:77
+#: import_export_celery/models/exportjob.py:57
 msgid "site of origin"
 msgstr "Sitio de origen"
 
-#: import_export_celery/models/exportjob.py:83
+#: import_export_celery/models/exportjob.py:63
 msgid "JSON list of pks to export"
 msgstr "Listado de ids a exportar"
 
-#: import_export_celery/models/exportjob.py:118
+#: import_export_celery/models/exportjob.py:75
 msgid "export job"
 msgstr "Trabajo de exportación"
 
-#: import_export_celery/models/exportjob.py:119
+#: import_export_celery/models/exportjob.py:76
 msgid "export jobs"
 msgstr "Trabajos de exportación"
 
-#: import_export_celery/models/exportjob.py:122
+#: import_export_celery/models/exportjob.py:80
 msgid "Export job #{}"
 msgstr "Trabajo de exportación #{}"
 
-#: import_export_celery/models/importjob.py:12
+#: import_export_celery/models/importjob.py:11
 msgid "File to be imported"
 msgstr "Archivo a importar"
 
-#: import_export_celery/models/importjob.py:27
+#: import_export_celery/models/importjob.py:26
 msgid "Has the import been completed? If so when?"
 msgstr "¿Se completó la importación? ¿Si es así cuando?"
 
-#: import_export_celery/models/importjob.py:34
+#: import_export_celery/models/importjob.py:33
 msgid "Format of file to be imported"
 msgstr "Formato de archivo a importar"
 
-#: import_export_celery/models/importjob.py:40
+#: import_export_celery/models/importjob.py:39
 msgid "Summary of changes made by this import"
 msgstr "Resumen de los cambios realizados por esta importación"
 
-#: import_export_celery/models/importjob.py:46
+#: import_export_celery/models/importjob.py:45
 msgid "errors"
 msgstr "Errores"
 
-#: import_export_celery/models/importjob.py:64
+#: import_export_celery/models/importjob.py:54
 msgid "import job"
 msgstr "Trabajo de importación"
 
-#: import_export_celery/models/importjob.py:65
+#: import_export_celery/models/importjob.py:55
 msgid "import jobs"
 msgstr "Trabajos de importación"
 
-#: import_export_celery/models/importjob.py:68
+#: import_export_celery/models/importjob.py:59
 msgid "Import job #{}"
 msgstr "Trabajo de importación #{}"
 
-#: import_export_celery/tasks.py:33
+#: import_export_celery/tasks.py:31
 msgid "[Dry run] "
 msgstr "[Detalle] "
 
-#: import_export_celery/tasks.py:48 import_export_celery/tasks.py:63
-#: import_export_celery/tasks.py:70 import_export_celery/tasks.py:74
-#: import_export_celery/tasks.py:84 import_export_celery/tasks.py:98
-#: import_export_celery/tasks.py:123 import_export_celery/tasks.py:136
+#: import_export_celery/tasks.py:46 import_export_celery/tasks.py:61
+#: import_export_celery/tasks.py:68 import_export_celery/tasks.py:72
+#: import_export_celery/tasks.py:82 import_export_celery/tasks.py:96
+#: import_export_celery/tasks.py:121 import_export_celery/tasks.py:134
 msgid "import"
 msgstr "Importar"
 
-#: import_export_celery/tasks.py:48
+#: import_export_celery/tasks.py:46
 msgid "1/5 Import started"
 msgstr "1/5 Importación iniciada"
 
-#: import_export_celery/tasks.py:60
+#: import_export_celery/tasks.py:58
 msgid "Imported file has a wrong encoding: {}"
 msgstr "El archivo importado tiene una codificación incorrecta: {}"
 
-#: import_export_celery/tasks.py:63
+#: import_export_celery/tasks.py:61
 msgid "Imported file has a wrong encoding"
 msgstr "El archivo importado tiene una codificación incorrecta"
 
-#: import_export_celery/tasks.py:69
+#: import_export_celery/tasks.py:67
 msgid "Error reading file: {}"
 msgstr "Error al leer el archivo: {}"
 
-#: import_export_celery/tasks.py:70
+#: import_export_celery/tasks.py:68
 msgid "Error reading file"
 msgstr "Error al leer el archivo"
 
-#: import_export_celery/tasks.py:74
+#: import_export_celery/tasks.py:72
 msgid "2/5 Processing import data"
 msgstr "2/5 Procesando datos de importación"
 
-#: import_export_celery/tasks.py:85
+#: import_export_celery/tasks.py:83
 msgid "3/5 Importing row {}/{}"
 msgstr "3/5 Importando fila {}/{}"
 
-#: import_export_celery/tasks.py:99
+#: import_export_celery/tasks.py:97
 msgid "4/5 Generating import summary"
 msgstr "4/5 Generando resumen de importación"
 
-#: import_export_celery/tasks.py:106
+#: import_export_celery/tasks.py:104
 msgid ""
 "Line: {} - {}\n"
 "\t{}\n"
@@ -184,35 +184,35 @@ msgstr ""
 "{}\n"
 "{}"
 
-#: import_export_celery/tasks.py:123
+#: import_export_celery/tasks.py:121
 msgid "5/5 Import job finished"
 msgstr "5/5 Trabajo de importación terminado"
 
-#: import_export_celery/tasks.py:135
+#: import_export_celery/tasks.py:133
 msgid "Import error {}"
 msgstr "Error de importación {}"
 
-#: import_export_celery/tasks.py:136
+#: import_export_celery/tasks.py:134
 msgid "Import error"
 msgstr "Error de importación"
 
-#: import_export_celery/tasks.py:159 import_export_celery/tasks.py:170
+#: import_export_celery/tasks.py:157 import_export_celery/tasks.py:168
 msgid "export"
 msgstr "Exportar"
 
-#: import_export_celery/tasks.py:160
+#: import_export_celery/tasks.py:158
 msgid "Exporting row {}/{}"
 msgstr "Exportando fila {}/{}"
 
-#: import_export_celery/tasks.py:170
+#: import_export_celery/tasks.py:168
 msgid "Export complete"
 msgstr "Exportación completa"
 
-#: import_export_celery/tasks.py:184
+#: import_export_celery/tasks.py:182
 msgid "Django: Export job completed"
 msgstr "Django: trabajo de exportación completado"
 
-#: import_export_celery/tasks.py:186
+#: import_export_celery/tasks.py:184
 #, python-brace-format
 msgid ""
 "Your export job has completed. You can download the file at the following "

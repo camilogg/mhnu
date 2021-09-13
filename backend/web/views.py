@@ -6,7 +6,7 @@ from .serializers import SliderModelSerializer, MemberModelSerializer
 
 class SliderAPIListView(ListAPIView):
     serializer_class = SliderModelSerializer
-    queryset = Slider.objects.filter(enable=True)
+    queryset = Slider.objects.filter(enabled=True)
     pagination_class = None
 
 

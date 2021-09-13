@@ -24,7 +24,7 @@ def record_detail_pdf(request, pk):
 
     HTML(
         string=html_string,
-        base_url=settings.WEASYPRINT_BASEURL,
+        base_url=settings.HOST_URL,
         url_fetcher=django_url_fetcher
     ).write_pdf(response, presentational_hints=True)
     return response
@@ -64,7 +64,7 @@ def record_list_pdf(request, queryset):
 
     HTML(
         string=html_string,
-        base_url=settings.WEASYPRINT_BASEURL,
+        base_url=settings.HOST_URL,
         url_fetcher=django_url_fetcher
     ).write_pdf(response, presentational_hints=True)
     return response

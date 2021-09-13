@@ -8,7 +8,7 @@ class Slider(Audit):
     name = models.CharField(_('name'), max_length=255)
     order = models.PositiveSmallIntegerField(_('order'), unique=True)
     image = models.ImageField(_('image'), upload_to='sliders')
-    enable = models.BooleanField(_('enable'), default=True)
+    enabled = models.BooleanField(_('enabled'), default=True)
 
     class Meta:
         verbose_name = 'slider'

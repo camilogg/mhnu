@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 05:12-0500\n"
-"PO-Revision-Date: 2021-08-22 05:12-0456\n"
+"POT-Creation-Date: 2021-09-13 03:17-0500\n"
+"PO-Revision-Date: 2021-09-13 03:17-0456\n"
 "Last-Translator: b'Adrian Gonzalez <adrian@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
-#: MHNU/settings/base.py:109
+#: MHNU/settings/base.py:111
 msgid "Spanish"
 msgstr "Español"
 
@@ -99,6 +99,34 @@ msgstr "El superusuario debe tener is_superuser = True."
 #: users/models.py:40
 msgid "email"
 msgstr "correo"
+
+#: web/models.py:8 web/models.py:23
+msgid "name"
+msgstr "nombre"
+
+#: web/models.py:9
+msgid "order"
+msgstr "orden"
+
+#: web/models.py:10 web/models.py:24
+msgid "image"
+msgstr "imagen"
+
+#: web/models.py:11
+msgid "enabled"
+msgstr "habilitado"
+
+#: web/models.py:25
+msgid "position"
+msgstr "cargo"
+
+#: web/models.py:28
+msgid "member"
+msgstr "miembro"
+
+#: web/models.py:29
+msgid "members"
+msgstr "miembros"
 
 #~ msgid "English"
 #~ msgstr "Inglés"
