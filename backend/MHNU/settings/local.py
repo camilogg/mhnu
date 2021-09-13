@@ -1,9 +1,6 @@
 from .base import *
-import socket
 
 DEBUG = True
-
-CORS_ORIGIN_ALLOW_ALL = True
 
 INSTALLED_APPS += ['debug_toolbar', 'django_extensions']
 
