@@ -54,6 +54,9 @@
         <script type="text/javascript">
           (function ($) {
             $(window).scrollTop()
+            if (!$) {
+              $ = django.jQuery;
+            }
             $('#tabs').tabs({
               {% if add %}
                 // when adding, don't select a tab by default, we'll do it ourselves
