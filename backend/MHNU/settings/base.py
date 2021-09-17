@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'qr_code',
     'django_cleanup.apps.CleanupConfig',
     'autocompletefilter',
-    'search_admin_autocomplete',
     'tabbed_admin',
     'django_filters',
     'corsheaders',
