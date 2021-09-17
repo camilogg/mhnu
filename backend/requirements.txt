@@ -20,7 +20,6 @@ WeasyPrint==53.2
 django-qr-code==2.1.0
 django-extensions==3.1.1
 django-autocompletefilter==0.0.7
-django-search-admin-autocomplete==0.2.1
 django-tabbed-admin==1.0.4
 pytest-django==4.4.0
 pytest==6.2.5

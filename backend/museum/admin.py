@@ -10,7 +10,6 @@ from django_object_actions import DjangoObjectActions
 
 from autocompletefilter.admin import AutocompleteFilterMixin
 from autocompletefilter.filters import AutocompleteListFilter
-from search_admin_autocomplete.admin import SearchAutoCompleteAdmin
 
 from import_export.admin import ImportExportModelAdmin
 from tabbed_admin import TabbedModelAdmin
@@ -88,17 +87,8 @@ class ImageInline(admin.StackedInline):
 
 @admin.register(Record)
 class RecordAdmin(AutocompleteFilterMixin, DjangoObjectActions,
-                  TabbedModelAdmin, SearchAutoCompleteAdmin):
+                  TabbedModelAdmin):
     change_form_template = 'custom_change_form.html'
-
-    def get_urls(self):
-        urls = super().get_urls()
-        api_urls = [
-            path('search/<str:search_term>', self.search_api)
-        ]
-        return api_urls + urls
-
-    search_prefix = '__icontains'
 
     formfield_overrides = {
         models.JSONField: {'widget': JSONEditorWidget},
