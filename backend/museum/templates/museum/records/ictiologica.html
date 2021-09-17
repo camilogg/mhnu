@@ -35,5 +35,5 @@
     <p><b>Fecha de determinación:</b> 2-oct-2019</p>
     <p><b>Método de colecta:</b> {{ record.sampling_protocol|default:'-' }}</p>
   </div>
-  {% qr_from_text 'otro hello wordl!' image_format="png" size=3 %}
+  {% qr_from_text record.url image_format="png" size=3 %}
 </div>

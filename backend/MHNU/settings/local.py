@@ -14,3 +14,4 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 HOST_URL = os.environ.get('HOST_URL')
+HOST_URL_FRONTEND = os.environ.get('HOST_URL_FRONTEND')

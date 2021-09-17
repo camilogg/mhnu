@@ -180,6 +180,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
 TABBED_ADMIN_USE_JQUERY_UI = True
+TABBED_ADMIN_JQUERY_UI_CSS = 'jquery-ui.min.css'
+TABBED_ADMIN_JQUERY_UI_JS = 'jquery-ui.min.js'
 
 # LOGGING = {
 #     "version": 1,

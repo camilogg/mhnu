@@ -3,7 +3,7 @@
 <div class="h-label">
   <div class="first-label">
     <div class="qr-wrapper">
-      {% qr_from_text 'hello wordl!' image_format="png" size=2 %}
+      {% qr_from_text record.url image_format="png" size=2 %}
     </div>
     <div class="data-wrapper">
       <p class="title">MUSEO UNILLANOS</p>
@@ -26,7 +26,7 @@
       <p>{{ record.scientific_name_authorship }}</p>
     </div>
     <div class="qr-wrapper">
-      {% qr_from_text 'otro hello wordl!' image_format="png" size=2 %}
+      {% qr_from_text record.url image_format="png" size=2 %}
     </div>
   </div>
 </div>

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
@@ -987,6 +988,10 @@ class Record(models.Model):
     additional_data = models.JSONField(
         _('additional data'), blank=True, null=True
     )
+
+    @property
+    def url(self):
+        return f'{settings.HOST_URL_FRONTEND}/records/{self.pk}'
 
     class Meta:
         verbose_name = _('record')

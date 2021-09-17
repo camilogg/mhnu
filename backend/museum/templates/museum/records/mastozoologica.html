@@ -38,7 +38,7 @@
     </div>
     <img class="logo" src="{% static 'museum/img/logo.png' %}" alt="logo" width="40px">
     <div class="qr-wrapper">
-      {% qr_from_text 'otro hello wordl!' image_format="png" size=2 %}
+      {% qr_from_text record.url image_format="png" size=2 %}
     </div>
   </div>
   <span class="divisor"></span>
