@@ -52,11 +52,11 @@
           {% endfor %}
         </div>
         <script type="text/javascript">
-          (function ($) {
-            $(window).scrollTop()
-            if (!$) {
-              $ = django.jQuery;
-            }
+          if (!$) {
+            $ = django.jQuery;
+          }
+          $(document).ready(function () {
+            $(window).scrollTop(0)
             $('#tabs').tabs({
               {% if add %}
                 // when adding, don't select a tab by default, we'll do it ourselves
@@ -66,8 +66,8 @@
             })
 
             // disable tabs marked as such in page_config
-            var enabled_tabs = []
-            var disabled_tabs = []
+            const enabled_tabs = []
+            const disabled_tabs = []
 
             {% for tab in page_config %}
               {% if tab.enabled %}
@@ -77,7 +77,7 @@
               {% endif %}
             {% endfor %}
 
-            for (var i = 0; i < disabled_tabs.length; i++) {
+            for (let i = 0; i < disabled_tabs.length; i++) {
               $('#tabs').tabs("disable", disabled_tabs[i])
             }
             // enable the first non-disabled tab in add view
@@ -93,18 +93,15 @@
             })
 
             $("#tabs").on('tabsactivate', function (event, ui) {
-              var scrollPos = $(window).scrollTop()
-              var hash = ui.newTab.children("li a").attr("href")
-              window.location.hash = hash
+              const scrollPos = $(window).scrollTop()
+              window.location.hash = ui.newTab.children("li a").attr("href")
               $(window).scrollTop(scrollPos)
             })
 
             if ($('.errornote').length) {
               $('.errornote').addClass('tabbed-errornote')
             }
-
-
-          })(django.jQuery)
+          })
         </script>
         <!-- end admin_tabs stuff -->
 
