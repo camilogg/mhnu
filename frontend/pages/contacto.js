@@ -1,45 +1,18 @@
 import Layout from '@components/Layout'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Swal from 'sweetalert2'
 import { sendContact } from '../services'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 const Contact = () => {
   const [contactData, setContactData] = useState({})
 
   const { names = '', email = '', subject = '', message = '' } = contactData
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault()
-    setContactData({})
-    try {
-      const response = await sendContact(contactData)
-      if (response.ok) {
-        Swal.fire({
-          title: '¡Tu mensaje ha sido enviado!',
-          text: 'Pronto nos pondremos en contacto contigo',
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 2000,
-        })
-      } else {
-        Swal.fire({
-          title: '¡Ha ocurrido un error!',
-          text: 'Intenta de nuevo más tarde',
-          icon: 'error',
-          showConfirmButton: false,
-          timer: 2000,
-        })
-      }
-    } catch {
-      Swal.fire({
-        title: '¡Ha ocurrido un error!',
-        text: 'Intenta de nuevo más tarde',
-        icon: 'error',
-        showConfirmButton: false,
-        timer: 2000,
-      })
-    }
+    recaptchaRef.current.execute()
   }
 
   const handleChange = e => {
@@ -48,6 +21,44 @@ const Contact = () => {
       [e.target.name]: e.target.value,
     })
   }
+
+  const handleCaptchaChange = async token => {
+    if (token) {
+      const data = { ...contactData, token }
+      try {
+        const response = await sendContact(data)
+        if (response.ok) {
+          Swal.fire({
+            title: '¡Tu mensaje ha sido enviado!',
+            text: 'Pronto nos pondremos en contacto contigo',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        } else {
+          Swal.fire({
+            title: '¡Ha ocurrido un error!',
+            text: 'Intenta de nuevo más tarde',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        }
+      } catch {
+        Swal.fire({
+          title: '¡Ha ocurrido un error!',
+          text: 'Intenta de nuevo más tarde',
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000,
+        })
+      }
+    }
+    setContactData({})
+    recaptchaRef.current.reset()
+  }
+
+  const recaptchaRef = useRef(null)
 
   return (
     <Layout>
@@ -152,6 +163,12 @@ const Contact = () => {
 
               <div className='col-lg-6 col-md-6'>
                 <form id='contactForm' method='post' onSubmit={handleSubmit}>
+                  <ReCAPTCHA
+                    size='invisible'
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                    onChange={handleCaptchaChange}
+                    ref={recaptchaRef}
+                  />
                   <div className='row'>
                     <div className='col-lg-6 col-md-12'>
                       <div className='form-group'>
@@ -203,7 +220,6 @@ const Contact = () => {
                       value={message}
                     ></textarea>
                   </div>
-
                   <div className='send-btn'>
                     <button type='submit' className='send-btn-one'>
                       Enviar

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from drf_recaptcha.fields import ReCaptchaV2Field
 
 from ..models import (
     Genus, Family, ScientificName, Record, Country, County, RecordedBy, Type,
@@ -163,6 +164,11 @@ class ContactSerializer(serializers.Serializer):
     email = serializers.EmailField()
     subject = serializers.CharField(max_length=50)
     message = serializers.CharField()
+    token = ReCaptchaV2Field()
 
     def save(self):
         send_mail_contact.delay(**self.validated_data)
+
+    def validate(self, attrs):
+        attrs.pop('token')
+        return attrs
