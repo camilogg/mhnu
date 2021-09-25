@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.generics import ListAPIView, RetrieveAPIView
@@ -60,6 +61,7 @@ class ContactAPIView(APIView):
     @swagger_auto_schema(
         request_body=ContactSerializer, responses={status.HTTP_200_OK: ''}
     )
+    @csrf_exempt
     def post(self, request, *args, **kwargs):
         serializer = ContactSerializer(
             data=request.data, context={'request': request}
