@@ -1,4 +1,3 @@
-from django.views.decorators.csrf import csrf_exempt
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.generics import ListAPIView, RetrieveAPIView
@@ -14,7 +13,6 @@ from .serializers import (
     ContactSerializer
 )
 from ..models import Genus, ScientificName, Family, Record
-from web.models import Slider
 
 
 class GenusListAPIView(ListAPIView):
@@ -58,10 +56,11 @@ class RecordRetrieveAPIView(RetrieveAPIView):
 
 
 class ContactAPIView(APIView):
+    authentication_classes = []
+
     @swagger_auto_schema(
         request_body=ContactSerializer, responses={status.HTTP_200_OK: ''}
     )
-    @csrf_exempt
     def post(self, request, *args, **kwargs):
         serializer = ContactSerializer(
             data=request.data, context={'request': request}
