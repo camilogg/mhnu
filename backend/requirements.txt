@@ -7,7 +7,7 @@ drf-yasg==1.20.0
 django-rosetta==0.9.5
 flake8==3.8.4
 django-debug-toolbar==3.1.1
-pillow==8.0.1
+pillow==8.4.0
 celery==5.1.2
 watchdog==1.0.2
 redis==3.5.3
