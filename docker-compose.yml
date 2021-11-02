@@ -10,8 +10,10 @@ services:
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
 
-  backend:
-    build: ./backend
+  backend: &backend
+    build:
+      context: ./backend
+      dockerfile: dev.Dockerfile
     container_name: mhnu-backend
     command: ["wait-for-it", "db:5432", "--", "python", "manage.py", "runserver",  "0.0.0.0:8000"]
     env_file: .env
@@ -24,14 +26,21 @@ services:
     ports:
       - '8000:8000'
 
-#  frontend:
-#    build: ./frontend
-#    container_name: nextjs
-#    volumes:
-#      - ./frontend:/frontend
-#    ports:
-#      - '3000:3000'
-#    command: ["npm", "run", "dev"]
+  redis:
+    image: 'redis:alpine'
+    container_name: mhnu-redis
+    ports:
+      - '6379:6379'
+
+  celery:
+    <<: *backend
+    container_name: mhnu-celery
+    command: ["watchmedo", "auto-restart", "--directory=/backend/", "--pattern=*.py", "--recursive", "--",
+              "celery", "-A", "MHNU", "worker", "-B", "-l", "info"]
+    depends_on:
+      - redis
+      - db
+    ports: []
 
   nginx:
     image: nginx:alpine
@@ -45,27 +54,6 @@ services:
       - "80:80"
     depends_on:
       - backend
-#      - frontend
-
-  redis:
-    image: 'redis:alpine'
-    container_name: mhnu-redis
-    ports:
-      - '6379:6379'
-
-  celery:
-    build: ./backend
-    container_name: mhnu-celery
-    command: ["watchmedo", "auto-restart", "--directory=/backend/", "--pattern=*.py", "--recursive", "--",
-              "celery", "-A", "MHNU", "worker", "-B", "-l", "info"]
-    depends_on:
-      - redis
-    env_file: .env
-    environment:
-      - DJANGO_SETTINGS_MODULE=MHNU.settings.local
-      - TZ=America/Bogota
-    volumes:
-      - ./backend:/backend
 
 volumes:
   postgres-data:
