@@ -11,9 +11,7 @@ services:
     restart: unless-stopped
 
   backend: &backend
-    build:
-      context: ./backend
-      dockerfile: prod.Dockerfile
+    build: ./backend
     container_name: mhnu-backend
     command: ["wait-for-it", "db:5432", "--", "gunicorn", "MHNU.wsgi:application", "-b",  "0.0.0.0:8000", "-w", "3"]
     env_file: .env
