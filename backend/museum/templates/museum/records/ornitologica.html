@@ -1,0 +1,34 @@
+{% load static %}
+{% load qr_code %}
+
+<div class="ornitologica-label">
+  <div class="label">
+    <div class="divisor"></div>
+    <div class="divisor"></div>
+    <div class="content">
+      <h3 class="catalog-number">{{ record.catalog_number }}</h3>
+      <div class="header">
+        <h4>Museo de Historia Natural - Colección de Ornitología</h4>
+        <img class="logo" src="{% static 'museum/img/logo.png' %}" alt="logo" width="40px">
+      </div>
+      <div class="data">
+        <p>Especie <span class="especie-value"></span> Sexo/Edad <span class="sex-age-value"></span></p>
+        <p>Colombia, <span class="position-value"></span></p>
+        <p style="border-bottom: 1px solid black; height: 11.5px"></p>
+        <p>Fecha <span class="date-value"></span> Colector <span class="collector-value"></span></p>
+      </div>
+      <div class="qr-wrapper">
+        {% qr_from_text record.url image_format="png" size=2 %}
+      </div>
+    </div>
+  </div>
+
+  <div class="label">
+    <div class="divisor"></div>
+    <div class="additional-data">
+      {% for key, value in record.additional_data.items %}
+        {{ key }}: <span style="text-decoration: underline">{{ value|default:'-' }}</span>{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+@page {
+    size: A4 landscape;
+}
+
+.ornitologica-label {
+    display: inline-flex;
+    font-size: 10px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+p {
+    margin-bottom: 5px;
+}
+
+.label {
+    width: 10.6cm;
+    height: 3.6cm;
+    font-size: 10px;
+    display: flex;
+    outline: 1px solid black;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+.label .divisor {
+    width: 0.5cm;
+    border-right: 1px solid black;
+    position: relative;
+}
+
+.label .content {
+    position: relative;
+    padding: 10px;
+    width: 100%;
+}
+
+.label .content .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label .content .catalog-number {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: rotate(270deg);
+    transform-origin: 0 0;
+    margin-left: -16px;
+    margin-bottom: -5px;
+}
+
+.label .content .data {
+    width: 7.5cm;
+    margin-top: 10px;
+}
+
+.label .content .qr-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.especie-value {
+    width: 3.5cm;
+    border-bottom: 1px solid black;
+    display: inline-block;
+}
+
+.sex-age-value {
+    width: 1.3cm;
+    border-bottom: 1px solid black;
+    display: inline-block;
+}
+
+.position-value {
+    width: 6cm;
+    border-bottom: 1px solid black;
+    display: inline-block;
+}
+
+.date-value {
+    width: 2.5cm;
+    border-bottom: 1px solid black;
+    display: inline-block;
+}
+
+.collector-value {
+    width: 2.8cm;
+    border-bottom: 1px solid black;
+    display: inline-block;
+}
+
+.additional-data {
+    padding: 10px;
+}

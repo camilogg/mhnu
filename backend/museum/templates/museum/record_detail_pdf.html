@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{% static 'museum/css/mastozoologica.css' %}">
   {% elif record.collection_code.name == 'MHNU-E' %}
     <link rel="stylesheet" href="{% static 'museum/css/entomologica.css' %}">
+  {% elif record.collection_code.name == 'MHNU-O' %}
+    <link rel="stylesheet" href="{% static 'museum/css/ornitologica.css' %}">
   {% endif %}
   <style>
       * {
@@ -44,6 +46,8 @@
   {% include 'museum/records/mastozoologica.html' %}
 {% elif record.collection_code.name == 'MHNU-E' %}
   {% include 'museum/records/entomologica.html' %}
+{% elif record.collection_code.name == 'MHNU-O' %}
+  {% include 'museum/records/ornitologica.html' %}
 {% endif %}
 </body>
 
