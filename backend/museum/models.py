@@ -1012,7 +1012,7 @@ class Record(models.Model):
             )
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.catalog_number).upper()
+        self.slug = slugify(self.catalog_number)
         self.full_clean()
         super(Record, self).save(*args, **kwargs)
 

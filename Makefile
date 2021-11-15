@@ -37,12 +37,12 @@ reset:
 	docker-compose down -v
 
 clean:
-	rm -rf src/*/migrations/00**.py
+	rm -rf backend/*/migrations/00**.py
 	find . -name "*.pyc" -exec rm -- {} +
-	rm -rf src/*/migrations/__pycache__/*
+	rm -rf backend/*/migrations/__pycache__/*
 
-FILENAME=backend
-USER=backend-user
-DATABASE=backend-db
+FILENAME=mhnu
+USER=mhnu-user
+DATABASE=mhnu-db
 backup:
 	docker-compose exec db sh -c "pg_dump -U $(USER) -Fc -x -O $(DATABASE) > /docker-entrypoint-initdb.d/dumps/$(FILENAME).dump"
