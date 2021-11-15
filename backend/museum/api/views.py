@@ -53,6 +53,7 @@ class RecordListAPIView(ListAPIView):
 class RecordRetrieveAPIView(RetrieveAPIView):
     queryset = Record.objects.all()
     serializer_class = RecordModelSerializer
+    lookup_field = 'slug'
 
 
 class ContactAPIView(APIView):

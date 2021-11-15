@@ -155,7 +155,7 @@ class RecordModelSerializer(serializers.ModelSerializer):
             'scientific_name_authorship', 'locality', 'geodetic_datum',
             'minimum_elevation_in_meters', 'maximum_elevation_in_meters',
             'verbatim_latitude', 'verbatim_longitude', 'decimal_latitude',
-            'decimal_longitude', 'images'
+            'decimal_longitude', 'images', 'slug'
         )
 
 

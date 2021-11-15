@@ -167,7 +167,7 @@ def run_export_job(pk):
     serialized = format.export_data(data)
     change_job_status(export_job, _('export'), _('Export complete'))
     filename = "records-{date}.{extension}".format(
-        date=str(timezone.now()),
+        date=str(timezone.now().date()),
         extension=format.get_extension(),
     )
     if not format.is_binary():

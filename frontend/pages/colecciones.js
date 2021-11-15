@@ -95,12 +95,12 @@ const Collections = () => {
       },
       {
         Header: 'Detalles',
-        accessor: 'id',
+        accessor: 'slug',
         Cell: function button({ row }) {
           return (
             <button
               className='btn btn-danger btn-sm'
-              onClick={() => handleClick(row.original.id)}
+              onClick={() => handleClick(row.original.slug)}
             >
               Ver
             </button>
@@ -143,7 +143,6 @@ const Collections = () => {
   }
 
   useEffect(() => {
-    console.log('render from collections')
     if (collection && filter) {
       setIsSearchSelectDisable(false)
     } else {

@@ -40,7 +40,7 @@ urlpatterns = [
         name='record_list'
     ),
     path(
-        route='records/<int:pk>',
+        route='records/<slug:slug>',
         view=RecordRetrieveAPIView.as_view(),
         name='record_retrieve'
     ),

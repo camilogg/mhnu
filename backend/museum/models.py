@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
 from museum.validators import (
@@ -986,12 +987,13 @@ class Record(models.Model):
     )
     taxon_remarks = models.TextField(_('taxon remarks'), blank=True, null=True)
     additional_data = models.JSONField(
-        _('additional data'), blank=True, null=True
+        verbose_name=_('additional data'), blank=True, null=True
     )
+    slug = models.SlugField(unique=True, blank=True, null=True)
 
     @property
     def url(self):
-        return f'{settings.HOST_URL_FRONTEND}/records/{self.pk}'
+        return f'{settings.HOST_URL_FRONTEND}/records/{self.slug}'
 
     class Meta:
         verbose_name = _('record')
@@ -1010,6 +1012,7 @@ class Record(models.Model):
             )
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(self.catalog_number).upper()
         self.full_clean()
         super(Record, self).save(*args, **kwargs)
 

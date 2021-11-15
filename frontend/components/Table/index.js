@@ -42,7 +42,6 @@ const Table = ({
   )
 
   useEffect(() => {
-    console.log('render from Table')
     fetchData({ pageIndex, collection, filter, search })
   }, [fetchData, pageIndex])
 

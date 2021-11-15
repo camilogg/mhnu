@@ -58,7 +58,7 @@ class RecordModelResource(ModelResource):
 
     class Meta:
         model = Record
-        exclude = []
+        exclude = ['slug', 'additional_data']
         # import_id_fields = ['occurrence_ID']
         export_order = (
             'id', 'occurrence_ID', 'basis_of_record', 'institution_code',

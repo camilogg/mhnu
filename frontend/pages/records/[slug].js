@@ -1,12 +1,17 @@
 import Layout from '@components/Layout'
 import dynamic from 'next/dynamic'
+import Error from 'next/error'
 
 const Map = dynamic(() => import('@components/Map'), { ssr: false })
 const RecordSlider = dynamic(() => import('@components/RecordSlider'), {
   ssr: false,
 })
 
-const RecordDetail = record => {
+const RecordDetail = ({ error, record }) => {
+  if (error) {
+    return <Error statusCode={error} />
+  }
+
   return (
     <Layout>
       <main>
@@ -111,10 +116,11 @@ const RecordDetail = record => {
 
 export default RecordDetail
 
-export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/records/${id}`)
+export async function getServerSideProps({ query: { slug } }) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/records/${slug}`)
+  const error = res.ok ? false : res.status
   const data = await res.json()
   return {
-    props: data,
+    props: { error, record: data },
   }
 }

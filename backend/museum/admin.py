@@ -89,7 +89,7 @@ class ImageInline(admin.StackedInline):
 class RecordAdmin(AutocompleteFilterMixin, DjangoObjectActions,
                   TabbedModelAdmin):
     change_form_template = 'custom_change_form.html'
-
+    readonly_fields = ('slug',)
     formfield_overrides = {
         models.JSONField: {'widget': JSONEditorWidget},
     }
@@ -115,7 +115,7 @@ class RecordAdmin(AutocompleteFilterMixin, DjangoObjectActions,
                 'institution_ID', 'collection_ID', 'dataset_ID',
                 'institution_code', 'collection_code', 'dataset_name',
                 'owner_institution_code', 'basis_of_record',
-                'information_withheld', 'data_generalizations',
+                'information_withheld', 'data_generalizations', 'slug',
                 'dynamic_properties', 'additional_data'
             ),
         })
