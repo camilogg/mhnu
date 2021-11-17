@@ -177,7 +177,10 @@ LOGOUT_REDIRECT_URL = reverse_lazy('admin:index')
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 IMPORT_EXPORT_SKIP_ADMIN_LOG = True
 
-CELERY_BROKER_URL = f'redis://{os.environ["REDIS_HOST"]}:6379'
+CELERY_BROKER_URL = (
+    f'redis://default:{os.environ["REDIS_PASSWORD"]}'
+    f'@{os.environ["REDIS_HOST"]}:6379'
+)
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

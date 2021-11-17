@@ -214,7 +214,7 @@ const Collections = () => {
                 <label>Buscar</label>
                 <AsyncSelect
                   value={search}
-                  placeholder='Buscar...'
+                  placeholder='Buscar por palabra clave...'
                   loadOptions={loadOptions}
                   instanceId='search'
                   onChange={setSearch}

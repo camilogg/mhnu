@@ -17,7 +17,7 @@ const RecordDetail = ({ error, record }) => {
       <main>
         <div className='container my-5'>
           <div className='row'>
-            <h1>
+            <h1 className='mb-md-5 mb-sm-4'>
               {record.scientificName?.name}{' '}
               {record.scientificNameAuthorship?.name}
             </h1>
