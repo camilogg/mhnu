@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-13 03:17-0500\n"
-"PO-Revision-Date: 2021-09-13 03:17-0456\n"
+"POT-Creation-Date: 2021-11-21 15:58-0500\n"
+"PO-Revision-Date: 2021-11-21 16:02-0456\n"
 "Last-Translator: b'Adrian Gonzalez <adrian@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
-#: MHNU/settings/base.py:111
+#: MHNU/settings/base.py:112
 msgid "Spanish"
 msgstr "Español"
 
@@ -100,33 +100,69 @@ msgstr "El superusuario debe tener is_superuser = True."
 msgid "email"
 msgstr "correo"
 
-#: web/models.py:8 web/models.py:23
+#: web/admin.py:52
+#| msgid "image"
+msgid "Images"
+msgstr "Imágenes"
+
+#: web/models.py:9 web/models.py:24 web/models.py:40 web/models.py:57
 msgid "name"
 msgstr "nombre"
 
-#: web/models.py:9
+#: web/models.py:10
 msgid "order"
 msgstr "orden"
 
-#: web/models.py:10 web/models.py:24
+#: web/models.py:11 web/models.py:25 web/models.py:41 web/models.py:58
 msgid "image"
-msgstr "imagen"
+msgstr "imágen"
 
-#: web/models.py:11
+#: web/models.py:12
 msgid "enabled"
 msgstr "habilitado"
 
-#: web/models.py:25
+#: web/models.py:26
 msgid "position"
 msgstr "cargo"
 
-#: web/models.py:28
+#: web/models.py:28 web/models.py:43
+#| msgid "position"
+msgid "description"
+msgstr "descripción"
+
+#: web/models.py:32
 msgid "member"
 msgstr "miembro"
 
-#: web/models.py:29
+#: web/models.py:33
 msgid "members"
 msgstr "miembros"
+
+#: web/models.py:42
+msgid "summary"
+msgstr "resumen"
+
+#: web/models.py:46
+msgid "post"
+msgstr "publicación"
+
+#: web/models.py:47
+msgid "posts"
+msgstr "publicaciones"
+
+#: web/models.py:61
+#| msgid "image"
+msgid "post image"
+msgstr "imágen de publicación"
+
+#: web/models.py:62
+#| msgid "image"
+msgid "post images"
+msgstr "imágenes de publicación"
+
+#: web/models.py:65
+msgid "Image #{} of {}"
+msgstr "Imagen #{} de {}"
 
 #~ msgid "English"
 #~ msgstr "Inglés"

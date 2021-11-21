@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-09 03:48-0500\n"
+"POT-Creation-Date: 2021-11-21 15:58-0500\n"
 "PO-Revision-Date: 2021-08-02 01:32-0456\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,893 +71,893 @@ msgstr "Generar PDF"
 msgid "museum"
 msgstr "museo"
 
-#: museum/models.py:18 museum/models.py:30 museum/models.py:42
-#: museum/models.py:56 museum/models.py:68 museum/models.py:80
-#: museum/models.py:92 museum/models.py:104 museum/models.py:116
-#: museum/models.py:130 museum/models.py:142 museum/models.py:156
-#: museum/models.py:168 museum/models.py:183 museum/models.py:195
-#: museum/models.py:211 museum/models.py:223 museum/models.py:241
-#: museum/models.py:255 museum/models.py:267 museum/models.py:279
-#: museum/models.py:291 museum/models.py:303 museum/models.py:315
-#: museum/models.py:327 museum/models.py:339 museum/models.py:351
-#: museum/models.py:363 museum/models.py:375 museum/models.py:387
-#: museum/models.py:399
+#: museum/models.py:19 museum/models.py:31 museum/models.py:43
+#: museum/models.py:57 museum/models.py:69 museum/models.py:81
+#: museum/models.py:93 museum/models.py:105 museum/models.py:117
+#: museum/models.py:131 museum/models.py:143 museum/models.py:157
+#: museum/models.py:169 museum/models.py:184 museum/models.py:196
+#: museum/models.py:212 museum/models.py:224 museum/models.py:242
+#: museum/models.py:256 museum/models.py:268 museum/models.py:280
+#: museum/models.py:292 museum/models.py:304 museum/models.py:316
+#: museum/models.py:328 museum/models.py:340 museum/models.py:352
+#: museum/models.py:364 museum/models.py:376 museum/models.py:388
+#: museum/models.py:400
 msgid "name"
 msgstr "nombre"
 
-#: museum/models.py:21 museum/models.py:443
+#: museum/models.py:22 museum/models.py:444
 msgid "type"
 msgstr "tipo"
 
-#: museum/models.py:22
+#: museum/models.py:23
 msgid "types"
 msgstr "tipos"
 
-#: museum/models.py:33 museum/models.py:474
+#: museum/models.py:34 museum/models.py:475
 msgid "collection code"
 msgstr "código de la colección"
 
-#: museum/models.py:34
+#: museum/models.py:35
 msgid "collection codes"
 msgstr "códigos de colecciones"
 
-#: museum/models.py:45 museum/models.py:46 museum/models.py:484
+#: museum/models.py:46 museum/models.py:47 museum/models.py:485
 msgid "basis of record"
 msgstr "base del registro"
 
-#: museum/models.py:59 museum/models.py:60 museum/models.py:512
+#: museum/models.py:60 museum/models.py:61 museum/models.py:513
 msgid "recorded by"
 msgstr "registrado por"
 
-#: museum/models.py:71 museum/models.py:538
+#: museum/models.py:72 museum/models.py:539
 msgid "sex"
 msgstr "sexo"
 
-#: museum/models.py:72
+#: museum/models.py:73
 msgid "sexes"
 msgstr "sexos"
 
-#: museum/models.py:83 museum/models.py:542
+#: museum/models.py:84 museum/models.py:543
 msgid "life stage"
 msgstr "etapa de vida"
 
-#: museum/models.py:84
+#: museum/models.py:85
 msgid "life stages"
 msgstr "etapas de vida"
 
-#: museum/models.py:95 museum/models.py:556
+#: museum/models.py:96 museum/models.py:557
 msgid "occurrence status"
 msgstr "estado del registro biológico"
 
-#: museum/models.py:96
+#: museum/models.py:97
 msgid "occurrence statuses"
 msgstr "estados del registro biológico"
 
-#: museum/models.py:107
+#: museum/models.py:108
 msgid "preparation"
 msgstr "preparación"
 
-#: museum/models.py:108 museum/models.py:560
+#: museum/models.py:109 museum/models.py:561
 msgid "preparations"
 msgstr "preparaciones"
 
-#: museum/models.py:119 museum/models.py:564
+#: museum/models.py:120 museum/models.py:565
 msgid "disposition"
 msgstr "disposición"
 
-#: museum/models.py:120
+#: museum/models.py:121
 msgid "dispositions"
 msgstr "disposiciones"
 
-#: museum/models.py:133 museum/models.py:600
+#: museum/models.py:134 museum/models.py:601
 msgid "sampling protocol"
 msgstr "protocolo de muestreo"
 
-#: museum/models.py:134
+#: museum/models.py:135
 msgid "sampling protocols"
 msgstr "protocolos de muestreo"
 
-#: museum/models.py:145 museum/models.py:639
+#: museum/models.py:146 museum/models.py:640
 msgid "habitat"
 msgstr "habitat"
 
-#: museum/models.py:146
+#: museum/models.py:147
 msgid "habitats"
 msgstr "habitats"
 
-#: museum/models.py:159 museum/models.py:663
+#: museum/models.py:160 museum/models.py:664
 msgid "water body"
 msgstr "cuerpo de agua"
 
-#: museum/models.py:160
+#: museum/models.py:161
 msgid "water bodies"
 msgstr "cuerpos de agua"
 
-#: museum/models.py:170
+#: museum/models.py:171
 msgid "country code"
 msgstr "código del país"
 
-#: museum/models.py:174 museum/models.py:673
+#: museum/models.py:175 museum/models.py:674
 msgid "country"
 msgstr "país"
 
-#: museum/models.py:175
+#: museum/models.py:176
 msgid "countries"
 msgstr "países"
 
-#: museum/models.py:186 museum/models.py:198
+#: museum/models.py:187 museum/models.py:199
 msgid "state province"
 msgstr "departamento"
 
-#: museum/models.py:187
+#: museum/models.py:188
 msgid "state provinces"
 msgstr "departamentos"
 
-#: museum/models.py:202 museum/models.py:676
+#: museum/models.py:203 museum/models.py:677
 msgid "county"
 msgstr "municipio"
 
-#: museum/models.py:203
+#: museum/models.py:204
 msgid "counties"
 msgstr "municipios"
 
-#: museum/models.py:214 museum/models.py:680
+#: museum/models.py:215 museum/models.py:681
 msgid "municipality"
 msgstr "cabecera municipal / centro poblado"
 
-#: museum/models.py:215
+#: museum/models.py:216
 msgid "municipalities"
 msgstr "cabeceras municipales / centros poblados"
 
-#: museum/models.py:225
+#: museum/models.py:226
 msgid "verbatim locality"
 msgstr "localidad original"
 
-#: museum/models.py:229 museum/models.py:684
+#: museum/models.py:230 museum/models.py:685
 msgid "locality"
 msgstr "localidad"
 
-#: museum/models.py:230
+#: museum/models.py:231
 msgid "localities"
 msgstr "localidades"
 
-#: museum/models.py:244 museum/models.py:245
+#: museum/models.py:245 museum/models.py:246
 msgid "Identified by"
 msgstr "Identificado por"
 
-#: museum/models.py:258 museum/models.py:903
+#: museum/models.py:259 museum/models.py:904
 msgid "scientific name"
 msgstr "nombre científico"
 
-#: museum/models.py:259
+#: museum/models.py:260
 msgid "scientific names"
 msgstr "nombres científico"
 
-#: museum/models.py:270 museum/models.py:928
+#: museum/models.py:271 museum/models.py:929
 msgid "kingdom"
 msgstr "reino"
 
-#: museum/models.py:271
+#: museum/models.py:272
 msgid "kingdoms"
 msgstr "reinos"
 
-#: museum/models.py:282 museum/models.py:283 museum/models.py:932
+#: museum/models.py:283 museum/models.py:284 museum/models.py:933
 msgid "phylum"
 msgstr "filo"
 
-#: museum/models.py:294 museum/models.py:936
+#: museum/models.py:295 museum/models.py:937
 msgid "class"
 msgstr "clase"
 
-#: museum/models.py:295
+#: museum/models.py:296
 msgid "classes"
 msgstr "clases"
 
-#: museum/models.py:306 museum/models.py:940
+#: museum/models.py:307 museum/models.py:941
 msgid "order"
 msgstr "orden"
 
-#: museum/models.py:307
+#: museum/models.py:308
 msgid "orders"
 msgstr "ordenes"
 
-#: museum/models.py:318 museum/models.py:944
+#: museum/models.py:319 museum/models.py:945
 msgid "family"
 msgstr "familia"
 
-#: museum/models.py:319
+#: museum/models.py:320
 msgid "families"
 msgstr "familias"
 
-#: museum/models.py:330 museum/models.py:331 museum/models.py:948
+#: museum/models.py:331 museum/models.py:332 museum/models.py:949
 msgid "genus"
 msgstr "género"
 
-#: museum/models.py:342 museum/models.py:956
+#: museum/models.py:343 museum/models.py:957
 msgid "specific epithet"
 msgstr "epíteto específico"
 
-#: museum/models.py:343
+#: museum/models.py:344
 msgid "specific epithets"
 msgstr "epítetos específicos"
 
-#: museum/models.py:354 museum/models.py:962
+#: museum/models.py:355 museum/models.py:963
 msgid "taxon rank"
 msgstr "categoría del taxón"
 
-#: museum/models.py:355
+#: museum/models.py:356
 msgid "taxon ranks"
 msgstr "categorías del taxón"
 
-#: museum/models.py:366 museum/models.py:970
+#: museum/models.py:367 museum/models.py:971
 msgid "scientific name authorship"
 msgstr "autoría del nombre científico"
 
-#: museum/models.py:367
+#: museum/models.py:368
 msgid "scientific name authorships"
 msgstr "autorías del nombre científico"
 
-#: museum/models.py:378 museum/models.py:974
+#: museum/models.py:379 museum/models.py:975
 msgid "vernacular name"
 msgstr "nombre común"
 
-#: museum/models.py:379
+#: museum/models.py:380
 msgid "vernacular names"
 msgstr "nombres comunes"
 
-#: museum/models.py:390 museum/models.py:978
+#: museum/models.py:391 museum/models.py:979
 msgid "nomenclatural code"
 msgstr "código nomenclatural"
 
-#: museum/models.py:391
+#: museum/models.py:392
 msgid "nomenclatural codes"
 msgstr "codigos de nomenclatura"
 
-#: museum/models.py:402 museum/models.py:982
+#: museum/models.py:403 museum/models.py:983
 msgid "taxonomic status"
 msgstr "estado taxonómico"
 
-#: museum/models.py:403
+#: museum/models.py:404
 msgid "taxonomic statuses"
 msgstr "estados taxonómicos"
 
-#: museum/models.py:412
+#: museum/models.py:413
 msgid "Africa"
 msgstr "África"
 
-#: museum/models.py:413
+#: museum/models.py:414
 msgid "Asia"
 msgstr "Asia"
 
-#: museum/models.py:414
+#: museum/models.py:415
 msgid "Europe"
 msgstr "Europa"
 
-#: museum/models.py:415
+#: museum/models.py:416
 msgid "North America"
 msgstr "Norteamérica"
 
-#: museum/models.py:416
+#: museum/models.py:417
 msgid "South America"
 msgstr "Sudamérica"
 
-#: museum/models.py:417
+#: museum/models.py:418
 msgid "Oceania"
 msgstr "Oceanía"
 
-#: museum/models.py:418
+#: museum/models.py:419
 msgid "Antarctica"
 msgstr "Antártida"
 
-#: museum/models.py:421
+#: museum/models.py:422
 msgid "Decimal degrees"
 msgstr "Grados decimales"
 
-#: museum/models.py:423
+#: museum/models.py:424
 msgid "Degrees, decimal minutes"
 msgstr "Grados, minutos decimales"
 
-#: museum/models.py:426
+#: museum/models.py:427
 msgid "Degrees, minutes, seconds"
 msgstr "Grados, minutos, segundos"
 
-#: museum/models.py:428
+#: museum/models.py:429
 msgid "UTM"
 msgstr "UTM"
 
-#: museum/models.py:429
+#: museum/models.py:430
 msgid "CRTM"
 msgstr "CRTM"
 
-#: museum/models.py:432
+#: museum/models.py:433
 msgid "No verification"
 msgstr "Sin verificación"
 
-#: museum/models.py:434
+#: museum/models.py:435
 msgid "Verified by the custodian of the data"
 msgstr "Verificado por el custodio de los datos"
 
-#: museum/models.py:438
+#: museum/models.py:439
 msgid "Verified by the data provider"
 msgstr "Verificado por el proveedor de los datos"
 
-#: museum/models.py:445
+#: museum/models.py:446
 msgid "modified"
 msgstr "modificado"
 
-#: museum/models.py:446
+#: museum/models.py:447
 msgid "language"
 msgstr "idioma"
 
-#: museum/models.py:448
+#: museum/models.py:449
 msgid "license"
 msgstr "licencia"
 
-#: museum/models.py:451
+#: museum/models.py:452
 msgid "rights holder"
 msgstr "titular de los derechos"
 
-#: museum/models.py:454
+#: museum/models.py:455
 msgid "access rights"
 msgstr "derechos de acceso"
 
-#: museum/models.py:457
+#: museum/models.py:458
 msgid "bibliographic citation"
 msgstr "citación bibliográfica"
 
-#: museum/models.py:459
+#: museum/models.py:460
 msgid "references"
 msgstr "referencias"
 
-#: museum/models.py:461
+#: museum/models.py:462
 msgid "institution ID"
 msgstr "ID de la institución"
 
-#: museum/models.py:464
+#: museum/models.py:465
 msgid "collection ID"
 msgstr "ID de la colección"
 
-#: museum/models.py:467
+#: museum/models.py:468
 msgid "dataset ID"
 msgstr "ID del conjunto de datos"
 
-#: museum/models.py:470
+#: museum/models.py:471
 msgid "institution code"
 msgstr "código de la institución"
 
-#: museum/models.py:477
+#: museum/models.py:478
 msgid "dataset name"
 msgstr "nombre del conjunto de datos"
 
-#: museum/models.py:480
+#: museum/models.py:481
 msgid "owner institution code"
 msgstr "código de la institución propietaria"
 
-#: museum/models.py:487
+#: museum/models.py:488
 msgid "information withheld"
 msgstr "información retenida"
 
-#: museum/models.py:490
+#: museum/models.py:491
 msgid "data generalizations"
 msgstr "generalización de los datos"
 
-#: museum/models.py:493
+#: museum/models.py:494
 msgid "dynamic properties"
 msgstr "propiedades dinámicas"
 
-#: museum/models.py:498
+#: museum/models.py:499
 msgid "occurrence ID"
 msgstr "ID del Registro biológico"
 
-#: museum/models.py:502
+#: museum/models.py:503
 msgid "catalog number"
 msgstr "número de catálogo"
 
-#: museum/models.py:506
+#: museum/models.py:507
 msgid "occurrence remarks"
 msgstr "comentarios del registro biológico"
 
-#: museum/models.py:509
+#: museum/models.py:510
 msgid "record number"
 msgstr "número del registro"
 
-#: museum/models.py:516
+#: museum/models.py:517
 msgid "organism ID"
 msgstr "ID del organismo"
 
-#: museum/models.py:519
+#: museum/models.py:520
 msgid "organism quantity"
 msgstr "Cantidad del organismo"
 
-#: museum/models.py:522
+#: museum/models.py:523
 msgid "organism quantity type"
 msgstr "Tipo de cantidad del organismo"
 
-#: museum/models.py:525
+#: museum/models.py:526
 msgid "organism name"
 msgstr "Nombre del organismo"
 
-#: museum/models.py:528
+#: museum/models.py:529
 msgid "organism scope"
 msgstr "Alcance del organismo"
 
-#: museum/models.py:531
+#: museum/models.py:532
 msgid "associated organisms"
 msgstr "Organismos asociados"
 
-#: museum/models.py:534
+#: museum/models.py:535
 msgid "organism remarks"
 msgstr "Comentarios del organismo"
 
-#: museum/models.py:536
+#: museum/models.py:537
 msgid "individual count"
 msgstr "número de individuos"
 
-#: museum/models.py:546
+#: museum/models.py:547
 msgid "reproductive condition"
 msgstr "condición reproductiva"
 
-#: museum/models.py:549
+#: museum/models.py:550
 msgid "behavior"
 msgstr "comportamiento"
 
-#: museum/models.py:552
+#: museum/models.py:553
 msgid "establishment means"
 msgstr "medios de establecimiento"
 
-#: museum/models.py:567
+#: museum/models.py:568
 msgid "other catalog numbers"
 msgstr "otros números de catálogo"
 
-#: museum/models.py:570
+#: museum/models.py:571
 msgid "previous identifications"
 msgstr "identificaciones previas"
 
-#: museum/models.py:573
+#: museum/models.py:574
 msgid "associated media"
 msgstr "medios asociados"
 
-#: museum/models.py:576
+#: museum/models.py:577
 msgid "associated references"
 msgstr "referencias asociadas"
 
-#: museum/models.py:579
+#: museum/models.py:580
 msgid "associated occurrences"
 msgstr "registros biológicos asociados"
 
-#: museum/models.py:582
+#: museum/models.py:583
 msgid "associated sequences"
 msgstr "secuencias asociadas"
 
-#: museum/models.py:585
+#: museum/models.py:586
 msgid "associated taxa"
 msgstr "taxones asociados"
 
-#: museum/models.py:588
+#: museum/models.py:589
 msgid "material_sample_ID"
 msgstr "ID de muestra del ejemplar"
 
-#: museum/models.py:593
+#: museum/models.py:594
 msgid "event ID"
 msgstr "ID del evento"
 
-#: museum/models.py:596
+#: museum/models.py:597
 msgid "parent event ID"
 msgstr "ID parental del evento"
 
-#: museum/models.py:603
+#: museum/models.py:604
 msgid "sampling effort"
 msgstr "esfuerzo de muestreo"
 
-#: museum/models.py:606
+#: museum/models.py:607
 msgid "sampling size value"
 msgstr "tamaño de la muestra"
 
-#: museum/models.py:609
+#: museum/models.py:610
 msgid "sampling size unit"
 msgstr "unidad del tamaño de la muestra"
 
-#: museum/models.py:612
+#: museum/models.py:613
 msgid "event date"
 msgstr "fecha del evento"
 
-#: museum/models.py:616
+#: museum/models.py:617
 msgid "event time"
 msgstr "hora del evento"
 
-#: museum/models.py:619
+#: museum/models.py:620
 msgid "start day of year"
 msgstr "día inicial del año"
 
-#: museum/models.py:623
+#: museum/models.py:624
 msgid "end day of year"
 msgstr "día final del año"
 
-#: museum/models.py:626
+#: museum/models.py:627
 msgid "year"
 msgstr "año"
 
-#: museum/models.py:628
+#: museum/models.py:629
 msgid "month"
 msgstr "mes"
 
-#: museum/models.py:632
+#: museum/models.py:633
 msgid "day"
 msgstr "día"
 
-#: museum/models.py:636
+#: museum/models.py:637
 msgid "verbatim event date"
 msgstr "fecha original del Evento"
 
-#: museum/models.py:643
+#: museum/models.py:644
 msgid "field number"
 msgstr "número de campo"
 
-#: museum/models.py:645
+#: museum/models.py:646
 msgid "field notes"
 msgstr "notas de campo"
 
-#: museum/models.py:646
+#: museum/models.py:647
 msgid "event remarks"
 msgstr "comentarios del evento"
 
-#: museum/models.py:650
+#: museum/models.py:651
 msgid "location ID"
 msgstr "ID de la ubicación"
 
-#: museum/models.py:653
+#: museum/models.py:654
 msgid " higher geography ID"
 msgstr "ID de la geografía superior"
 
-#: museum/models.py:656
+#: museum/models.py:657
 msgid " higher geography"
 msgstr "geografía superior"
 
-#: museum/models.py:659
+#: museum/models.py:660
 msgid "continent"
 msgstr "continente"
 
-#: museum/models.py:667
+#: museum/models.py:668
 msgid "island group"
 msgstr "grupo de islas"
 
-#: museum/models.py:670
+#: museum/models.py:671
 msgid "island"
 msgstr "isla"
 
-#: museum/models.py:688
+#: museum/models.py:689
 msgid "verbatim elevation"
 msgstr "elevación original"
 
-#: museum/models.py:691
+#: museum/models.py:692
 msgid "minimum elevation in meters"
 msgstr "elevación mínima en metros"
 
-#: museum/models.py:694
+#: museum/models.py:695
 msgid "maximum elevation in meters"
 msgstr "elevación máxima en metros"
 
-#: museum/models.py:697
+#: museum/models.py:698
 msgid "verbatim depth"
 msgstr "profundidad original"
 
-#: museum/models.py:700
+#: museum/models.py:701
 msgid "minimum depth in meters"
 msgstr "profundidad mínima en metros"
 
-#: museum/models.py:703
+#: museum/models.py:704
 msgid "maximum depth in meters"
 msgstr "profundidad máxima en metros"
 
-#: museum/models.py:706
+#: museum/models.py:707
 msgid "minimum distance above surface in meters"
 msgstr "distancia mínima de la superficie en metros"
 
-#: museum/models.py:710
+#: museum/models.py:711
 msgid "maximum distance above surface in meters"
 msgstr "distancia máxima de la superficie en metros"
 
-#: museum/models.py:714
+#: museum/models.py:715
 msgid "location according to"
 msgstr "ubicación de acuerdo con"
 
-#: museum/models.py:717
+#: museum/models.py:718
 msgid "location remarks"
 msgstr "comentarios de la ubicación"
 
-#: museum/models.py:720
+#: museum/models.py:721
 msgid "verbatim coordinates"
 msgstr "coordenadas originales"
 
-#: museum/models.py:723
+#: museum/models.py:724
 msgid "verbatim latitude"
 msgstr "latitud original"
 
-#: museum/models.py:726
+#: museum/models.py:727
 msgid "verbatim longitude"
 msgstr "longitud original"
 
-#: museum/models.py:729
+#: museum/models.py:730
 msgid "verbatim coordinate system"
 msgstr "sistema original de coordenadas"
 
-#: museum/models.py:734
+#: museum/models.py:735
 msgid "verbatim SRS"
 msgstr "SRS original"
 
-#: museum/models.py:737
+#: museum/models.py:738
 msgid "decimal latitude"
 msgstr "latitud decimal"
 
-#: museum/models.py:740
+#: museum/models.py:741
 msgid "decimal longitude"
 msgstr "longitud decimal"
 
-#: museum/models.py:743
+#: museum/models.py:744
 msgid "geodetic datum"
 msgstr "datum geodésico"
 
-#: museum/models.py:747
+#: museum/models.py:748
 msgid "coordinate uncertainty in meters"
 msgstr ""
 "incertidumbre de las coordenadas en\n"
 "metros"
 
-#: museum/models.py:750
+#: museum/models.py:751
 msgid "coordinate precision"
 msgstr "precisión de las coordenadas"
 
-#: museum/models.py:753
+#: museum/models.py:754
 msgid "point radius spatial fit"
 msgstr "ajuste espacial del radio-punto"
 
-#: museum/models.py:756
+#: museum/models.py:757
 msgid "footprint WKT"
 msgstr "WKT footprint"
 
-#: museum/models.py:759
+#: museum/models.py:760
 msgid "footprint SRS"
 msgstr "SRS footprint"
 
-#: museum/models.py:762
+#: museum/models.py:763
 msgid "footprint spatial fit"
 msgstr "ajuste espacial de footprint"
 
-#: museum/models.py:765
+#: museum/models.py:766
 msgid "georeferenced by"
 msgstr "georreferenciado por"
 
-#: museum/models.py:768
+#: museum/models.py:769
 msgid "georeferenced date"
 msgstr "fecha de georreferenciación"
 
-#: museum/models.py:772
+#: museum/models.py:773
 msgid "georeference protocol"
 msgstr "protocolo de georreferenciación"
 
-#: museum/models.py:775
+#: museum/models.py:776
 msgid "georeference sources"
 msgstr "fuentes de georreferenciación"
 
-#: museum/models.py:778
+#: museum/models.py:779
 msgid "georeference verification status"
 msgstr ""
 "estado de la verificación de la\n"
 "georreferenciación"
 
-#: museum/models.py:782
+#: museum/models.py:783
 msgid "georeference remarks"
 msgstr "comentarios de la georreferenciación"
 
-#: museum/models.py:787
+#: museum/models.py:788
 msgid "geological context ID"
 msgstr "ID del contexto geológico"
 
-#: museum/models.py:790
+#: museum/models.py:791
 msgid "earliest eon or lowest eonothem"
 msgstr "Eón temprano o eonotema inferior"
 
-#: museum/models.py:794
+#: museum/models.py:795
 msgid "latest eon or highest eonothem"
 msgstr "Eón tardío o eonotema superior"
 
-#: museum/models.py:798
+#: museum/models.py:799
 msgid "earliest era or lowest erathem"
 msgstr "Era temprana o eratema inferior"
 
-#: museum/models.py:802
+#: museum/models.py:803
 msgid "latest era or highest erathem"
 msgstr "Era tardía o eratema superior"
 
-#: museum/models.py:806
+#: museum/models.py:807
 msgid "earliest period or lowest system"
 msgstr "Periodo temprano o sistema inferior"
 
-#: museum/models.py:810
+#: museum/models.py:811
 msgid "latest period or highest system"
 msgstr "Periodo tardío o sistema superior"
 
-#: museum/models.py:814
+#: museum/models.py:815
 msgid "earliest epoch or lowest series"
 msgstr "Época temprana o serie inferior"
 
-#: museum/models.py:818
+#: museum/models.py:819
 msgid "latest epoch or highest series"
 msgstr "Época tardía o serie superior"
 
-#: museum/models.py:822
+#: museum/models.py:823
 msgid "earliest age or lowest stage"
 msgstr "Edad temprana o piso inferior"
 
-#: museum/models.py:826
+#: museum/models.py:827
 msgid "latest age or highest stage"
 msgstr "Edad tardía o piso superior"
 
-#: museum/models.py:830
+#: museum/models.py:831
 msgid "lowest biostratigraphic zone"
 msgstr "Zona bioestratigráfica inferior"
 
-#: museum/models.py:834
+#: museum/models.py:835
 msgid "highest biostratigraphic zone"
 msgstr "Zona bioestratigráfica superior"
 
-#: museum/models.py:838
+#: museum/models.py:839
 msgid "lithostratigraphic terms"
 msgstr "Términos litoestratigráficos"
 
-#: museum/models.py:841
+#: museum/models.py:842
 msgid "group"
 msgstr "Grupo"
 
-#: museum/models.py:843
+#: museum/models.py:844
 msgid "formation"
 msgstr "Formación"
 
-#: museum/models.py:846
+#: museum/models.py:847
 msgid "member"
 msgstr "Miembro"
 
-#: museum/models.py:848
+#: museum/models.py:849
 msgid "bed"
 msgstr "Capa"
 
-#: museum/models.py:852
+#: museum/models.py:853
 msgid "identification ID"
 msgstr "ID de la identificación"
 
-#: museum/models.py:856
+#: museum/models.py:857
 msgid "identified by"
 msgstr "Identificado por"
 
-#: museum/models.py:859
+#: museum/models.py:860
 msgid "date identified"
 msgstr "Fecha de la identificación"
 
-#: museum/models.py:863
+#: museum/models.py:864
 msgid "identification references"
 msgstr "Referencias de la identificación"
 
-#: museum/models.py:866
+#: museum/models.py:867
 msgid "identification verification status"
 msgstr "Estado de la verificación de la identificación"
 
-#: museum/models.py:870
+#: museum/models.py:871
 msgid "identification remarks"
 msgstr "Comentarios de la identificación"
 
-#: museum/models.py:873
+#: museum/models.py:874
 msgid "identification qualifier"
 msgstr "Calificador de la identificación"
 
-#: museum/models.py:875
+#: museum/models.py:876
 msgid "type status"
 msgstr "Estado del tipo"
 
-#: museum/models.py:879
+#: museum/models.py:880
 msgid "taxon ID"
 msgstr "ID del taxón"
 
-#: museum/models.py:882
+#: museum/models.py:883
 msgid "scientific name ID"
 msgstr "ID del nombre científico"
 
-#: museum/models.py:885
+#: museum/models.py:886
 msgid "accepted name usage ID"
 msgstr "ID del nombre aceptado usado"
 
-#: museum/models.py:888
+#: museum/models.py:889
 msgid "parent name usage ID"
 msgstr "ID del Nombre Parental usado"
 
-#: museum/models.py:891
+#: museum/models.py:892
 msgid "original name usage ID"
 msgstr "ID del Nombre original usado"
 
-#: museum/models.py:894
+#: museum/models.py:895
 msgid "name according to ID"
 msgstr "ID del nombre de acuerdo con"
 
-#: museum/models.py:897
+#: museum/models.py:898
 msgid "name published in ID"
 msgstr "ID del nombre publicado en"
 
-#: museum/models.py:900
+#: museum/models.py:901
 msgid "taxon concept ID"
 msgstr "ID del concepto del taxón"
 
-#: museum/models.py:907
+#: museum/models.py:908
 msgid "accepted name usage"
 msgstr "nombre aceptado usado"
 
-#: museum/models.py:910
+#: museum/models.py:911
 msgid "parent name usage"
 msgstr "nombre parental usado"
 
-#: museum/models.py:913
+#: museum/models.py:914
 msgid "original name usage"
 msgstr "nombre original usado"
 
-#: museum/models.py:916
+#: museum/models.py:917
 msgid "name according to"
 msgstr "nombre de acuerdo con"
 
-#: museum/models.py:919
+#: museum/models.py:920
 msgid "name published in"
 msgstr "nombre publicado en"
 
-#: museum/models.py:922
+#: museum/models.py:923
 msgid "name published in year"
 msgstr "nombre publicado en el año"
 
-#: museum/models.py:925
+#: museum/models.py:926
 msgid "higher classification"
 msgstr "clasificación superior"
 
-#: museum/models.py:952
+#: museum/models.py:953
 msgid "subgenus"
 msgstr "subgénero"
 
-#: museum/models.py:959
+#: museum/models.py:960
 msgid "infraspecific epithet"
 msgstr "epíteto infraespecífico"
 
-#: museum/models.py:966
+#: museum/models.py:967
 msgid "verbatim taxon rank"
 msgstr "categoría original del taxón"
 
-#: museum/models.py:985
+#: museum/models.py:986
 msgid "nomenclatural status"
 msgstr "estado nomenclatural"
 
-#: museum/models.py:987
+#: museum/models.py:988
 msgid "taxon remarks"
 msgstr "comentarios del taxón"
 
-#: museum/models.py:989
+#: museum/models.py:990
 msgid "additional data"
 msgstr ""
 
-#: museum/models.py:997 museum/models.py:1019
+#: museum/models.py:999 museum/models.py:1022
 msgid "record"
 msgstr "registro"
 
-#: museum/models.py:998
+#: museum/models.py:1000
 msgid "records"
 msgstr "registros"
 
-#: museum/models.py:1008
+#: museum/models.py:1010
 msgid "Should start with the collection code: {}"
 msgstr "Debe comenzar con el código de colección: {}"
 
-#: museum/models.py:1022 museum/models.py:1025
+#: museum/models.py:1025 museum/models.py:1028
 msgid "image"
 msgstr "imagen"
 
-#: museum/models.py:1026
+#: museum/models.py:1029
 msgid "images"
 msgstr "imágenes"
 
-#: museum/models.py:1030
+#: museum/models.py:1033
 msgid "Image of record {}"
 msgstr "imagen del registro {}"
 
@@ -969,7 +969,7 @@ msgstr "Email de contacto"
 msgid "Invalid format"
 msgstr "Formato inválido"
 
-#: museum/validators.py:53
+#: museum/validators.py:55
 msgid ""
 "Invalid date or date format, must be: YYYY-MM-DD, YYYY-MM-DD/DD, YYYY-MM-DD/"
 "YYYY-MM-DD, YYYY or YYYY-MM"
@@ -977,11 +977,11 @@ msgstr ""
 "Fecha o formato de fecha inválido, debe ser: YYYY-MM-DD, YYYY-MM-DD/DD, YYYY-"
 "MM-DD/YYYY-MM-DD, YYYY or YYYY-MM"
 
-#: museum/validators.py:102
+#: museum/validators.py:104
 msgid "Invalid date range"
 msgstr "Rango de fecha inválido"
 
-#: museum/validators.py:105
+#: museum/validators.py:107
 msgid "The date cannot be greater than the current date"
 msgstr "La fecha no puede ser mayor que la fecha actual"
 

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'django_json_widget',
-    'drf_recaptcha'
+    'drf_recaptcha',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -231,3 +232,19 @@ EMAIL_USE_TLS = True
 CORS_ORIGIN_ALLOW_ALL = True
 
 DRF_RECAPTCHA_SECRET_KEY = os.environ['RECAPTCHA_SECRET_KEY']
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ["Styles", "Format", "Bold", "Italic", "Underline", "Strike",
+             "SpellChecker", "Undo", "Redo"],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+             'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ["Link", "Unlink"],
+            ['RemoveFormat', 'Source']
+        ],
+        "height": 300,
+        "width": 900,
+    }
+}
