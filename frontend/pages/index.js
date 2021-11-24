@@ -1,7 +1,9 @@
 import dynamic from 'next/dynamic'
 import Layout from '@components/Layout'
-import Team from '@components/Team'
-import { getMembers, getSliders } from 'services'
+import { getSliders } from 'services'
+// import { getMembers, getSliders } from 'services'
+// import TeamMember from '@components/TeamMember'
+// import Link from 'next/link'
 
 const Slider = dynamic(() => import('@components/Slider'), { ssr: false })
 
@@ -106,7 +108,28 @@ const Home = ({ sliders, members }) => {
             </div>
           </div>
         </section>
-        {!!members.length && <Team members={members} />}
+        {/* {members.length > 0 && (
+          <section className='container pb-70'>
+            <div className='section-title'>
+              <h3>Conoce nuestro equipo</h3>
+            </div>
+            <div className='row justify-content-center'>
+              {members.map(member => (
+                <div className='col-lg-4 col-sm-6' key={member.id}>
+                  {member.description ? (
+                    <Link href={`/equipo/${member.slug}`}>
+                      <a>
+                        <TeamMember {...member} />
+                      </a>
+                    </Link>
+                  ) : (
+                    <TeamMember {...member} />
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )} */}
       </main>
     </Layout>
   )
@@ -115,11 +138,12 @@ const Home = ({ sliders, members }) => {
 export default Home
 
 export async function getServerSideProps() {
-  const [sliders, members] = await Promise.all([getSliders(), getMembers()])
+  // const [sliders, members] = await Promise.all([getSliders(), getMembers()])
+  const [sliders] = await Promise.all([getSliders()])
   return {
     props: {
       sliders,
-      members,
+      // members: members.results,
     },
   }
 }

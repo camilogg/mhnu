@@ -6,7 +6,7 @@ export const getSliders = async () => {
 }
 
 export const getMembers = async () => {
-  const response = await fetch(`${HOST}/members`)
+  const response = await fetch(`${HOST}/members?limit=6`)
   return await response.json()
 }
 

@@ -1,12 +1,8 @@
 from django_filters import FilterSet, CharFilter
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 
-from .models import Slider, Member, Post
-from .serializers import (
-    SliderModelSerializer,
-    MemberModelSerializer,
-    PostModelSerializer
-)
+from .models import Slider, Member
+from .serializers import SliderModelSerializer, MemberModelSerializer
 
 
 class NameFilter(FilterSet):
@@ -25,7 +21,7 @@ class MemberAPIListView(ListAPIView):
     filterset_class = NameFilter
 
 
-class PostAPIListView(ListAPIView):
-    serializer_class = PostModelSerializer
-    queryset = Post.objects.all()
-    filterset_class = NameFilter
+class MemberRetrieveAPIView(RetrieveAPIView):
+    queryset = Member.objects.all()
+    serializer_class = MemberModelSerializer
+    lookup_field = 'slug'

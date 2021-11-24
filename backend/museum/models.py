@@ -1014,7 +1014,7 @@ class Record(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.catalog_number)
         self.full_clean()
-        super(Record, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class Image(Audit):

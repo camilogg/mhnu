@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import SliderAPIListView, MemberAPIListView, PostAPIListView
+from .views import SliderAPIListView, MemberAPIListView, MemberRetrieveAPIView
 
 app_name = 'web'
 urlpatterns = [
@@ -15,8 +15,8 @@ urlpatterns = [
         name='member_list'
     ),
     path(
-        route='posts',
-        view=PostAPIListView.as_view(),
-        name='post_list'
-    )
+        route='members/<slug:slug>',
+        view=MemberRetrieveAPIView.as_view(),
+        name='member_list'
+    ),
 ]
