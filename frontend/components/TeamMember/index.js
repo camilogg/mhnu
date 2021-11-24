@@ -14,7 +14,7 @@ const TeamMember = ({ image, name, position, description }) => {
       </div>
       <div className='team-content'>
         <h3>{name}</h3>
-        <span>{position}</span>
+        <p>{position}</p>
       </div>
     </div>
   )
