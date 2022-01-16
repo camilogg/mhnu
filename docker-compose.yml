@@ -43,18 +43,18 @@ services:
       - db
     ports: []
 
-  nginx:
-    image: nginx:alpine
-    logging:
-      driver: none
-    volumes:
-      - ./backend/static:/static
-      - ./backend/media:/media
-      - ./nginx/local/dev.conf:/etc/nginx/conf.d/default.conf:ro
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
+#  nginx:
+#    image: nginx:alpine
+#    logging:
+#      driver: none
+#    volumes:
+#      - ./backend/static:/static
+#      - ./backend/media:/media
+#      - ./nginx/local/dev.conf:/etc/nginx/conf.d/default.conf:ro
+#    ports:
+#      - "80:80"
+#    depends_on:
+#      - backend
 
 volumes:
   postgres-data:

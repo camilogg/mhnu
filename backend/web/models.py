@@ -16,6 +16,7 @@ class Slider(Audit):
         verbose_name = 'slider'
         verbose_name_plural = 'sliders'
         ordering = ['order']
+        db_table = 'slider'
 
     def __str__(self):
         return self.name
@@ -35,6 +36,7 @@ class Member(Audit):
     class Meta:
         verbose_name = _('member')
         verbose_name_plural = _('members')
+        db_table = 'member'
 
     def __str__(self):
         return self.name
