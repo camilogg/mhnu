@@ -2,21 +2,13 @@ from django.urls import path
 
 from .views import MemberAPIListView, MemberRetrieveAPIView, SliderAPIListView
 
-app_name = 'web'
+app_name = "web"
 urlpatterns = [
+    path(route="sliders", view=SliderAPIListView.as_view(), name="slider_list"),
+    path(route="members", view=MemberAPIListView.as_view(), name="member_list"),
     path(
-        route='sliders',
-        view=SliderAPIListView.as_view(),
-        name='slider_list'
-    ),
-    path(
-        route='members',
-        view=MemberAPIListView.as_view(),
-        name='member_list'
-    ),
-    path(
-        route='members/<slug:slug>',
+        route="members/<slug:slug>",
         view=MemberRetrieveAPIView.as_view(),
-        name='member_list'
+        name="member_list",
     ),
 ]

@@ -9,28 +9,26 @@ from utils.models import Audit
 class ExportJob(Audit):
 
     file = models.FileField(
-        verbose_name=_('exported file'),
-        upload_to='export-jobs',
+        verbose_name=_("exported file"),
+        upload_to="export-jobs",
         blank=False,
         null=False,
         max_length=255,
     )
 
     processing_initiated = models.DateTimeField(
-        verbose_name=_('Have we started processing the file? If so when?'),
+        verbose_name=_("Have we started processing the file? If so when?"),
         null=True,
         blank=True,
         default=None,
     )
 
     job_status = models.CharField(
-        verbose_name=_('Status of the job'),
-        max_length=255,
-        blank=True
+        verbose_name=_("Status of the job"), max_length=255, blank=True
     )
 
     format = models.CharField(
-        verbose_name=_('Format of file to be exported'),
+        verbose_name=_("Format of file to be exported"),
         max_length=255,
         choices=[(f.CONTENT_TYPE, f().get_title()) for f in DEFAULT_FORMATS],
         blank=False,
@@ -42,24 +40,26 @@ class ExportJob(Audit):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        verbose_name=_('collection code'),
-        help_text=_('select the type of collection to export or leave it empty'
-                    ' to export all records')
+        verbose_name=_("collection code"),
+        help_text=_(
+            "select the type of collection to export or leave it empty"
+            " to export all records"
+        ),
     )
 
     email_on_completion = models.BooleanField(
-        verbose_name=_('Send me an email when this export job is complete'),
+        verbose_name=_("Send me an email when this export job is complete"),
         default=True,
     )
 
     site_of_origin = models.TextField(
-        _('site of origin'),
+        _("site of origin"),
         max_length=255,
-        default='',
+        default="",
     )
 
     queryset = models.JSONField(
-        verbose_name=_('JSON list of pks to export'), blank=True, null=True
+        verbose_name=_("JSON list of pks to export"), blank=True, null=True
     )
 
     def get_queryset(self):
@@ -71,9 +71,9 @@ class ExportJob(Audit):
         return queryset
 
     class Meta:
-        verbose_name = _('export job')
-        verbose_name_plural = _('export jobs')
-        db_table = 'export_job'
+        verbose_name = _("export job")
+        verbose_name_plural = _("export jobs")
+        db_table = "export_job"
 
     def __str__(self):
-        return _('Export job #{}').format(self.pk)
+        return _("Export job #{}").format(self.pk)

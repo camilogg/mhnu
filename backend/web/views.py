@@ -6,7 +6,7 @@ from .serializers import MemberModelSerializer, SliderModelSerializer
 
 
 class NameFilter(FilterSet):
-    name = CharFilter(lookup_expr='icontains')
+    name = CharFilter(lookup_expr="icontains")
 
 
 class SliderAPIListView(ListAPIView):
@@ -24,4 +24,4 @@ class MemberAPIListView(ListAPIView):
 class MemberRetrieveAPIView(RetrieveAPIView):
     queryset = Member.objects.all()
     serializer_class = MemberModelSerializer
-    lookup_field = 'slug'
+    lookup_field = "slug"

@@ -19,28 +19,32 @@ class Audit(models.Model):
     """
 
     created_at = models.DateTimeField(
-        verbose_name=_('created at'),
+        verbose_name=_("created at"),
         auto_now_add=True,
-        help_text=_('date when the object was created'),
+        help_text=_("date when the object was created"),
     )
     modified_at = models.DateTimeField(
-        verbose_name=_('modified at'),
+        verbose_name=_("modified at"),
         auto_now=True,
-        help_text=_('date when the object was modified'),
+        help_text=_("date when the object was modified"),
     )
     created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE,
-        related_name='%(class)s_created_by',
-        null=True, blank=True,
-        verbose_name=_('created by'),
-        help_text=_('user who created the object'),
+        User,
+        on_delete=models.CASCADE,
+        related_name="%(class)s_created_by",
+        null=True,
+        blank=True,
+        verbose_name=_("created by"),
+        help_text=_("user who created the object"),
     )
     modified_by = models.ForeignKey(
-        User, on_delete=models.CASCADE,
-        related_name='%(class)s_modified_by',
-        null=True, blank=True,
-        verbose_name=_('modified by'),
-        help_text=_('user who performed the update'),
+        User,
+        on_delete=models.CASCADE,
+        related_name="%(class)s_modified_by",
+        null=True,
+        blank=True,
+        verbose_name=_("modified by"),
+        help_text=_("user who performed the update"),
     )
 
     class Meta:

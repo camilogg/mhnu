@@ -6,10 +6,10 @@ from .models import Member, Slider
 class SliderModelSerializer(ModelSerializer):
     class Meta:
         model = Slider
-        fields = ('id', 'name', 'image')
+        fields = ("id", "name", "image")
 
 
 class MemberModelSerializer(ModelSerializer):
     class Meta:
         model = Member
-        fields = ('id', 'name', 'image', 'position', 'description', 'slug')
+        fields = ("id", "name", "image", "position", "description", "slug")

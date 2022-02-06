@@ -11,10 +11,10 @@ from django.urls import get_script_prefix
 
 def snake_case_to_camel_case(value: str):
     # split underscore using split
-    str_values = value.split('_')
-    exceptions = ['ID', 'class']
+    str_values = value.split("_")
+    exceptions = ["ID", "class"]
     # joining result
-    res = str_values[0] + ''.join(
+    res = str_values[0] + "".join(
         ele.title() if ele not in exceptions else ele for ele in str_values[1:]
     )
     return res
@@ -22,27 +22,27 @@ def snake_case_to_camel_case(value: str):
 
 def django_url_fetcher(url, *args, **kwargs):
     # load file:// paths directly from disk
-    if url.startswith('file:'):
+    if url.startswith("file:"):
         mime_type, encoding = mimetypes.guess_type(url)
         url_path = urlparse(url).path
         data = {
-            'mime_type': mime_type,
-            'encoding': encoding,
-            'filename': Path(url_path).name,
+            "mime_type": mime_type,
+            "encoding": encoding,
+            "filename": Path(url_path).name,
         }
 
-        default_media_url = settings.MEDIA_URL in ('', get_script_prefix())
+        default_media_url = settings.MEDIA_URL in ("", get_script_prefix())
         if not default_media_url and url_path.startswith(settings.MEDIA_URL):
             media_root = settings.MEDIA_ROOT
             if isinstance(settings.MEDIA_ROOT, Path):
-                media_root = f'{settings.MEDIA_ROOT}/'
+                media_root = f"{settings.MEDIA_ROOT}/"
             path = url_path.replace(settings.MEDIA_URL, media_root, 1)
-            data['file_obj'] = default_storage.open(path)
+            data["file_obj"] = default_storage.open(path)
             return data
 
         elif settings.STATIC_URL and url_path.startswith(settings.STATIC_URL):
-            path = url_path.replace(settings.STATIC_URL, '', 1)
-            data['file_obj'] = open(find(path), 'rb')
+            path = url_path.replace(settings.STATIC_URL, "", 1)
+            data["file_obj"] = open(find(path), "rb")
             return data
 
     # fall back to weasyprint default fetcher

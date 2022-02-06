@@ -29,13 +29,13 @@ from ..tasks import send_mail_contact
 class CountryModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Country
-        fields = '__all__'
+        fields = "__all__"
 
 
 class StateProvinceModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = StateProvince
-        fields = '__all__'
+        fields = "__all__"
 
 
 class CountyModelSerializer(serializers.ModelSerializer):
@@ -43,103 +43,103 @@ class CountyModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = County
-        fields = '__all__'
+        fields = "__all__"
 
 
 class RecordedByModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecordedBy
-        fields = '__all__'
+        fields = "__all__"
 
 
 class TypeModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Type
-        fields = '__all__'
+        fields = "__all__"
 
 
 class GenusModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genus
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class FamilyModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Family
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class ScientificNameModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScientificName
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class IdentifiedBySerializer(serializers.ModelSerializer):
     class Meta:
         model = IdentifiedBy
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class KingdomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Kingdom
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class PhylumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Phylum
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class ClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class SpecificEpithetSerializer(serializers.ModelSerializer):
     class Meta:
         model = SpecificEpithet
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class TaxonRankSerializer(serializers.ModelSerializer):
     class Meta:
         model = TaxonRank
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class ScientificNameAuthorshipSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScientificNameAuthorship
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class NomenclaturalCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = NomenclaturalCode
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class LocalityCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Locality
-        fields = ['id', 'name']
+        fields = ["id", "name"]
 
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ['image']
+        fields = ["image"]
 
 
 class RecordModelSerializer(serializers.ModelSerializer):
@@ -164,14 +164,36 @@ class RecordModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Record
         fields = (
-            'id', 'family', 'genus', 'scientific_name', 'country', 'county',
-            'recorded_by', 'type', 'catalog_number', 'record_number',
-            'georeferenced_by', 'identified_by', 'kingdom', 'phylum', '_class',
-            'order', 'specific_epithet', 'taxon_rank', 'nomenclatural_code',
-            'scientific_name_authorship', 'locality', 'geodetic_datum',
-            'minimum_elevation_in_meters', 'maximum_elevation_in_meters',
-            'verbatim_latitude', 'verbatim_longitude', 'decimal_latitude',
-            'decimal_longitude', 'images', 'slug'
+            "id",
+            "family",
+            "genus",
+            "scientific_name",
+            "country",
+            "county",
+            "recorded_by",
+            "type",
+            "catalog_number",
+            "record_number",
+            "georeferenced_by",
+            "identified_by",
+            "kingdom",
+            "phylum",
+            "_class",
+            "order",
+            "specific_epithet",
+            "taxon_rank",
+            "nomenclatural_code",
+            "scientific_name_authorship",
+            "locality",
+            "geodetic_datum",
+            "minimum_elevation_in_meters",
+            "maximum_elevation_in_meters",
+            "verbatim_latitude",
+            "verbatim_longitude",
+            "decimal_latitude",
+            "decimal_longitude",
+            "images",
+            "slug",
         )
 
 
@@ -186,5 +208,5 @@ class ContactSerializer(serializers.Serializer):
         send_mail_contact.delay(**self.validated_data)
 
     def validate(self, attrs):
-        attrs.pop('token')
+        attrs.pop("token")
         return attrs

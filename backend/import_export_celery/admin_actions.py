@@ -45,10 +45,10 @@ def create_export_job_action(modeladmin, request, queryset):
             site_of_origin=request.scheme + "://" + request.get_host(),
         )
     url = reverse(
-        'admin:{}_{}_change'.format(ej._meta.app_label, ej._meta.model_name),
+        "admin:{}_{}_change".format(ej._meta.app_label, ej._meta.model_name),
         args=[ej.pk],
     )
     return redirect(url)
 
 
-create_export_job_action.short_description = _('Export')
+create_export_job_action.short_description = _("Export")
