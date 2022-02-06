@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.core.cache import cache
 from django.utils.translation import gettext_lazy as _
 
-from . import models, admin_actions
+from . import admin_actions, models
 
 
 class JobWithStatusMixin:

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Slider, Member
+from .models import Member, Slider
 
 
 @admin.register(Slider)

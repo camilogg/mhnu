@@ -7,4 +7,4 @@ class ImportExportCeleryConfig(AppConfig):
     verbose_name = _('Imports and exports')
 
     def ready(self):
-        from import_export_celery import signals # noqa
+        from import_export_celery import signals  # noqa

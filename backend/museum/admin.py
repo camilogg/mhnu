@@ -1,55 +1,53 @@
+from autocompletefilter.admin import AutocompleteFilterMixin
+from autocompletefilter.filters import AutocompleteListFilter
 from django.contrib import admin
 from django.db import models
 from django.forms import Textarea
 from django.shortcuts import redirect
-from django.urls import reverse, path
+from django.urls import path, reverse
 from django.utils.translation import gettext_lazy as _
 from django_json_widget.widgets import JSONEditorWidget
-
 from django_object_actions import DjangoObjectActions
-
-from autocompletefilter.admin import AutocompleteFilterMixin
-from autocompletefilter.filters import AutocompleteListFilter
-
 from import_export.admin import ImportExportModelAdmin
 from tabbed_admin import TabbedModelAdmin
 
 from import_export_celery.admin_actions import create_export_job_action
 from import_export_celery.models import ExportJob
+
 from .models import (
-    Record,
-    Type,
-    CollectionCode,
     BasisOfRecord,
-    Sex,
-    LifeStage,
-    OccurrenceStatus,
-    Preparation,
-    Disposition,
-    RecordedBy,
-    SamplingProtocol,
-    Habitat,
-    WaterBody,
-    Country,
-    StateProvince,
-    County,
-    Municipality,
-    Locality,
-    IdentifiedBy,
-    ScientificName,
-    Kingdom,
-    Phylum,
     Class,
-    Order,
+    CollectionCode,
+    Country,
+    County,
+    Disposition,
     Family,
     Genus,
-    SpecificEpithet,
-    TaxonRank,
-    ScientificNameAuthorship,
-    VernacularName,
+    Habitat,
+    IdentifiedBy,
+    Image,
+    Kingdom,
+    LifeStage,
+    Locality,
+    Municipality,
     NomenclaturalCode,
+    OccurrenceStatus,
+    Order,
+    Phylum,
+    Preparation,
+    Record,
+    RecordedBy,
+    SamplingProtocol,
+    ScientificName,
+    ScientificNameAuthorship,
+    Sex,
+    SpecificEpithet,
+    StateProvince,
     TaxonomicStatus,
-    Image
+    TaxonRank,
+    Type,
+    VernacularName,
+    WaterBody,
 )
 from .resources import RecordModelResource
 from .views import record_detail_pdf, record_list_pdf

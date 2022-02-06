@@ -1,7 +1,4 @@
-from .importjob import ImportJob
 from .exportjob import ExportJob
+from .importjob import ImportJob
 
-__all__ = (
-    ImportJob,
-    ExportJob
-)
+__all__ = (ImportJob, ExportJob)

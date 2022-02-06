@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
 from import_export.formats.base_formats import DEFAULT_FORMATS
 
 from utils.models import Audit

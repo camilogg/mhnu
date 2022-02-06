@@ -1,14 +1,15 @@
 from django.urls import path
 
+from museum.views import record_detail_pdf
+
 from .api.views import (
-    GenusListAPIView,
+    ContactAPIView,
     FamilyListAPIView,
-    ScientificNameListAPIView,
+    GenusListAPIView,
     RecordListAPIView,
     RecordRetrieveAPIView,
-    ContactAPIView
+    ScientificNameListAPIView,
 )
-from museum.views import record_detail_pdf
 
 app_name = 'museum'
 urlpatterns = [

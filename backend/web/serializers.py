@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import Slider, Member
+from .models import Member, Slider
 
 
 class SliderModelSerializer(ModelSerializer):

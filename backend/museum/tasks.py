@@ -1,7 +1,8 @@
 from celery import shared_task
 from django.conf import settings
-from django.utils.translation import gettext_lazy as _
 from django.template.loader import render_to_string
+from django.utils.translation import gettext_lazy as _
+
 from utils.tasks import send_mail_task
 
 

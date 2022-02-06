@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import SliderAPIListView, MemberAPIListView, MemberRetrieveAPIView
+from .views import MemberAPIListView, MemberRetrieveAPIView, SliderAPIListView
 
 app_name = 'web'
 urlpatterns = [

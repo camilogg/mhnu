@@ -4,15 +4,15 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from ..models import Family, Genus, Record, ScientificName
 from .filters import CollectionAndNameFilter, RecordFilter
 from .serializers import (
-    GenusModelSerializer,
+    ContactSerializer,
     FamilyModelSerializer,
-    ScientificNameModelSerializer,
+    GenusModelSerializer,
     RecordModelSerializer,
-    ContactSerializer
+    ScientificNameModelSerializer,
 )
-from ..models import Genus, ScientificName, Family, Record
 
 
 class GenusListAPIView(ListAPIView):

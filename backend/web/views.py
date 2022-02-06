@@ -1,8 +1,8 @@
-from django_filters import FilterSet, CharFilter
+from django_filters import CharFilter, FilterSet
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
-from .models import Slider, Member
-from .serializers import SliderModelSerializer, MemberModelSerializer
+from .models import Member, Slider
+from .serializers import MemberModelSerializer, SliderModelSerializer
 
 
 class NameFilter(FilterSet):

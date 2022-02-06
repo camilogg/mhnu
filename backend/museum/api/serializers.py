@@ -1,11 +1,27 @@
-from rest_framework import serializers
 from drf_recaptcha.fields import ReCaptchaV2Field
+from rest_framework import serializers
 
 from ..models import (
-    Genus, Family, ScientificName, Record, Country, County, RecordedBy, Type,
-    StateProvince, IdentifiedBy, Kingdom, Phylum, Class, Order,
-    SpecificEpithet, TaxonRank, ScientificNameAuthorship, NomenclaturalCode,
-    Locality, Image
+    Class,
+    Country,
+    County,
+    Family,
+    Genus,
+    IdentifiedBy,
+    Image,
+    Kingdom,
+    Locality,
+    NomenclaturalCode,
+    Order,
+    Phylum,
+    Record,
+    RecordedBy,
+    ScientificName,
+    ScientificNameAuthorship,
+    SpecificEpithet,
+    StateProvince,
+    TaxonRank,
+    Type,
 )
 from ..tasks import send_mail_contact
 

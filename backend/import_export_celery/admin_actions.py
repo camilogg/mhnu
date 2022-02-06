@@ -1,7 +1,6 @@
-from django.utils import timezone
-
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import gettext as _
 
 from . import tasks

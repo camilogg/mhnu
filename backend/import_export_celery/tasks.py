@@ -1,25 +1,22 @@
-from django.utils import timezone
+import logging
 import os
 
 from celery import shared_task
-
+from celery.utils.log import get_task_logger
 from django.conf import settings
-from django.core.files.base import ContentFile
 from django.core.cache import cache
+from django.core.files.base import ContentFile
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.encoding import force_text
 from django.utils.translation import gettext as _
-
 from import_export.formats.base_formats import DEFAULT_FORMATS
 
 from museum.resources import RecordModelResource
-from . import models
 
-from celery.utils.log import get_task_logger
-import logging
+from . import models
 
 logger = logging.getLogger(__name__)
 
