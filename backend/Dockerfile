@@ -16,8 +16,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /backend
 
-COPY requirements.txt .
-RUN pip install --upgrade pip --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip poetry
+COPY pyproject.toml poetry.lock ./
+RUN poetry config virtualenvs.create false && poetry install
 
 COPY . .
 
