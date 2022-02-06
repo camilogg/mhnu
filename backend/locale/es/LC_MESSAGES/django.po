@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
-#: MHNU/settings/base.py:112
+#: mhnu/settings/base.py:112
 msgid "Spanish"
 msgstr "Español"
 

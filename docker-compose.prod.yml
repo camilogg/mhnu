@@ -13,14 +13,14 @@ services:
   backend: &backend
     build: ./backend
     container_name: mhnu-backend
-    command: ["wait-for-it", "db:5432", "--", "gunicorn", "MHNU.wsgi:application", "-b",  "0.0.0.0:8000", "-w", "3"]
+    command: ["wait-for-it", "db:5432", "--", "gunicorn", "mhnu.wsgi:application", "-b",  "0.0.0.0:8000", "-w", "3"]
     env_file: ./backend/.env
     volumes:
       - ./backend:/backend
     depends_on:
       - db
     environment:
-      - DJANGO_SETTINGS_MODULE=MHNU.settings.prod
+      - DJANGO_SETTINGS_MODULE=mhnu.settings.prod
     ports:
       - '8000:8000'
 
@@ -42,7 +42,7 @@ services:
   worker:
     <<: *backend
     container_name: mhnu-worker
-    command: ["celery", "-A", "MHNU", "worker", "-B", "-l", "info"]
+    command: ["celery", "-A", "mhnu", "worker", "-B", "-l", "info"]
     depends_on:
       - redis
       - db

@@ -56,7 +56,7 @@ MIDDLEWARE = [
     "crum.CurrentRequestUserMiddleware",
 ]
 
-ROOT_URLCONF = "MHNU.urls"
+ROOT_URLCONF = "mhnu.urls"
 
 TEMPLATES = [
     {
@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "MHNU.wsgi.application"
+WSGI_APPLICATION = "mhnu.wsgi.application"
 
 DATABASES = {
     "default": {

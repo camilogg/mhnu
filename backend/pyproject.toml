@@ -57,3 +57,8 @@ skip = ["migrations"]
 
 [tool.black]
 exclude = "migrations"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "mhnu.settings.local"
+python_files = "tests.py test_*.py *_tests.py"
+addopts = "-p no:warnings"
