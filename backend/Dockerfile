@@ -31,5 +31,8 @@ RUN chmod +x /backend/entrypoint.sh
 # copy project
 COPY . .
 
+RUN adduser app
+USER app
+
 # run entrypoint.sh
 ENTRYPOINT ["/backend/entrypoint.sh"]

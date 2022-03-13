@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from '../../utils/ActiveLink'
 
 const Navbar = () => {
@@ -23,7 +24,7 @@ const Navbar = () => {
             <nav className='navbar navbar-expand-md navbar-light'>
               <Link href='/'>
                 <a className='navbar-brand d-flex align-items-center'>
-                  <img
+                  <Image
                     src='/images/logo.png'
                     alt='logo'
                     width={30}

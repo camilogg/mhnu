@@ -3,7 +3,6 @@ import Error from 'next/error'
 import Image from 'next/image'
 
 const Member = ({ error, member }) => {
-  console.log(member)
   if (error) {
     return <Error statusCode={error} />
   }

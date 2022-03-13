@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['plugin:react/recommended', 'standard', 'prettier'],
+  extends: ['plugin:react/recommended', 'standard', 'prettier', 'plugin:@next/next/recommended', 'next/core-web-vitals'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
