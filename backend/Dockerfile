@@ -31,7 +31,7 @@ RUN chmod +x /backend/entrypoint.sh
 # copy project
 COPY . .
 
-RUN adduser app
+RUN adduser --disabled-login app && chown -R $USER:$USER .
 USER app
 
 # run entrypoint.sh
